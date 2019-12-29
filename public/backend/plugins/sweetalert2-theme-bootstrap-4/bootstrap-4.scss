@@ -345,7 +345,7 @@ $swal2-toast-buttons-font-size: $bootstrap-toast-font-size;
   background-color: $bootstrap-input-bg;
   color: $bootstrap-input-color;
   vertical-align: middle;
-  // @include box-shadow($custom-select-box-shadow);
+  // @includes box-shadow($custom-select-box-shadow);
   appearance: none;
 
   &:focus {

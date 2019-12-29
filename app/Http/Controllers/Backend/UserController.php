@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -14,7 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('backend.user.list');
+//        $users = DB::table('users')->get();
+        $users = DB::table('users')->paginate(9);
+        return view('backend.user.list')->with(['users'=>$users]);
     }
 
     /**

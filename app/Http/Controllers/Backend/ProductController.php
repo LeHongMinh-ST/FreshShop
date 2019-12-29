@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Product;
+use App\Category;
 
 class ProductController extends Controller
 {
@@ -14,7 +16,15 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('backend.product.list');
+        $products = Product::paginate(10);
+        foreach ($products as $value)
+        {
+            $category = Category::where('id',$value->category_id)->first();
+            $value->category = $category->name;
+        }
+
+
+        return view('backend.product.list')->with(['products'=>$products]);
     }
 
     /**

@@ -30,11 +30,11 @@
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
     <!-- Navbar -->
-    @include('backend.include.navbar')
+    @include('backend.includes.navbar')
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-    @include('backend.include.sidebar')
+    @include('backend.includes.sidebar')
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -43,7 +43,7 @@
         @yield('content')
     </div>
 
-    @include('backend.include.footer')
+    @include('backend.includes.footer')
 </div>
 
 <!-- ./wrapper -->

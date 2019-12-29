@@ -1770,7 +1770,7 @@ Docs & License: https://fullcalendar.io/
             replaced = true;
             return tzoStr;
         });
-        // IE11 doesn't include UTC/GMT in the original string, so append to end
+        // IE11 doesn't includes UTC/GMT in the original string, so append to end
         if (!replaced) {
             s += ' ' + tzoStr;
         }
@@ -2401,7 +2401,7 @@ Docs & License: https://fullcalendar.io/
                         isMirror: isMirror,
                         isStart: seg.isStart,
                         isEnd: seg.isEnd,
-                        // TODO: include seg.range once all components consistently generate it
+                        // TODO: includes seg.range once all components consistently generate it
                         el: seg.el,
                         view: view
                     }
@@ -3946,11 +3946,11 @@ Docs & License: https://fullcalendar.io/
         renderEventDragSegs(state: EventSegUiInteractionState) {
           if (state) {
             let { isEvent, segs, sourceSeg } = state
-      
+
             if (this.eventRenderer) {
               this.eventRenderer.hideByHash(state.affectedInstances)
             }
-      
+
             // if the user is dragging something that is considered an event with real event data,
             // and this component likes to do drag mirrors OR the component where the seg came from
             // likes to do drag mirrors, then render a drag mirror.
@@ -3959,7 +3959,7 @@ Docs & License: https://fullcalendar.io/
                 this.mirrorRenderer.renderSegs(segs, { isDragging: true, sourceSeg })
               }
             }
-      
+
             // if it would be impossible to render a drag mirror OR this component likes to render
             // highlights, then render a highlight.
             if (!isEvent || this.doesDragHighlight) {
@@ -4406,7 +4406,7 @@ Docs & License: https://fullcalendar.io/
         var endMarker = framingRange.end;
         var instanceStarts = [];
         while (dayMarker < endMarker) {
-            var instanceStart 
+            var instanceStart
             // if everyday, or this particular day-of-week
             = void 0;
             // if everyday, or this particular day-of-week

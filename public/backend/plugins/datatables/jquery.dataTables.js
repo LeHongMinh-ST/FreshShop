@@ -1907,7 +1907,7 @@
 			browser.barWidth = outer[0].offsetWidth - outer[0].clientWidth;
 
 			// IE6/7 will oversize a width 100% element inside a scrolling element, to
-			// include the width of the scrollbar, while other browsers ensure the inner
+			// includes the width of the scrollbar, while other browsers ensure the inner
 			// element is contained without forcing scrolling
 			browser.bScrollOversize = inner[0].offsetWidth === 100 && outer[0].clientWidth !== 100;
 
@@ -3279,7 +3279,7 @@
 	 * already a cell in that position.
 	 *  @param {object} oSettings dataTables settings object
 	 *  @param array {objects} aoSource Layout array from _fnDetectHeader
-	 *  @param {boolean} [bIncludeHidden=false] If true then include the hidden columns in the calc,
+	 *  @param {boolean} [bIncludeHidden=false] If true then includes the hidden columns in the calc,
 	 *  @memberof DataTable#oApi
 	 */
 	function _fnDrawHead( oSettings, aoSource, bIncludeHidden )
@@ -5303,7 +5303,7 @@
 			// No x scrolling
 			tableStyle.width = "100%";
 
-			// IE7 will make the width of the table when 100% include the scrollbar
+			// IE7 will make the width of the table when 100% includes the scrollbar
 			// - which is shouldn't. When there is a scrollbar we need to take this
 			// into account.
 			if ( ie67 && (table.find('tbody').height() > divBodyEl.offsetHeight ||
@@ -11935,7 +11935,7 @@
 		 * DataTables features six different built-in options for the buttons to
 		 * display for pagination control:
 		 *
-		 * * `numbers` - Page number buttons only
+		 * * `numbers` - page number buttons only
 		 * * `simple` - 'Previous' and 'Next' buttons only
 		 * * 'simple_numbers` - 'Previous' and 'Next' buttons, plus page numbers
 		 * * `full` - 'First', 'Previous', 'Next' and 'Last' buttons
@@ -14445,7 +14445,7 @@
 		/* Filtering */
 		"sFilterInput": "",
 
-		/* Page length */
+		/* page length */
 		"sLengthSelect": "",
 
 		/* Scrolling */
@@ -15189,7 +15189,7 @@
 	 */
 
 	/**
-	 * Page change event, fired when the paging of the table is altered.
+	 * page change event, fired when the paging of the table is altered.
 	 *  @name DataTable#page.dt
 	 *  @event
 	 *  @param {event} e jQuery event object
@@ -15303,7 +15303,7 @@
 	 */
 
 	/**
-	 * Page length change event, fired when number of records to show on each
+	 * page length change event, fired when number of records to show on each
 	 * page (the length) is changed.
 	 *  @name DataTable#length.dt
 	 *  @event
