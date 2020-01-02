@@ -94,4 +94,11 @@ class CategoryController extends Controller
             echo $product->name .'<br>';
         }
     }
+
+    public function showProduct($id)
+    {
+        $category = Category::find($id);
+        $products  = $category->Products;
+        return view('backend.categories.showProduct')->with(['products'=>$products]);
+    }
 }

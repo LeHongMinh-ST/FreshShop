@@ -36,5 +36,10 @@ Route::get('admin/test','Backend\UserController@test');
 Route::get('admin/testC','Backend\CategoryController@test');
 Route::get('admin/testP','Backend\ProductController@test');
 Route::get('admin/ShowImage/{id?}','Backend\ProductController@showImage');
+Route::get('admin/Category/ShowProduct/{id?}','Backend\CategoryController@showProduct');
+Route::get('admin/User/ShowProduct/{id?}','Backend\UserController@showProduct');
+Route::get('admin/Oder/ShowProduct/{id?}','Backend\OderController@showProduct');
+
+
 
 
