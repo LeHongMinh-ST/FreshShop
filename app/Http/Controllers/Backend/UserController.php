@@ -99,4 +99,11 @@ class UserController extends Controller
         $user = $user_info->user;
         dd($user);
     }
+
+    public function showProduct($id)
+    {
+        $user = User::find($id);
+        $products = $user->Products;
+        return view('backend.user.showProduct')->with(['products'=>$products]);
+    }
 }

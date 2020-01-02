@@ -1,1 +1,3 @@
-<img src="{{asset($images[0]->path . $images[0]->name)}}" alt="">
+@foreach($images as $image)
+    <img src="{{asset($image->path . $image->name)}}" alt="">
+@endforeach
