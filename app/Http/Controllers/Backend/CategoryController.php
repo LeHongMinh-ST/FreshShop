@@ -84,4 +84,14 @@ class CategoryController extends Controller
     {
         //
     }
+
+    public function test()
+    {
+        $categories = Category::find(3);
+        $products = $categories->Products;
+        foreach ($products as $product)
+        {
+            echo $product->name .'<br>';
+        }
+    }
 }

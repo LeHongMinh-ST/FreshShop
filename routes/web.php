@@ -31,3 +31,10 @@ Route::group([
     Route::get('About','HomeController@about')->name('frontend.about');
     Route::get('Contract','HomeController@contact')->name('frontend.contact');
 });
+
+Route::get('admin/test','Backend\UserController@test');
+Route::get('admin/testC','Backend\CategoryController@test');
+Route::get('admin/testP','Backend\ProductController@test');
+Route::get('admin/ShowImage/{id?}','Backend\ProductController@showImage');
+
+

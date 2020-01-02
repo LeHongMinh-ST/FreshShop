@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\User;
+use App\User_info;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -84,5 +86,17 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function test()
+    {
+//        $user = User::find(2);
+//        $userInfo = $user->userInfo;
+//        dd($userInfo);
+
+        $user_info = User_info::find(1);
+//        dd($user_info);
+        $user = $user_info->user;
+        dd($user);
     }
 }

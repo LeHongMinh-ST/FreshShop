@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Category extends Model
+class Oder extends Model
 {
-    protected $table = 'categories';
+    protected $table='oders';
     public $timestamps = true;
 
     public function Products()
     {
-        return $this->hasMany(Product::class);
+       return $this->belongsToMany(Product::class);
     }
 }

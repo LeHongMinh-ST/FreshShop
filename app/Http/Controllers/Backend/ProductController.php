@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Oder;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
@@ -17,10 +18,10 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::paginate(10);
-        foreach ($products as $value)
+        foreach ($products as $product)
         {
-            $category = Category::where('id',$value->category_id)->first();
-            $value->category = $category->name;
+            $category = $product->Category;
+            $product->category = $category->name;
         }
 
 
@@ -91,5 +92,24 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function test()
+    {
+//        $product = Product::find(1);
+//        $oder = $product->Oder;
+//        dd($oder);
+
+        $oder = Oder::find(1);
+        $products = $oder->Products;
+        dd($products);
+    }
+
+    public function showImage($id)
+    {
+        $product = Product::find($id);
+        $images = $product->Images;
+//        dd($images);
+        return view('backend.image.image')->with(['images'=>$images]);
     }
 }
