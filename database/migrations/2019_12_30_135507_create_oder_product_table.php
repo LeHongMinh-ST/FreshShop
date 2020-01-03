@@ -17,6 +17,8 @@ class CreateOderProductTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('oder_id');
             $table->bigInteger('product_id');
+            $table->integer('quantity');
+            $table->integer('unit_price');
             $table->timestamps();
         });
     }

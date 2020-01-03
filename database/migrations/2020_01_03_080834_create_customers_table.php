@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOdersTable extends Migration
+class CreateCustomersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,15 @@ class CreateOdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('oders', function (Blueprint $table) {
+        Schema::create('customers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('customer_id');
-            $table->dateTime('date_oder');
-            $table->integer('payment');
-            $table->integer('status');
-            $table->string('node');
+            $table->string('name');
+            $table->string('email');
+            $table->string('password');
+            $table->integer('sex');
+            $table->string('phone');
+            $table->string('address');
+            $table->string('node')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +33,6 @@ class CreateOdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('oders');
+        Schema::dropIfExists('customers');
     }
 }
