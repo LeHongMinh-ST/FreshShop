@@ -2,7 +2,20 @@
 @section('tilte')
     Product
 @endsection
-
+@section('script')
+    <script>
+        $(function () {
+            $('#example1').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+            });
+        });
+    </script>
+@endsection
 @section('content-header')
     <section class="content-header">
         <div class="container-fluid">
@@ -21,6 +34,8 @@
     </section>
 @endsection
 
+
+
 @section('content')
     <section class="content">
 
@@ -30,13 +45,13 @@
                 <h3 class="card-title">Product</h3>
             </div>
             <div class="card-body p-0">
-                <table class="table table-striped projects">
+                <table class="table table-striped" id="example1 " >
                     <thead>
                     <tr>
                         <th style="width: 1%">
                             id
                         </th>
-                        <th style="width: 20%">
+                        <th style="width: 20%" >
                             Tên sản phẩm
                         </th>
                         <th style="width: 10%">

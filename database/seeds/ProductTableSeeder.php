@@ -17,11 +17,12 @@ class ProductTableSeeder extends Seeder
         {
             DB::table('products')->insert([
                 'name'=>Str::random(10),
-                'origin_price'=>random_int(50000,100000),
-                'sale_price'=>random_int(0,50000),
                 'content'=>Str::random(20),
+                'avatar'=>Str::random(20),
+                'price_import'=>random_int(50000,100000),
+                'price_sell'=>random_int(50000,100000),
                 'unit'=>'kg',
-                'user_id'=>1,
+                'user_id'=>random_int(0,1),
                 'category_id'=>random_int(1,5),
                 'status'=>random_int(0,1)
             ]);

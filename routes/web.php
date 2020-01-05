@@ -11,8 +11,19 @@
 |
 */
 
+Route::get('admin/login', 'Auth\LoginController@showLoginForm')->name('login.form');
+Route::post('admin/login', 'Auth\LoginController@login')->name('login.store');
+
+Route::get('admin/register', 'Auth\RegisterController@showRegistrationForm')->name('register.form');
+Route::post('admin/register', 'Auth\RegisterController@register')->name('register.store');
+
+Route::get('logout','Auth\LoginController@logout')->name('logout');
+
+
+
 
 Route::group([
+    'middleware'=>'auth',
     'namespace' => 'Backend',
     'prefix' => 'admin'
 ], function () {
@@ -22,6 +33,7 @@ Route::group([
     Route::resource('Category','CategoryController');
     Route::resource('User', 'UserController');
 });
+
 
 Route::group([
     'namespace'=>'Frontend'
@@ -43,3 +55,7 @@ Route::get('admin/Oder/ShowProduct/{id?}','Backend\OderController@showProduct');
 
 
 
+
+//Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

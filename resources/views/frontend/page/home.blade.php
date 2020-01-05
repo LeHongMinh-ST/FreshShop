@@ -9,8 +9,8 @@
     <div class="slider-area">
         <div class="bend niceties preview-1">
             <div id="ensign-nivoslider" class="slides">
-                <img src="{{asset('frontend/img/slider/1.jpg')}}" alt="" title="#slider-direction-1"/>
-                <img src="{{asset('frontend/img/slider/2.jpg')}}" alt="" title="#slider-direction-2"/>
+                <img src="{{asset('frontend/img/slider/sl1.jpg')}}" alt="" title="#slider-direction-1"/>
+                <img src="{{asset('frontend/img/slider/sl2.jpg')}}" alt="" title="#slider-direction-2"/>
             </div>
             <!-- direction 1 -->
             <div id="slider-direction-1" class="text-center slider-direction">

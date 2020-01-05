@@ -24,7 +24,6 @@ class ProductController extends Controller
             $product->category = $category->name;
         }
 
-
         return view('backend.product.list')->with(['products'=>$products]);
     }
 
@@ -35,7 +34,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.product.create');
     }
 
     /**
