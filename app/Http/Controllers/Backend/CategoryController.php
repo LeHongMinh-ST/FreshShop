@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Backend;
 use App\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreCategoryRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -26,7 +29,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::get();
+        return view('backend.categories.create')->with(['categories'=>$categories]);
     }
 
     /**
@@ -35,9 +39,18 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
-        //
+        $category = new Category();
+        $category->name = $request->get('name');
+        $category->slug = Str::slug('name');
+        $category->depth = $request->get('category_id') + 1;
+        $category->content = $request->get('content');
+        $category->parent_id = $request->get('category_id');
+        $category->user_id = Auth::user()->id;
+        $category->save();
+
+        return redirect()->route('Category.index');
     }
 
     /**
@@ -59,7 +72,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categories = Category::get();
+        $category = Category::find($id);
+        return view('backend.categories.update')->with(['categories'=>$categories,'category'=>$category]);
     }
 
     /**
@@ -69,9 +84,18 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreCategoryRequest $request, $id)
     {
-        //
+        $category = Category::find($id);
+        $category->name = $request->get('name');
+        $category->slug = Str::slug('name');
+        $category->depth = $request->get('category_id') + 1;
+        $category->content = $request->get('content');
+        $category->parent_id = $request->get('category_id');
+        $category->user_id = Auth::user()->id;
+        $category->save();
+
+        return redirect()->route('Category.index');
     }
 
     /**

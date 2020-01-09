@@ -1,0 +1,89 @@
+@extends('backend.layout.master')
+
+@section('title')
+    Create Product
+@endsection
+@section('content-header')
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Cập nhật danh mục</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Sản phẩm</a></li>
+                    <li class="breadcrumb-item active">Tạo sản phẩm</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+@endsection
+@section('content')
+    <!-- Main row -->
+    <div class="row">
+        <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Cập nhật danh mục</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form role="form" action="{{route('Category.update',$category->id)}}" method="post">
+                    {{ csrf_field() }}
+                    {{ method_field('PUT') }}
+                    @csrf
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Tên danh muc</label>
+                            <input type="text" class="form-control" id="" placeholder="Điền tên sản phẩm" name="name" value="{{$category->name}}">
+                            @error('name')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label>Danh mục sản phẩm</label>
+                            <select class="form-control select2" style="width: 100%;" name="category_id">
+                                <option value="0">--Chọn danh mục---</option>
+                                @foreach($categories as $value)
+                                    <option value="{{$value->id}}" @if($value->id == $category->parent_id) selected @endif > {{$value->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Mô tả danh mục</label>
+                            <textarea name="content" class="textarea" placeholder="Place some text here"
+                                      style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px; ">{{$category->content}}</textarea>
+                            @error('content')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputFile">Hình ảnh danh mục</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" name="avatar" class="custom-file-input" id="exampleInputFile">
+                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                </div>
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="">Upload</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-default" href="{{route('Category.index')}}">Huỷ bỏ</button>
+                        <button type="submit" class="btn btn-sucess">Cập nhật</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /.row (main row) -->
+    </div><!-- /.container-fluid -->
+@endsection
+
+

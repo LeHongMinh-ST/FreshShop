@@ -13,7 +13,7 @@
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item"><a href="#">Sản phẩm</a></li>
-                    <li class="breadcrumb-item active">Tạo sản phẩm</li>
+                    <li class="breadcrumb-item active">Cập nhật sản phẩm</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -26,16 +26,18 @@
             <!-- general form elements -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Tạo sản phẩm</h3>
+                    <h3 class="card-title">Cập nhật sản phẩm</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form" action="{{route('Product.store')}}" method="post">
+                <form role="form" action="{{route('Product.update',$product->id)}}" method="POST">
+                    {{ csrf_field() }}
+                    {{ method_field('PUT') }}
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tên sản phẩm</label>
-                            <input type="text" class="form-control" id="" placeholder="Điền tên sản phẩm" name="name">
+                            <input type="text" class="form-control" id="" placeholder="Điền tên sản phẩm" name="name" value="{{$product->name}}">
                             @error('name')
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -45,7 +47,7 @@
                             <select class="form-control select2" style="width: 100%;" name="category_id">
                                 <option>--Chọn danh mục---</option>
                                 @foreach($categories as $category)
-                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                    <option value="{{$category->id}}" @if($category->id == $product->category_id)  selected  @endif > {{$category->name}} </option>
                                 @endforeach
                             </select>
                             @error('price_sell')
@@ -57,7 +59,7 @@
                                 <div class="form-group">
                                     <label>Giá nhập</label>
                                     <input type="text" name="price_import" class="form-control"
-                                           placeholder="Điền giá khuyến mại">
+                                           placeholder="Điền giá khuyến mại" value="{{$product->price_import}}">
                                     @error('price_import')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
@@ -67,7 +69,7 @@
                                 <div class="form-group">
                                     <label>Giá bán</label>
                                     <input type="text" name="price_sell" class="form-control"
-                                           placeholder="Điền giá gốc">
+                                           placeholder="Điền giá gốc" value="{{$product->price_sell}}">
                                     @error('price_sell')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
@@ -77,7 +79,7 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Mô tả sản phẩm</label>
                             <textarea name="content" class="textarea" placeholder="Place some text here"
-                                      style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px; "></textarea>
+                                      style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px; ">{{$product->content}}</textarea>
                             @error('content')
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -96,23 +98,23 @@
                         </div>
                         <div class="form-group">
                             <label>Đơn vị</label>
-                            <input type="text" class="form-control" id="" placeholder="Điền đơn vị" name="unit">
+                            <input type="text" class="form-control" id="" placeholder="Điền đơn vị" name="unit" value="{{$product->unit}}">
                         </div>
                         <div class="form-group">
                             <label>Trạng thái sản phẩm</label>
                             <select class="form-control select2" style="width: 100%;" name="status">
                                 <option>--Chọn trạng thái---</option>
-                                <option value="1">Đang nhập</option>
-                                <option value="2">Mở bán</option>
-                                <option value="3">Hết hàng</option>
+                                <option value="1" @if($product->status ==1) selected @endif >Đang nhập</option>
+                                <option value="2" @if($product->status ==2) selected @endif >Mở bán</option>
+                                <option value="3" @if($product->status ==3) selected @endif >Hết hàng</option>
                             </select>
                         </div>
                     </div>
                     <!-- /.card-body -->
 
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-default" href="{{route('backend.dashboard')}}">Huỷ bỏ</button>
-                        <button type="submit" class="btn btn-sucess">Tạo mới</button>
+                        <button type="submit" class="btn btn-default" href="{{route('Product.index')}}">Huỷ bỏ</button>
+                        <button type="submit" class="btn btn-sucess">Cập nhật</button>
                     </div>
                 </form>
             </div>

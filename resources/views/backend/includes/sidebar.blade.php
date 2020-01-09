@@ -43,7 +43,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/layout/top-nav.html" class="nav-link">
+                            <a href="{{route('Product.create')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Tạo mới</p>
                             </a>
@@ -67,7 +67,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/charts/chartjs.html" class="nav-link">
+                            <a href="{{route('Category.create')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Tạo mới</p>
                             </a>

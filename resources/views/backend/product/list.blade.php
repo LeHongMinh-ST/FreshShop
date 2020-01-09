@@ -111,7 +111,7 @@
                                     </i>
                                     Chi tiết
                                 </a>
-                                <a class="btn btn-info btn-sm" href="#">
+                                <a class="btn btn-info btn-sm" href="{{route('Product.edit',$value->id)}}">
                                     <i class="fas fa-pencil-alt">
                                     </i>
                                     Sửa

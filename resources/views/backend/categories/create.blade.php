@@ -7,13 +7,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Tạo sản phẩm</h1>
+                <h1 class="m-0 text-dark">Tạo danh mục</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Sản phẩm</a></li>
-                    <li class="breadcrumb-item active">Tạo sản phẩm</li>
+                    <li class="breadcrumb-item"><a href="#">Danh Mục</a></li>
+                    <li class="breadcrumb-item active">Tạo danh Mục</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->
@@ -26,15 +26,15 @@
             <!-- general form elements -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Tạo sản phẩm</h3>
+                    <h3 class="card-title">Tạo danh mục</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form" action="{{route('Product.store')}}" method="post">
+                <form role="form" action="{{route('Category.store')}}" method="post">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Tên sản phẩm</label>
+                            <label for="exampleInputEmail1">Tên danh muc</label>
                             <input type="text" class="form-control" id="" placeholder="Điền tên sản phẩm" name="name">
                             @error('name')
                             <div class="alert alert-danger">{{ $message }}</div>
@@ -43,39 +43,14 @@
                         <div class="form-group">
                             <label>Danh mục sản phẩm</label>
                             <select class="form-control select2" style="width: 100%;" name="category_id">
-                                <option>--Chọn danh mục---</option>
+                                <option value="0">--Chọn danh mục---</option>
                                 @foreach($categories as $category)
                                     <option value="{{$category->id}}">{{$category->name}}</option>
                                 @endforeach
                             </select>
-                            @error('price_sell')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label>Giá nhập</label>
-                                    <input type="text" name="price_import" class="form-control"
-                                           placeholder="Điền giá khuyến mại">
-                                    @error('price_import')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label>Giá bán</label>
-                                    <input type="text" name="price_sell" class="form-control"
-                                           placeholder="Điền giá gốc">
-                                    @error('price_sell')
-                                    <div class="alert alert-danger">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Mô tả sản phẩm</label>
+                            <label for="exampleInputEmail1">Mô tả danh mục</label>
                             <textarea name="content" class="textarea" placeholder="Place some text here"
                                       style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px; "></textarea>
                             @error('content')
@@ -83,7 +58,7 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputFile">Hình ảnh sản phẩm</label>
+                            <label for="exampleInputFile">Hình ảnh danh mục</label>
                             <div class="input-group">
                                 <div class="custom-file">
                                     <input type="file" name="avatar" class="custom-file-input" id="exampleInputFile">
@@ -93,19 +68,6 @@
                                     <span class="input-group-text" id="">Upload</span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Đơn vị</label>
-                            <input type="text" class="form-control" id="" placeholder="Điền đơn vị" name="unit">
-                        </div>
-                        <div class="form-group">
-                            <label>Trạng thái sản phẩm</label>
-                            <select class="form-control select2" style="width: 100%;" name="status">
-                                <option>--Chọn trạng thái---</option>
-                                <option value="1">Đang nhập</option>
-                                <option value="2">Mở bán</option>
-                                <option value="3">Hết hàng</option>
-                            </select>
                         </div>
                     </div>
                     <!-- /.card-body -->
@@ -121,3 +83,4 @@
     <!-- /.row (main row) -->
     </div><!-- /.container-fluid -->
 @endsection
+
