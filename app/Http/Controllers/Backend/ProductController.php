@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Image;
 use App\Oder;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StoreProductRequest;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -59,8 +62,41 @@ class ProductController extends Controller
         $product->status = $request->get('status');
         $product->user_id = Auth::user()->id;
         $product->unit = $request->get('unit');
-        $product->avatar = 'test';
-        $product->save();
+        if ($request->allFiles()){
+//            $path = Storage::disk('public')->putFile('images/avatar', $request->file('avatar'));
+//            dd($path);
+//            $file = $request->file('avatar');
+//            Lưu vào trong thư mục storage
+//            $path = $file->store('images');
+
+            $avatar = $request->file('avatar');
+            $images = $request->file('images');
+
+            $path_avatar = 'backend/dist/img/product/avatar';
+            $path_img = 'backend/dist/img/product/description';
+
+            $profileavatar = date('YmdHis') . "." . $avatar->getClientOriginalExtension();
+            $avatar->move($path_avatar,$profileavatar);
+            $product->avatar = $profileavatar;
+
+            $product->save();
+
+            $i = 0;
+            foreach ($images as $image){
+                $profileimage = date('YmdHis') . $i . "." . $image->getClientOriginalExtension();
+                $image->move($path_img,$profileimage);
+
+                $image_new = new Image();
+
+                $image_new->name = $profileimage;
+                $image_new->path = $path_img;
+                $image_new->product_id = $product->id;
+
+                $image_new->save();
+                $i++;
+            }
+        }
+        else dd('không có file');
 
         return redirect()->route('Product.index');
     }

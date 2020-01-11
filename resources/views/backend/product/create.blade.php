@@ -30,7 +30,7 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form" action="{{route('Product.store')}}" method="post">
+                <form role="form" action="{{route('Product.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
@@ -83,10 +83,23 @@
                             @enderror
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputFile">Hình ảnh sản phẩm</label>
+                            <label for="exampleInputFile">Hình ảnh đại diện sản phẩm</label>
                             <div class="input-group">
                                 <div class="custom-file">
                                     <input type="file" name="avatar" class="custom-file-input" id="exampleInputFile">
+                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                </div>
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="">Upload</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputFile">Hình ảnh mô tả sản phẩm</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" name="images[]" class="custom-file-input" id="exampleInputFile" multiple>
                                     <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                 </div>
                                 <div class="input-group-append">
