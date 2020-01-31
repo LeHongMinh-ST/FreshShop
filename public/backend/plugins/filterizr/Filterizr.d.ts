@@ -23,7 +23,7 @@ export default class Filterizr {
     constructor(selectorOrNode?: string | HTMLElement, userOptions?: RawOptions);
     private readonly filterItems;
     /**
-     * Filters the items in the grid by a category
+     * Filters the items in the grid by a categories
      * @param category by which to filter
      */
     filter(category: Filter): void;

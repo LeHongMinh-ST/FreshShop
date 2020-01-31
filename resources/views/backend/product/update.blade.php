@@ -7,7 +7,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1 class="m-0 text-dark">Tạo sản phẩm</h1>
+                <h1 class="m-0 text-dark">Cập nhật sản phẩm</h1>
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -84,11 +84,25 @@
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
+
                         <div class="form-group">
-                            <label for="exampleInputFile">Hình ảnh sản phẩm</label>
+                            <label for="exampleInputFile">Hình ảnh đại diện sản phẩm</label>
                             <div class="input-group">
                                 <div class="custom-file">
                                     <input type="file" name="avatar" class="custom-file-input" id="exampleInputFile">
+                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                </div>
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="">Upload</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputFile">Hình ảnh mô tả sản phẩm</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" name="images[]" class="custom-file-input" id="exampleInputFile" multiple>
                                     <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                 </div>
                                 <div class="input-group-append">

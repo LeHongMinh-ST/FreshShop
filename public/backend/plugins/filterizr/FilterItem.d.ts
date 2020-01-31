@@ -53,7 +53,7 @@ export default class FilterItem {
      */
     updateDimensions(): void;
     /**
-     * Returns all categories of the grid items data-category attribute
+     * Returns all categories of the grid items data-categories attribute
      * with a regexp regarding all whitespace.
      * @return {String[]} an array of the categories the item belongs to
      */

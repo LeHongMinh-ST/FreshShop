@@ -55,6 +55,8 @@
 
 @include('frontend.includes.footer')
 
+@yield('modal')
+
 <!-- all js here -->
 <!-- jquery latest version -->
 <script src="{{asset('frontend/js/vendor/jquery-1.12.0.min.js')}}"></script>

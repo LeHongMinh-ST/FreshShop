@@ -18,6 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->string('name');
             $table->string('content');
             $table->string('slug');
+            $table->string('image');
             $table->bigInteger('parent_id')->nullable();
             $table->integer('depth');
             $table->bigInteger('user_id');

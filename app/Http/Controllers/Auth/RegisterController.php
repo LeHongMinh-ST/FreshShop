@@ -79,6 +79,11 @@ class RegisterController extends Controller
         return view('backend.user.register');
     }
 
+//    public function showRegisterAdmodForm()
+//    {
+//        return view('backend.user.create');
+//    }
+
 //    public function register(Request $request)
 //    {
 //        $this->validator($request->all())->validate();

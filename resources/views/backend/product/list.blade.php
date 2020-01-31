@@ -45,28 +45,28 @@
                 <h3 class="card-title">Product</h3>
             </div>
             <div class="card-body p-0">
-                <table class="table table-striped" id="example1 " >
+                <table class="table table-striped" id="example1 ">
                     <thead>
                     <tr>
-                        <th style="width: 1%">
+                        <th>
                             id
                         </th>
-                        <th style="width: 20%" >
+                        <th>
                             Tên sản phẩm
                         </th>
-                        <th style="width: 10%">
+                        <th>
                             Ảnh
                         </th>
-                        <th style="width: 20%">
+                        <th>
                             Loại sản pẩm
                         </th>
                         <th>
                             Đơn vị
                         </th>
-                        <th class="text-center" style="width: 8%">
+                        <th>
                             Trạng thái
                         </th>
-                        <th style="width: 20%">
+                        <th>
                         </th>
                     </tr>
                     </thead>
@@ -83,9 +83,19 @@
                             </td>
                             <td>
                                 <ul class="list-inline">
-                                    <li class="list-inline-item">
-                                        <img class="table-avatar" alt="Avatar" src="../../dist/img/avatar.png">
-                                    </li>
+                                    @if($value->avatar)
+                                        <li class="list-inline-item">
+                                            <img class="table-avatar" alt="Avatar"
+                                                 src="{{asset('backend/dist/img/product/avatar/' . $value->avatar)}}"
+                                                 style="max-inline-size: 100px">
+                                        </li>
+                                    @else
+                                        <li class="list-inline-item">
+                                            <img class="table-avatar" alt="Avatar"
+                                                 src="{{asset('backend/dist/img/product/avatar/demo.png')}}"
+                                                 style="max-inline-size: 100px">
+                                        </li>
+                                    @endif
                                 </ul>
                             </td>
                             <td>
@@ -99,34 +109,53 @@
                                     <span class="badge badge-success">
                                     Còn hàng
                                 </span>
-                                @else
+                                @elseif($value->status == 0)
                                     <span class="badge badge-danger">
                                     Hết hàng
                                 </span>
+                                @else
+                                    <span class="badge badge-warning">
+                                    Đang nhập
+                                </span>
                                 @endif
                             </td>
-                            <td class="project-actions text-right">
-                                <a class="btn btn-primary btn-sm" href="#">
-                                    <i class="fas fa-folder">
-                                    </i>
-                                    Chi tiết
-                                </a>
-                                <a class="btn btn-info btn-sm" href="{{route('Product.edit',$value->id)}}">
-                                    <i class="fas fa-pencil-alt">
-                                    </i>
-                                    Sửa
-                                </a>
-                                <a class="btn btn-danger btn-sm" href="#">
-                                    <i class="fas fa-trash">
-                                    </i>
-                                    Xóa
-                                </a>
+                            <td class="text-right" style="display: flex">
+                                <form action="{{route('Product.show',$value->id)}}" method="GET"
+                                      style="margin-right: 5px">
+                                    <button type="submit" class="btn btn-primary btn-sm">
+                                        <i class="fas fa-folder">
+                                        </i>
+                                        Chi tiết
+                                    </button>
+                                </form>
+                                @can('update',$value)
+                                    <form action="{{route('Product.edit',$value->id)}}" method="GET"
+                                          style="margin-right: 5px">
+                                        <button type="submit" class="btn btn-info btn-sm">
+                                            <i class="fas fa-pencil-alt">
+                                            </i>
+                                            Sửa
+                                        </button>
+                                    </form>
+                                @endcan
+                                @can('delete',$value)
+                                    <form action="{{route('Product.destroy',$value->id)}}" method="POST"
+                                          style="margin-right: 5px">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="fa fa-btn fa-trash"></i> Xoá
+                                        </button>
+                                    </form>
+                                @endcan
                                 <a class="btn btn-success btn-sm" href="#">
                                     <i class="fas fa-plus">
                                     </i>
                                     Nhập
                                 </a>
                             </td>
+
+
                         </tr>
                     @endforeach
                     </tbody>

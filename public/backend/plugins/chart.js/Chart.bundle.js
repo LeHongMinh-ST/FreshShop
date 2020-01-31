@@ -4784,7 +4784,7 @@ function computeMinSampleSize(scale, pixels) {
 }
 
 /**
- * Computes an "ideal" category based on the absolute bar thickness or, if undefined or null,
+ * Computes an "ideal" categories based on the absolute bar thickness or, if undefined or null,
  * uses the smallest interval (see computeMinSampleSize) that prevents bar overlapping. This
  * mode currently always generates bars equally sized (until we introduce scriptable options?).
  * @private
@@ -4802,7 +4802,7 @@ function computeFitCategoryTraits(index, ruler, options) {
 		size = min * options.categoryPercentage;
 		ratio = options.barPercentage;
 	} else {
-		// When bar thickness is enforced, category and bar percentages are ignored.
+		// When bar thickness is enforced, categories and bar percentages are ignored.
 		// Note(SB): we could add support for relative bar thickness (e.g. barThickness: '50%')
 		// and deprecate barPercentage since this value is ignored when thickness is absolute.
 		size = thickness * count;
@@ -4817,7 +4817,7 @@ function computeFitCategoryTraits(index, ruler, options) {
 }
 
 /**
- * Computes an "optimal" category that globally arranges bars side by side (no gap when
+ * Computes an "optimal" categories that globally arranges bars side by side (no gap when
  * percentage options are 1), based on the previous and following categories. This mode
  * generates bars with different widths when data are not evenly spaced.
  * @private
@@ -6641,7 +6641,7 @@ core_defaults._set('scatter', {
 	scales: {
 		xAxes: [{
 			id: 'x-axis-1',    // need an ID so datasets can reference the scale
-			type: 'linear',    // scatter should not use a category axis
+			type: 'linear',    // scatter should not use a categories axis
 			position: 'bottom'
 		}],
 		yAxes: [{
@@ -12593,7 +12593,7 @@ var scale_category = core_scale.extend({
 		core_scale.prototype._configure.call(me);
 
 		if (!me.isHorizontal()) {
-			// For backward compatibility, vertical category scale reverse is inverted.
+			// For backward compatibility, vertical categories scale reverse is inverted.
 			me._reversePixels = !me._reversePixels;
 		}
 

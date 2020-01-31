@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-2 col-sm-6 col-xs-6">
                 <div class="header-logo">
-                    <a href="index.html">
+                    <a href="{{route('frontend.home')}}">
                         <img src="{{asset('frontend/img/logo.png')}}" alt="">
                     </a>
                 </div>
@@ -84,10 +84,31 @@
                 <div class="mainmenu text-center">
                     <nav>
                         <ul id="nav">
-                            <li><a href="{{route('frontend.home')}}">HOME</a></li>
-                            <li><a href="shop.html">FEATURED</a></li>
-                            <li><a href="shop.html">REVIEW PRODUCT</a></li>
-                            <li><a href="{{route('frontend.about')}}">ABOUT AUTHOR</a></li>
+                            <li><a href="{{route('frontend.home')}}">Trang Chủ</a></li>
+                            <li><a href="{{route('frontend.about')}}">Giới thiêu</a></li>
+                            <li><a href="shop.html">Sản phẩm</a>
+{{--                                <ul class="">--}}
+{{--                                    @foreach($parent_categories as $parent_category)--}}
+{{--                                        <li><a href="about.html">{{$parent_category->name}}</a>--}}
+{{--                                            @if($parent_category->has_chid)--}}
+{{--                                                <ul>--}}
+{{--                                                    <li><a href="#">A</a>--}}
+{{--                                                        <ul>--}}
+{{--                                                            <li><a href="#">A</a></li>--}}
+{{--                                                            <li><a href="#">B</a></li>--}}
+{{--                                                            <li><a href="#">C</a></li>--}}
+{{--                                                        </ul>--}}
+{{--                                                    </li>--}}
+{{--                                                    <li><a href="#">B</a></li>--}}
+{{--                                                    <li><a href="#">C</a></li>--}}
+{{--                                                </ul>--}}
+{{--                                            @endif--}}
+{{--                                        </li>--}}
+{{--                                    @endforeach--}}
+{{--                                </ul>--}}
+                                {!! $parent_categories !!}
+                            </li>
+                            <li><a href="shop.html">BLOG Món ngon</a></li>
                             <li><a href="#">pages</a>
                                 <ul class="sub-menu">
                                     <li><a href="about.html">About Us</a></li>
@@ -102,7 +123,7 @@
                                     <li><a href="404.html">404 Page</a></li>
                                 </ul>
                             </li>
-                            <li><a href="{{route('frontend.contact')}}">CONTACT</a></li>
+                            <li><a href="{{route('frontend.contact')}}">Liên Hệ</a></li>
                         </ul>
                     </nav>
                 </div>

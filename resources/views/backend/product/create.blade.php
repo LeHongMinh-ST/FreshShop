@@ -115,9 +115,9 @@
                             <label>Trạng thái sản phẩm</label>
                             <select class="form-control select2" style="width: 100%;" name="status">
                                 <option>--Chọn trạng thái---</option>
-                                <option value="1">Đang nhập</option>
-                                <option value="2">Mở bán</option>
-                                <option value="3">Hết hàng</option>
+                                <option value="2">Đang nhập</option>
+                                <option value="1">Mở bán</option>
+                                <option value="0">Hết hàng</option>
                             </select>
                         </div>
                     </div>

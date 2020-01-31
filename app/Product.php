@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+
     protected $table = 'products';
     public $timestamps = true;
 
@@ -17,6 +18,11 @@ class Product extends Model
     public function Oders()
     {
         return $this->belongsToMany(Oder::class);
+    }
+
+    public function Imports()
+    {
+        return $this->belongsToMany(Import::class);
     }
 
     public function Images()

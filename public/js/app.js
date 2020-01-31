@@ -18414,7 +18414,7 @@ return jQuery;
    * @static
    * @memberOf _
    * @since 1.1.0
-   * @category Util
+   * @categories Util
    * @param {Object} [context=root] The context object.
    * @returns {Function} Returns a new `lodash` function.
    * @example
@@ -18655,7 +18655,7 @@ return jQuery;
      *
      * @name _
      * @constructor
-     * @category Seq
+     * @categories Seq
      * @param {*} value The value to wrap in a `lodash` instance.
      * @returns {Object} Returns the new `lodash` wrapper instance.
      * @example
@@ -23857,7 +23857,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to process.
      * @param {number} [size=1] The length of each chunk
      * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
@@ -23897,7 +23897,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to compact.
      * @returns {Array} Returns the new array of filtered values.
      * @example
@@ -23927,7 +23927,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to concatenate.
      * @param {...*} [values] The values to concatenate.
      * @returns {Array} Returns the new concatenated array.
@@ -23968,7 +23968,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to inspect.
      * @param {...Array} [values] The values to exclude.
      * @returns {Array} Returns the new array of filtered values.
@@ -23996,7 +23996,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to inspect.
      * @param {...Array} [values] The values to exclude.
      * @param {Function} [iteratee=_.identity] The iteratee invoked per element.
@@ -24031,7 +24031,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to inspect.
      * @param {...Array} [values] The values to exclude.
      * @param {Function} [comparator] The comparator invoked per element.
@@ -24059,7 +24059,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.5.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to query.
      * @param {number} [n=1] The number of elements to drop.
      * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
@@ -24093,7 +24093,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to query.
      * @param {number} [n=1] The number of elements to drop.
      * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
@@ -24130,7 +24130,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to query.
      * @param {Function} [predicate=_.identity] The function invoked per iteration.
      * @returns {Array} Returns the slice of `array`.
@@ -24171,7 +24171,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to query.
      * @param {Function} [predicate=_.identity] The function invoked per iteration.
      * @returns {Array} Returns the slice of `array`.
@@ -24213,7 +24213,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.2.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to fill.
      * @param {*} value The value to fill `array` with.
      * @param {number} [start=0] The start position.
@@ -24252,7 +24252,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 1.1.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to inspect.
      * @param {Function} [predicate=_.identity] The function invoked per iteration.
      * @param {number} [fromIndex=0] The index to search from.
@@ -24299,7 +24299,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 2.0.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to inspect.
      * @param {Function} [predicate=_.identity] The function invoked per iteration.
      * @param {number} [fromIndex=array.length-1] The index to search from.
@@ -24348,7 +24348,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to flatten.
      * @returns {Array} Returns the new flattened array.
      * @example
@@ -24367,7 +24367,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to flatten.
      * @returns {Array} Returns the new flattened array.
      * @example
@@ -24386,7 +24386,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.4.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to flatten.
      * @param {number} [depth=1] The maximum recursion depth.
      * @returns {Array} Returns the new flattened array.
@@ -24416,7 +24416,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Array
+     * @categories Array
      * @param {Array} pairs The key-value pairs.
      * @returns {Object} Returns the new object.
      * @example
@@ -24443,7 +24443,7 @@ return jQuery;
      * @memberOf _
      * @since 0.1.0
      * @alias first
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to query.
      * @returns {*} Returns the first element of `array`.
      * @example
@@ -24467,7 +24467,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to inspect.
      * @param {*} value The value to search for.
      * @param {number} [fromIndex=0] The index to search from.
@@ -24499,7 +24499,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to query.
      * @returns {Array} Returns the slice of `array`.
      * @example
@@ -24521,7 +24521,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Array
+     * @categories Array
      * @param {...Array} [arrays] The arrays to inspect.
      * @returns {Array} Returns the new array of intersecting values.
      * @example
@@ -24546,7 +24546,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Array
+     * @categories Array
      * @param {...Array} [arrays] The arrays to inspect.
      * @param {Function} [iteratee=_.identity] The iteratee invoked per element.
      * @returns {Array} Returns the new array of intersecting values.
@@ -24582,7 +24582,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Array
+     * @categories Array
      * @param {...Array} [arrays] The arrays to inspect.
      * @param {Function} [comparator] The comparator invoked per element.
      * @returns {Array} Returns the new array of intersecting values.
@@ -24613,7 +24613,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to convert.
      * @param {string} [separator=','] The element separator.
      * @returns {string} Returns the joined string.
@@ -24632,7 +24632,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to query.
      * @returns {*} Returns the last element of `array`.
      * @example
@@ -24652,7 +24652,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to inspect.
      * @param {*} value The value to search for.
      * @param {number} [fromIndex=array.length-1] The index to search from.
@@ -24688,7 +24688,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.11.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to query.
      * @param {number} [n=0] The index of the element to return.
      * @returns {*} Returns the nth element of `array`.
@@ -24717,7 +24717,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 2.0.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to modify.
      * @param {...*} [values] The values to remove.
      * @returns {Array} Returns `array`.
@@ -24739,7 +24739,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to modify.
      * @param {Array} values The values to remove.
      * @returns {Array} Returns `array`.
@@ -24767,7 +24767,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to modify.
      * @param {Array} values The values to remove.
      * @param {Function} [iteratee=_.identity] The iteratee invoked per element.
@@ -24796,7 +24796,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.6.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to modify.
      * @param {Array} values The values to remove.
      * @param {Function} [comparator] The comparator invoked per element.
@@ -24824,7 +24824,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to modify.
      * @param {...(number|number[])} [indexes] The indexes of elements to remove.
      * @returns {Array} Returns the new array of removed elements.
@@ -24861,7 +24861,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 2.0.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to modify.
      * @param {Function} [predicate=_.identity] The function invoked per iteration.
      * @returns {Array} Returns the new array of removed elements.
@@ -24909,7 +24909,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to modify.
      * @returns {Array} Returns `array`.
      * @example
@@ -24936,7 +24936,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to slice.
      * @param {number} [start=0] The start position.
      * @param {number} [end=array.length] The end position.
@@ -24965,7 +24965,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The sorted array to inspect.
      * @param {*} value The value to evaluate.
      * @returns {number} Returns the index at which `value` should be inserted
@@ -24987,7 +24987,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The sorted array to inspect.
      * @param {*} value The value to evaluate.
      * @param {Function} [iteratee=_.identity] The iteratee invoked per element.
@@ -25015,7 +25015,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to inspect.
      * @param {*} value The value to search for.
      * @returns {number} Returns the index of the matched value, else `-1`.
@@ -25043,7 +25043,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The sorted array to inspect.
      * @param {*} value The value to evaluate.
      * @returns {number} Returns the index at which `value` should be inserted
@@ -25065,7 +25065,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The sorted array to inspect.
      * @param {*} value The value to evaluate.
      * @param {Function} [iteratee=_.identity] The iteratee invoked per element.
@@ -25093,7 +25093,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to inspect.
      * @param {*} value The value to search for.
      * @returns {number} Returns the index of the matched value, else `-1`.
@@ -25120,7 +25120,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to inspect.
      * @returns {Array} Returns the new duplicate free array.
      * @example
@@ -25141,7 +25141,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to inspect.
      * @param {Function} [iteratee] The iteratee invoked per element.
      * @returns {Array} Returns the new duplicate free array.
@@ -25162,7 +25162,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to query.
      * @returns {Array} Returns the slice of `array`.
      * @example
@@ -25181,7 +25181,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to query.
      * @param {number} [n=1] The number of elements to take.
      * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
@@ -25214,7 +25214,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to query.
      * @param {number} [n=1] The number of elements to take.
      * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
@@ -25251,7 +25251,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to query.
      * @param {Function} [predicate=_.identity] The function invoked per iteration.
      * @returns {Array} Returns the slice of `array`.
@@ -25292,7 +25292,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to query.
      * @param {Function} [predicate=_.identity] The function invoked per iteration.
      * @returns {Array} Returns the slice of `array`.
@@ -25333,7 +25333,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Array
+     * @categories Array
      * @param {...Array} [arrays] The arrays to inspect.
      * @returns {Array} Returns the new array of combined values.
      * @example
@@ -25355,7 +25355,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Array
+     * @categories Array
      * @param {...Array} [arrays] The arrays to inspect.
      * @param {Function} [iteratee=_.identity] The iteratee invoked per element.
      * @returns {Array} Returns the new array of combined values.
@@ -25385,7 +25385,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Array
+     * @categories Array
      * @param {...Array} [arrays] The arrays to inspect.
      * @param {Function} [comparator] The comparator invoked per element.
      * @returns {Array} Returns the new array of combined values.
@@ -25413,7 +25413,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to inspect.
      * @returns {Array} Returns the new duplicate free array.
      * @example
@@ -25435,7 +25435,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to inspect.
      * @param {Function} [iteratee=_.identity] The iteratee invoked per element.
      * @returns {Array} Returns the new duplicate free array.
@@ -25461,7 +25461,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to inspect.
      * @param {Function} [comparator] The comparator invoked per element.
      * @returns {Array} Returns the new duplicate free array.
@@ -25485,7 +25485,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 1.2.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array of grouped elements to process.
      * @returns {Array} Returns the new array of regrouped elements.
      * @example
@@ -25520,7 +25520,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.8.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array of grouped elements to process.
      * @param {Function} [iteratee=_.identity] The function to combine
      *  regrouped values.
@@ -25556,7 +25556,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Array
+     * @categories Array
      * @param {Array} array The array to inspect.
      * @param {...*} [values] The values to exclude.
      * @returns {Array} Returns the new array of filtered values.
@@ -25581,7 +25581,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 2.4.0
-     * @category Array
+     * @categories Array
      * @param {...Array} [arrays] The arrays to inspect.
      * @returns {Array} Returns the new array of filtered values.
      * @see _.difference, _.without
@@ -25604,7 +25604,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Array
+     * @categories Array
      * @param {...Array} [arrays] The arrays to inspect.
      * @param {Function} [iteratee=_.identity] The iteratee invoked per element.
      * @returns {Array} Returns the new array of filtered values.
@@ -25634,7 +25634,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Array
+     * @categories Array
      * @param {...Array} [arrays] The arrays to inspect.
      * @param {Function} [comparator] The comparator invoked per element.
      * @returns {Array} Returns the new array of filtered values.
@@ -25660,7 +25660,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Array
+     * @categories Array
      * @param {...Array} [arrays] The arrays to process.
      * @returns {Array} Returns the new array of grouped elements.
      * @example
@@ -25677,7 +25677,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.4.0
-     * @category Array
+     * @categories Array
      * @param {Array} [props=[]] The property identifiers.
      * @param {Array} [values=[]] The property values.
      * @returns {Object} Returns the new object.
@@ -25696,7 +25696,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.1.0
-     * @category Array
+     * @categories Array
      * @param {Array} [props=[]] The property identifiers.
      * @param {Array} [values=[]] The property values.
      * @returns {Object} Returns the new object.
@@ -25717,7 +25717,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.8.0
-     * @category Array
+     * @categories Array
      * @param {...Array} [arrays] The arrays to process.
      * @param {Function} [iteratee=_.identity] The function to combine
      *  grouped values.
@@ -25747,7 +25747,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 1.3.0
-     * @category Seq
+     * @categories Seq
      * @param {*} value The value to wrap.
      * @returns {Object} Returns the new `lodash` wrapper instance.
      * @example
@@ -25782,7 +25782,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Seq
+     * @categories Seq
      * @param {*} value The value to provide to `interceptor`.
      * @param {Function} interceptor The function to invoke.
      * @returns {*} Returns `value`.
@@ -25810,7 +25810,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category Seq
+     * @categories Seq
      * @param {*} value The value to provide to `interceptor`.
      * @param {Function} interceptor The function to invoke.
      * @returns {*} Returns the result of `interceptor`.
@@ -25835,7 +25835,7 @@ return jQuery;
      * @name at
      * @memberOf _
      * @since 1.0.0
-     * @category Seq
+     * @categories Seq
      * @param {...(string|string[])} [paths] The property paths to pick.
      * @returns {Object} Returns the new `lodash` wrapper instance.
      * @example
@@ -25875,7 +25875,7 @@ return jQuery;
      * @name chain
      * @memberOf _
      * @since 0.1.0
-     * @category Seq
+     * @categories Seq
      * @returns {Object} Returns the new `lodash` wrapper instance.
      * @example
      *
@@ -25906,7 +25906,7 @@ return jQuery;
      * @name commit
      * @memberOf _
      * @since 3.2.0
-     * @category Seq
+     * @categories Seq
      * @returns {Object} Returns the new `lodash` wrapper instance.
      * @example
      *
@@ -25937,7 +25937,7 @@ return jQuery;
      * @name next
      * @memberOf _
      * @since 4.0.0
-     * @category Seq
+     * @categories Seq
      * @returns {Object} Returns the next iterator value.
      * @example
      *
@@ -25968,7 +25968,7 @@ return jQuery;
      * @name Symbol.iterator
      * @memberOf _
      * @since 4.0.0
-     * @category Seq
+     * @categories Seq
      * @returns {Object} Returns the wrapper object.
      * @example
      *
@@ -25990,7 +25990,7 @@ return jQuery;
      * @name plant
      * @memberOf _
      * @since 3.2.0
-     * @category Seq
+     * @categories Seq
      * @param {*} value The value to plant.
      * @returns {Object} Returns the new `lodash` wrapper instance.
      * @example
@@ -26036,7 +26036,7 @@ return jQuery;
      * @name reverse
      * @memberOf _
      * @since 0.1.0
-     * @category Seq
+     * @categories Seq
      * @returns {Object} Returns the new `lodash` wrapper instance.
      * @example
      *
@@ -26073,7 +26073,7 @@ return jQuery;
      * @memberOf _
      * @since 0.1.0
      * @alias toJSON, valueOf
-     * @category Seq
+     * @categories Seq
      * @returns {*} Returns the resolved unwrapped value.
      * @example
      *
@@ -26095,7 +26095,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.5.0
-     * @category Collection
+     * @categories Collection
      * @param {Array|Object} collection The collection to iterate over.
      * @param {Function} [iteratee=_.identity] The iteratee to transform keys.
      * @returns {Object} Returns the composed aggregate object.
@@ -26129,7 +26129,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Collection
+     * @categories Collection
      * @param {Array|Object} collection The collection to iterate over.
      * @param {Function} [predicate=_.identity] The function invoked per iteration.
      * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
@@ -26175,7 +26175,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Collection
+     * @categories Collection
      * @param {Array|Object} collection The collection to iterate over.
      * @param {Function} [predicate=_.identity] The function invoked per iteration.
      * @returns {Array} Returns the new filtered array.
@@ -26215,7 +26215,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Collection
+     * @categories Collection
      * @param {Array|Object} collection The collection to inspect.
      * @param {Function} [predicate=_.identity] The function invoked per iteration.
      * @param {number} [fromIndex=0] The index to search from.
@@ -26252,7 +26252,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 2.0.0
-     * @category Collection
+     * @categories Collection
      * @param {Array|Object} collection The collection to inspect.
      * @param {Function} [predicate=_.identity] The function invoked per iteration.
      * @param {number} [fromIndex=collection.length-1] The index to search from.
@@ -26274,7 +26274,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Collection
+     * @categories Collection
      * @param {Array|Object} collection The collection to iterate over.
      * @param {Function} [iteratee=_.identity] The function invoked per iteration.
      * @returns {Array} Returns the new flattened array.
@@ -26298,7 +26298,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.7.0
-     * @category Collection
+     * @categories Collection
      * @param {Array|Object} collection The collection to iterate over.
      * @param {Function} [iteratee=_.identity] The function invoked per iteration.
      * @returns {Array} Returns the new flattened array.
@@ -26322,7 +26322,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.7.0
-     * @category Collection
+     * @categories Collection
      * @param {Array|Object} collection The collection to iterate over.
      * @param {Function} [iteratee=_.identity] The function invoked per iteration.
      * @param {number} [depth=1] The maximum recursion depth.
@@ -26354,7 +26354,7 @@ return jQuery;
      * @memberOf _
      * @since 0.1.0
      * @alias each
-     * @category Collection
+     * @categories Collection
      * @param {Array|Object} collection The collection to iterate over.
      * @param {Function} [iteratee=_.identity] The function invoked per iteration.
      * @returns {Array|Object} Returns `collection`.
@@ -26384,7 +26384,7 @@ return jQuery;
      * @memberOf _
      * @since 2.0.0
      * @alias eachRight
-     * @category Collection
+     * @categories Collection
      * @param {Array|Object} collection The collection to iterate over.
      * @param {Function} [iteratee=_.identity] The function invoked per iteration.
      * @returns {Array|Object} Returns `collection`.
@@ -26411,7 +26411,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Collection
+     * @categories Collection
      * @param {Array|Object} collection The collection to iterate over.
      * @param {Function} [iteratee=_.identity] The iteratee to transform keys.
      * @returns {Object} Returns the composed aggregate object.
@@ -26442,7 +26442,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Collection
+     * @categories Collection
      * @param {Array|Object|string} collection The collection to inspect.
      * @param {*} value The value to search for.
      * @param {number} [fromIndex=0] The index to search from.
@@ -26484,7 +26484,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Collection
+     * @categories Collection
      * @param {Array|Object} collection The collection to iterate over.
      * @param {Array|Function|string} path The path of the method to invoke or
      *  the function invoked per iteration.
@@ -26518,7 +26518,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Collection
+     * @categories Collection
      * @param {Array|Object} collection The collection to iterate over.
      * @param {Function} [iteratee=_.identity] The iteratee to transform keys.
      * @returns {Object} Returns the composed aggregate object.
@@ -26558,7 +26558,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Collection
+     * @categories Collection
      * @param {Array|Object} collection The collection to iterate over.
      * @param {Function} [iteratee=_.identity] The function invoked per iteration.
      * @returns {Array} Returns the new mapped array.
@@ -26597,7 +26597,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Collection
+     * @categories Collection
      * @param {Array|Object} collection The collection to iterate over.
      * @param {Array[]|Function[]|Object[]|string[]} [iteratees=[_.identity]]
      *  The iteratees to sort by.
@@ -26640,7 +26640,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category Collection
+     * @categories Collection
      * @param {Array|Object} collection The collection to iterate over.
      * @param {Function} [predicate=_.identity] The function invoked per iteration.
      * @returns {Array} Returns the array of grouped elements.
@@ -26689,7 +26689,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Collection
+     * @categories Collection
      * @param {Array|Object} collection The collection to iterate over.
      * @param {Function} [iteratee=_.identity] The function invoked per iteration.
      * @param {*} [accumulator] The initial value.
@@ -26722,7 +26722,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Collection
+     * @categories Collection
      * @param {Array|Object} collection The collection to iterate over.
      * @param {Function} [iteratee=_.identity] The function invoked per iteration.
      * @param {*} [accumulator] The initial value.
@@ -26751,7 +26751,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Collection
+     * @categories Collection
      * @param {Array|Object} collection The collection to iterate over.
      * @param {Function} [predicate=_.identity] The function invoked per iteration.
      * @returns {Array} Returns the new filtered array.
@@ -26789,7 +26789,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 2.0.0
-     * @category Collection
+     * @categories Collection
      * @param {Array|Object} collection The collection to sample.
      * @returns {*} Returns the random element.
      * @example
@@ -26809,7 +26809,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Collection
+     * @categories Collection
      * @param {Array|Object} collection The collection to sample.
      * @param {number} [n=1] The number of elements to sample.
      * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
@@ -26839,7 +26839,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Collection
+     * @categories Collection
      * @param {Array|Object} collection The collection to shuffle.
      * @returns {Array} Returns the new shuffled array.
      * @example
@@ -26859,7 +26859,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Collection
+     * @categories Collection
      * @param {Array|Object|string} collection The collection to inspect.
      * @returns {number} Returns the collection size.
      * @example
@@ -26895,7 +26895,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Collection
+     * @categories Collection
      * @param {Array|Object} collection The collection to iterate over.
      * @param {Function} [predicate=_.identity] The function invoked per iteration.
      * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
@@ -26940,7 +26940,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Collection
+     * @categories Collection
      * @param {Array|Object} collection The collection to iterate over.
      * @param {...(Function|Function[])} [iteratees=[_.identity]]
      *  The iteratees to sort by.
@@ -26982,7 +26982,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 2.4.0
-     * @category Date
+     * @categories Date
      * @returns {number} Returns the timestamp.
      * @example
      *
@@ -27004,7 +27004,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Function
+     * @categories Function
      * @param {number} n The number of calls before `func` is invoked.
      * @param {Function} func The function to restrict.
      * @returns {Function} Returns the new restricted function.
@@ -27040,7 +27040,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category Function
+     * @categories Function
      * @param {Function} func The function to cap arguments for.
      * @param {number} [n=func.length] The arity cap.
      * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
@@ -27064,7 +27064,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category Function
+     * @categories Function
      * @param {number} n The number of calls at which `func` is no longer invoked.
      * @param {Function} func The function to restrict.
      * @returns {Function} Returns the new restricted function.
@@ -27103,7 +27103,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Function
+     * @categories Function
      * @param {Function} func The function to bind.
      * @param {*} thisArg The `this` binding of `func`.
      * @param {...*} [partials] The arguments to be partially applied.
@@ -27149,7 +27149,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.10.0
-     * @category Function
+     * @categories Function
      * @param {Object} object The object to invoke the method on.
      * @param {string} key The key of the method.
      * @param {...*} [partials] The arguments to be partially applied.
@@ -27203,7 +27203,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 2.0.0
-     * @category Function
+     * @categories Function
      * @param {Function} func The function to curry.
      * @param {number} [arity=func.length] The arity of `func`.
      * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
@@ -27248,7 +27248,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category Function
+     * @categories Function
      * @param {Function} func The function to curry.
      * @param {number} [arity=func.length] The arity of `func`.
      * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
@@ -27305,7 +27305,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Function
+     * @categories Function
      * @param {Function} func The function to debounce.
      * @param {number} [wait=0] The number of milliseconds to delay.
      * @param {Object} [options={}] The options object.
@@ -27467,7 +27467,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Function
+     * @categories Function
      * @param {Function} func The function to defer.
      * @param {...*} [args] The arguments to invoke `func` with.
      * @returns {number} Returns the timer id.
@@ -27489,7 +27489,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Function
+     * @categories Function
      * @param {Function} func The function to delay.
      * @param {number} wait The number of milliseconds to delay invocation.
      * @param {...*} [args] The arguments to invoke `func` with.
@@ -27511,7 +27511,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Function
+     * @categories Function
      * @param {Function} func The function to flip arguments for.
      * @returns {Function} Returns the new flipped function.
      * @example
@@ -27543,7 +27543,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Function
+     * @categories Function
      * @param {Function} func The function to have its output memoized.
      * @param {Function} [resolver] The function to resolve the cache key.
      * @returns {Function} Returns the new memoized function.
@@ -27602,7 +27602,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category Function
+     * @categories Function
      * @param {Function} predicate The predicate to negate.
      * @returns {Function} Returns the new negated function.
      * @example
@@ -27638,7 +27638,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Function
+     * @categories Function
      * @param {Function} func The function to restrict.
      * @returns {Function} Returns the new restricted function.
      * @example
@@ -27658,7 +27658,7 @@ return jQuery;
      * @static
      * @since 4.0.0
      * @memberOf _
-     * @category Function
+     * @categories Function
      * @param {Function} func The function to wrap.
      * @param {...(Function|Function[])} [transforms=[_.identity]]
      *  The argument transforms.
@@ -27714,7 +27714,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.2.0
-     * @category Function
+     * @categories Function
      * @param {Function} func The function to partially apply arguments to.
      * @param {...*} [partials] The arguments to be partially applied.
      * @returns {Function} Returns the new partially applied function.
@@ -27751,7 +27751,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 1.0.0
-     * @category Function
+     * @categories Function
      * @param {Function} func The function to partially apply arguments to.
      * @param {...*} [partials] The arguments to be partially applied.
      * @returns {Function} Returns the new partially applied function.
@@ -27784,7 +27784,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category Function
+     * @categories Function
      * @param {Function} func The function to rearrange arguments for.
      * @param {...(number|number[])} indexes The arranged argument indexes.
      * @returns {Function} Returns the new function.
@@ -27812,7 +27812,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Function
+     * @categories Function
      * @param {Function} func The function to apply a rest parameter to.
      * @param {number} [start=func.length-1] The start position of the rest parameter.
      * @returns {Function} Returns the new function.
@@ -27845,7 +27845,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.2.0
-     * @category Function
+     * @categories Function
      * @param {Function} func The function to spread arguments over.
      * @param {number} [start=0] The start position of the spread.
      * @returns {Function} Returns the new function.
@@ -27907,7 +27907,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Function
+     * @categories Function
      * @param {Function} func The function to throttle.
      * @param {number} [wait=0] The number of milliseconds to throttle invocations to.
      * @param {Object} [options={}] The options object.
@@ -27953,7 +27953,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Function
+     * @categories Function
      * @param {Function} func The function to cap arguments for.
      * @returns {Function} Returns the new capped function.
      * @example
@@ -27974,7 +27974,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Function
+     * @categories Function
      * @param {*} value The value to wrap.
      * @param {Function} [wrapper=identity] The wrapper function.
      * @returns {Function} Returns the new function.
@@ -27999,7 +27999,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.4.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to inspect.
      * @returns {Array} Returns the cast array.
      * @example
@@ -28048,7 +28048,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to clone.
      * @returns {*} Returns the cloned value.
      * @see _.cloneDeep
@@ -28073,7 +28073,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to clone.
      * @param {Function} [customizer] The function to customize cloning.
      * @returns {*} Returns the cloned value.
@@ -28106,7 +28106,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 1.0.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to recursively clone.
      * @returns {*} Returns the deep cloned value.
      * @see _.clone
@@ -28128,7 +28128,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to recursively clone.
      * @param {Function} [customizer] The function to customize cloning.
      * @returns {*} Returns the deep cloned value.
@@ -28165,7 +28165,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.14.0
-     * @category Lang
+     * @categories Lang
      * @param {Object} object The object to inspect.
      * @param {Object} source The object of property predicates to conform to.
      * @returns {boolean} Returns `true` if `object` conforms, else `false`.
@@ -28191,7 +28191,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to compare.
      * @param {*} other The other value to compare.
      * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
@@ -28225,7 +28225,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.9.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to compare.
      * @param {*} other The other value to compare.
      * @returns {boolean} Returns `true` if `value` is greater than `other`,
@@ -28250,7 +28250,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.9.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to compare.
      * @param {*} other The other value to compare.
      * @returns {boolean} Returns `true` if `value` is greater than or equal to
@@ -28277,7 +28277,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is an `arguments` object,
      *  else `false`.
@@ -28300,7 +28300,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is an array, else `false`.
      * @example
@@ -28325,7 +28325,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.3.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is an array buffer, else `false`.
      * @example
@@ -28346,7 +28346,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
      * @example
@@ -28374,7 +28374,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is an array-like object,
      *  else `false`.
@@ -28402,7 +28402,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is a boolean, else `false`.
      * @example
@@ -28424,7 +28424,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.3.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is a buffer, else `false`.
      * @example
@@ -28443,7 +28443,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is a date object, else `false`.
      * @example
@@ -28462,7 +28462,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is a DOM element, else `false`.
      * @example
@@ -28490,7 +28490,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is empty, else `false`.
      * @example
@@ -28547,7 +28547,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to compare.
      * @param {*} other The other value to compare.
      * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
@@ -28575,7 +28575,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to compare.
      * @param {*} other The other value to compare.
      * @param {Function} [customizer] The function to customize comparisons.
@@ -28611,7 +28611,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is an error object, else `false`.
      * @example
@@ -28640,7 +28640,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is a finite number, else `false`.
      * @example
@@ -28667,7 +28667,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is a function, else `false`.
      * @example
@@ -28697,7 +28697,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is an integer, else `false`.
      * @example
@@ -28727,7 +28727,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
      * @example
@@ -28757,7 +28757,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is an object, else `false`.
      * @example
@@ -28786,7 +28786,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
      * @example
@@ -28813,7 +28813,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.3.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is a map, else `false`.
      * @example
@@ -28840,7 +28840,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category Lang
+     * @categories Lang
      * @param {Object} object The object to inspect.
      * @param {Object} source The object of property values to match.
      * @returns {boolean} Returns `true` if `object` is a match, else `false`.
@@ -28867,7 +28867,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Lang
+     * @categories Lang
      * @param {Object} object The object to inspect.
      * @param {Object} source The object of property values to match.
      * @param {Function} [customizer] The function to customize comparisons.
@@ -28906,7 +28906,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is `NaN`, else `false`.
      * @example
@@ -28944,7 +28944,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is a native function,
      *  else `false`.
@@ -28969,7 +28969,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is `null`, else `false`.
      * @example
@@ -28990,7 +28990,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is nullish, else `false`.
      * @example
@@ -29017,7 +29017,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is a number, else `false`.
      * @example
@@ -29046,7 +29046,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.8.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
      * @example
@@ -29086,7 +29086,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.1.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is a regexp, else `false`.
      * @example
@@ -29109,7 +29109,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is a safe integer, else `false`.
      * @example
@@ -29136,7 +29136,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.3.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is a set, else `false`.
      * @example
@@ -29155,7 +29155,7 @@ return jQuery;
      * @static
      * @since 0.1.0
      * @memberOf _
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is a string, else `false`.
      * @example
@@ -29177,7 +29177,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is a symbol, else `false`.
      * @example
@@ -29199,7 +29199,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is a typed array, else `false`.
      * @example
@@ -29218,7 +29218,7 @@ return jQuery;
      * @static
      * @since 0.1.0
      * @memberOf _
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is `undefined`, else `false`.
      * @example
@@ -29239,7 +29239,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.3.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is a weak map, else `false`.
      * @example
@@ -29260,7 +29260,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.3.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to check.
      * @returns {boolean} Returns `true` if `value` is a weak set, else `false`.
      * @example
@@ -29281,7 +29281,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.9.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to compare.
      * @param {*} other The other value to compare.
      * @returns {boolean} Returns `true` if `value` is less than `other`,
@@ -29306,7 +29306,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.9.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to compare.
      * @param {*} other The other value to compare.
      * @returns {boolean} Returns `true` if `value` is less than or equal to
@@ -29333,7 +29333,7 @@ return jQuery;
      * @static
      * @since 0.1.0
      * @memberOf _
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to convert.
      * @returns {Array} Returns the converted array.
      * @example
@@ -29372,7 +29372,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.12.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to convert.
      * @returns {number} Returns the converted number.
      * @example
@@ -29410,7 +29410,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to convert.
      * @returns {number} Returns the converted integer.
      * @example
@@ -29444,7 +29444,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to convert.
      * @returns {number} Returns the converted integer.
      * @example
@@ -29471,7 +29471,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to process.
      * @returns {number} Returns the number.
      * @example
@@ -29516,7 +29516,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to convert.
      * @returns {Object} Returns the converted plain object.
      * @example
@@ -29544,7 +29544,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to convert.
      * @returns {number} Returns the converted integer.
      * @example
@@ -29574,7 +29574,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Lang
+     * @categories Lang
      * @param {*} value The value to convert.
      * @returns {string} Returns the converted string.
      * @example
@@ -29605,7 +29605,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.10.0
-     * @category Object
+     * @categories Object
      * @param {Object} object The destination object.
      * @param {...Object} [sources] The source objects.
      * @returns {Object} Returns `object`.
@@ -29648,7 +29648,7 @@ return jQuery;
      * @memberOf _
      * @since 4.0.0
      * @alias extend
-     * @category Object
+     * @categories Object
      * @param {Object} object The destination object.
      * @param {...Object} [sources] The source objects.
      * @returns {Object} Returns `object`.
@@ -29685,7 +29685,7 @@ return jQuery;
      * @memberOf _
      * @since 4.0.0
      * @alias extendWith
-     * @category Object
+     * @categories Object
      * @param {Object} object The destination object.
      * @param {...Object} sources The source objects.
      * @param {Function} [customizer] The function to customize assigned values.
@@ -29717,7 +29717,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Object
+     * @categories Object
      * @param {Object} object The destination object.
      * @param {...Object} sources The source objects.
      * @param {Function} [customizer] The function to customize assigned values.
@@ -29744,7 +29744,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 1.0.0
-     * @category Object
+     * @categories Object
      * @param {Object} object The object to iterate over.
      * @param {...(string|string[])} [paths] The property paths to pick.
      * @returns {Array} Returns the picked values.
@@ -29765,7 +29765,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 2.3.0
-     * @category Object
+     * @categories Object
      * @param {Object} prototype The object to inherit from.
      * @param {Object} [properties] The properties to assign to the object.
      * @returns {Object} Returns the new object.
@@ -29807,7 +29807,7 @@ return jQuery;
      * @static
      * @since 0.1.0
      * @memberOf _
-     * @category Object
+     * @categories Object
      * @param {Object} object The destination object.
      * @param {...Object} [sources] The source objects.
      * @returns {Object} Returns `object`.
@@ -29857,7 +29857,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.10.0
-     * @category Object
+     * @categories Object
      * @param {Object} object The destination object.
      * @param {...Object} [sources] The source objects.
      * @returns {Object} Returns `object`.
@@ -29879,7 +29879,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 1.1.0
-     * @category Object
+     * @categories Object
      * @param {Object} object The object to inspect.
      * @param {Function} [predicate=_.identity] The function invoked per iteration.
      * @returns {string|undefined} Returns the key of the matched element,
@@ -29918,7 +29918,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 2.0.0
-     * @category Object
+     * @categories Object
      * @param {Object} object The object to inspect.
      * @param {Function} [predicate=_.identity] The function invoked per iteration.
      * @returns {string|undefined} Returns the key of the matched element,
@@ -29959,7 +29959,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.3.0
-     * @category Object
+     * @categories Object
      * @param {Object} object The object to iterate over.
      * @param {Function} [iteratee=_.identity] The function invoked per iteration.
      * @returns {Object} Returns `object`.
@@ -29991,7 +29991,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 2.0.0
-     * @category Object
+     * @categories Object
      * @param {Object} object The object to iterate over.
      * @param {Function} [iteratee=_.identity] The function invoked per iteration.
      * @returns {Object} Returns `object`.
@@ -30025,7 +30025,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.3.0
-     * @category Object
+     * @categories Object
      * @param {Object} object The object to iterate over.
      * @param {Function} [iteratee=_.identity] The function invoked per iteration.
      * @returns {Object} Returns `object`.
@@ -30055,7 +30055,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 2.0.0
-     * @category Object
+     * @categories Object
      * @param {Object} object The object to iterate over.
      * @param {Function} [iteratee=_.identity] The function invoked per iteration.
      * @returns {Object} Returns `object`.
@@ -30085,7 +30085,7 @@ return jQuery;
      * @static
      * @since 0.1.0
      * @memberOf _
-     * @category Object
+     * @categories Object
      * @param {Object} object The object to inspect.
      * @returns {Array} Returns the function names.
      * @see _.functionsIn
@@ -30112,7 +30112,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Object
+     * @categories Object
      * @param {Object} object The object to inspect.
      * @returns {Array} Returns the function names.
      * @see _.functions
@@ -30139,7 +30139,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.7.0
-     * @category Object
+     * @categories Object
      * @param {Object} object The object to query.
      * @param {Array|string} path The path of the property to get.
      * @param {*} [defaultValue] The value returned for `undefined` resolved values.
@@ -30168,7 +30168,7 @@ return jQuery;
      * @static
      * @since 0.1.0
      * @memberOf _
-     * @category Object
+     * @categories Object
      * @param {Object} object The object to query.
      * @param {Array|string} path The path to check.
      * @returns {boolean} Returns `true` if `path` exists, else `false`.
@@ -30199,7 +30199,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Object
+     * @categories Object
      * @param {Object} object The object to query.
      * @param {Array|string} path The path to check.
      * @returns {boolean} Returns `true` if `path` exists, else `false`.
@@ -30231,7 +30231,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.7.0
-     * @category Object
+     * @categories Object
      * @param {Object} object The object to invert.
      * @returns {Object} Returns the new inverted object.
      * @example
@@ -30260,7 +30260,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.1.0
-     * @category Object
+     * @categories Object
      * @param {Object} object The object to invert.
      * @param {Function} [iteratee=_.identity] The iteratee invoked per element.
      * @returns {Object} Returns the new inverted object.
@@ -30295,7 +30295,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Object
+     * @categories Object
      * @param {Object} object The object to query.
      * @param {Array|string} path The path of the method to invoke.
      * @param {...*} [args] The arguments to invoke the method with.
@@ -30319,7 +30319,7 @@ return jQuery;
      * @static
      * @since 0.1.0
      * @memberOf _
-     * @category Object
+     * @categories Object
      * @param {Object} object The object to query.
      * @returns {Array} Returns the array of property names.
      * @example
@@ -30349,7 +30349,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category Object
+     * @categories Object
      * @param {Object} object The object to query.
      * @returns {Array} Returns the array of property names.
      * @example
@@ -30377,7 +30377,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.8.0
-     * @category Object
+     * @categories Object
      * @param {Object} object The object to iterate over.
      * @param {Function} [iteratee=_.identity] The function invoked per iteration.
      * @returns {Object} Returns the new mapped object.
@@ -30408,7 +30408,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 2.4.0
-     * @category Object
+     * @categories Object
      * @param {Object} object The object to iterate over.
      * @param {Function} [iteratee=_.identity] The function invoked per iteration.
      * @returns {Object} Returns the new mapped object.
@@ -30451,7 +30451,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.5.0
-     * @category Object
+     * @categories Object
      * @param {Object} object The destination object.
      * @param {...Object} [sources] The source objects.
      * @returns {Object} Returns `object`.
@@ -30484,7 +30484,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Object
+     * @categories Object
      * @param {Object} object The destination object.
      * @param {...Object} sources The source objects.
      * @param {Function} customizer The function to customize assigned values.
@@ -30516,7 +30516,7 @@ return jQuery;
      * @static
      * @since 0.1.0
      * @memberOf _
-     * @category Object
+     * @categories Object
      * @param {Object} object The source object.
      * @param {...(string|string[])} [paths] The property paths to omit.
      * @returns {Object} Returns the new object.
@@ -30558,7 +30558,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Object
+     * @categories Object
      * @param {Object} object The source object.
      * @param {Function} [predicate=_.identity] The function invoked per property.
      * @returns {Object} Returns the new object.
@@ -30579,7 +30579,7 @@ return jQuery;
      * @static
      * @since 0.1.0
      * @memberOf _
-     * @category Object
+     * @categories Object
      * @param {Object} object The source object.
      * @param {...(string|string[])} [paths] The property paths to pick.
      * @returns {Object} Returns the new object.
@@ -30601,7 +30601,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Object
+     * @categories Object
      * @param {Object} object The source object.
      * @param {Function} [predicate=_.identity] The function invoked per property.
      * @returns {Object} Returns the new object.
@@ -30633,7 +30633,7 @@ return jQuery;
      * @static
      * @since 0.1.0
      * @memberOf _
-     * @category Object
+     * @categories Object
      * @param {Object} object The object to query.
      * @param {Array|string} path The path of the property to resolve.
      * @param {*} [defaultValue] The value returned for `undefined` resolved values.
@@ -30687,7 +30687,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.7.0
-     * @category Object
+     * @categories Object
      * @param {Object} object The object to modify.
      * @param {Array|string} path The path of the property to set.
      * @param {*} value The value to set.
@@ -30719,7 +30719,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Object
+     * @categories Object
      * @param {Object} object The object to modify.
      * @param {Array|string} path The path of the property to set.
      * @param {*} value The value to set.
@@ -30746,7 +30746,7 @@ return jQuery;
      * @memberOf _
      * @since 4.0.0
      * @alias entries
-     * @category Object
+     * @categories Object
      * @param {Object} object The object to query.
      * @returns {Array} Returns the key-value pairs.
      * @example
@@ -30772,7 +30772,7 @@ return jQuery;
      * @memberOf _
      * @since 4.0.0
      * @alias entriesIn
-     * @category Object
+     * @categories Object
      * @param {Object} object The object to query.
      * @returns {Array} Returns the key-value pairs.
      * @example
@@ -30801,7 +30801,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 1.3.0
-     * @category Object
+     * @categories Object
      * @param {Object} object The object to iterate over.
      * @param {Function} [iteratee=_.identity] The function invoked per iteration.
      * @param {*} [accumulator] The custom accumulator value.
@@ -30850,7 +30850,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Object
+     * @categories Object
      * @param {Object} object The object to modify.
      * @param {Array|string} path The path of the property to unset.
      * @returns {boolean} Returns `true` if the property is deleted, else `false`.
@@ -30883,7 +30883,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.6.0
-     * @category Object
+     * @categories Object
      * @param {Object} object The object to modify.
      * @param {Array|string} path The path of the property to set.
      * @param {Function} updater The function to produce the updated value.
@@ -30915,7 +30915,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.6.0
-     * @category Object
+     * @categories Object
      * @param {Object} object The object to modify.
      * @param {Array|string} path The path of the property to set.
      * @param {Function} updater The function to produce the updated value.
@@ -30941,7 +30941,7 @@ return jQuery;
      * @static
      * @since 0.1.0
      * @memberOf _
-     * @category Object
+     * @categories Object
      * @param {Object} object The object to query.
      * @returns {Array} Returns the array of property values.
      * @example
@@ -30972,7 +30972,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category Object
+     * @categories Object
      * @param {Object} object The object to query.
      * @returns {Array} Returns the array of property values.
      * @example
@@ -30999,7 +30999,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Number
+     * @categories Number
      * @param {number} number The number to clamp.
      * @param {number} [lower] The lower bound.
      * @param {number} upper The upper bound.
@@ -31037,7 +31037,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.3.0
-     * @category Number
+     * @categories Number
      * @param {number} number The number to check.
      * @param {number} [start=0] The start of the range.
      * @param {number} end The end of the range.
@@ -31090,7 +31090,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.7.0
-     * @category Number
+     * @categories Number
      * @param {number} [lower=0] The lower bound.
      * @param {number} [upper=1] The upper bound.
      * @param {boolean} [floating] Specify returning a floating-point number.
@@ -31156,7 +31156,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category String
+     * @categories String
      * @param {string} [string=''] The string to convert.
      * @returns {string} Returns the camel cased string.
      * @example
@@ -31182,7 +31182,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category String
+     * @categories String
      * @param {string} [string=''] The string to capitalize.
      * @returns {string} Returns the capitalized string.
      * @example
@@ -31204,7 +31204,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category String
+     * @categories String
      * @param {string} [string=''] The string to deburr.
      * @returns {string} Returns the deburred string.
      * @example
@@ -31223,7 +31223,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category String
+     * @categories String
      * @param {string} [string=''] The string to inspect.
      * @param {string} [target] The string to search for.
      * @param {number} [position=string.length] The position to search up to.
@@ -31274,7 +31274,7 @@ return jQuery;
      * @static
      * @since 0.1.0
      * @memberOf _
-     * @category String
+     * @categories String
      * @param {string} [string=''] The string to escape.
      * @returns {string} Returns the escaped string.
      * @example
@@ -31296,7 +31296,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category String
+     * @categories String
      * @param {string} [string=''] The string to escape.
      * @returns {string} Returns the escaped string.
      * @example
@@ -31318,7 +31318,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category String
+     * @categories String
      * @param {string} [string=''] The string to convert.
      * @returns {string} Returns the kebab cased string.
      * @example
@@ -31342,7 +31342,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category String
+     * @categories String
      * @param {string} [string=''] The string to convert.
      * @returns {string} Returns the lower cased string.
      * @example
@@ -31366,7 +31366,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category String
+     * @categories String
      * @param {string} [string=''] The string to convert.
      * @returns {string} Returns the converted string.
      * @example
@@ -31386,7 +31386,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category String
+     * @categories String
      * @param {string} [string=''] The string to pad.
      * @param {number} [length=0] The padding length.
      * @param {string} [chars=' '] The string used as padding.
@@ -31425,7 +31425,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category String
+     * @categories String
      * @param {string} [string=''] The string to pad.
      * @param {number} [length=0] The padding length.
      * @param {string} [chars=' '] The string used as padding.
@@ -31458,7 +31458,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category String
+     * @categories String
      * @param {string} [string=''] The string to pad.
      * @param {number} [length=0] The padding length.
      * @param {string} [chars=' '] The string used as padding.
@@ -31495,7 +31495,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 1.1.0
-     * @category String
+     * @categories String
      * @param {string} string The string to convert.
      * @param {number} [radix=10] The radix to interpret `value` by.
      * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
@@ -31523,7 +31523,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category String
+     * @categories String
      * @param {string} [string=''] The string to repeat.
      * @param {number} [n=1] The number of times to repeat the string.
      * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
@@ -31557,7 +31557,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category String
+     * @categories String
      * @param {string} [string=''] The string to modify.
      * @param {RegExp|string} pattern The pattern to replace.
      * @param {Function|string} replacement The match replacement.
@@ -31581,7 +31581,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category String
+     * @categories String
      * @param {string} [string=''] The string to convert.
      * @returns {string} Returns the snake cased string.
      * @example
@@ -31608,7 +31608,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category String
+     * @categories String
      * @param {string} [string=''] The string to split.
      * @param {RegExp|string} separator The separator pattern to split by.
      * @param {number} [limit] The length to truncate results to.
@@ -31646,7 +31646,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.1.0
-     * @category String
+     * @categories String
      * @param {string} [string=''] The string to convert.
      * @returns {string} Returns the start cased string.
      * @example
@@ -31670,7 +31670,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category String
+     * @categories String
      * @param {string} [string=''] The string to inspect.
      * @param {string} [target] The string to search for.
      * @param {number} [position=0] The position to search from.
@@ -31717,7 +31717,7 @@ return jQuery;
      * @static
      * @since 0.1.0
      * @memberOf _
-     * @category String
+     * @categories String
      * @param {string} [string=''] The template string.
      * @param {Object} [options={}] The options object.
      * @param {RegExp} [options.escape=_.templateSettings.escape]
@@ -31921,7 +31921,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category String
+     * @categories String
      * @param {string} [string=''] The string to convert.
      * @returns {string} Returns the lower cased string.
      * @example
@@ -31946,7 +31946,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category String
+     * @categories String
      * @param {string} [string=''] The string to convert.
      * @returns {string} Returns the upper cased string.
      * @example
@@ -31970,7 +31970,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category String
+     * @categories String
      * @param {string} [string=''] The string to trim.
      * @param {string} [chars=whitespace] The characters to trim.
      * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
@@ -32008,7 +32008,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category String
+     * @categories String
      * @param {string} [string=''] The string to trim.
      * @param {string} [chars=whitespace] The characters to trim.
      * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
@@ -32041,7 +32041,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category String
+     * @categories String
      * @param {string} [string=''] The string to trim.
      * @param {string} [chars=whitespace] The characters to trim.
      * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
@@ -32076,7 +32076,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category String
+     * @categories String
      * @param {string} [string=''] The string to truncate.
      * @param {Object} [options={}] The options object.
      * @param {number} [options.length=30] The maximum string length.
@@ -32172,7 +32172,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 0.6.0
-     * @category String
+     * @categories String
      * @param {string} [string=''] The string to unescape.
      * @returns {string} Returns the unescaped string.
      * @example
@@ -32193,7 +32193,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category String
+     * @categories String
      * @param {string} [string=''] The string to convert.
      * @returns {string} Returns the upper cased string.
      * @example
@@ -32217,7 +32217,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category String
+     * @categories String
      * @param {string} [string=''] The string to convert.
      * @returns {string} Returns the converted string.
      * @example
@@ -32236,7 +32236,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category String
+     * @categories String
      * @param {string} [string=''] The string to inspect.
      * @param {RegExp|string} [pattern] The pattern to match words.
      * @param- {Object} [guard] Enables use as an iteratee for methods like `_.map`.
@@ -32268,7 +32268,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category Util
+     * @categories Util
      * @param {Function} func The function to attempt.
      * @param {...*} [args] The arguments to invoke `func` with.
      * @returns {*} Returns the `func` result or error object.
@@ -32300,7 +32300,7 @@ return jQuery;
      * @static
      * @since 0.1.0
      * @memberOf _
-     * @category Util
+     * @categories Util
      * @param {Object} object The object to bind and assign the bound methods to.
      * @param {...(string|string[])} methodNames The object method names to bind.
      * @returns {Object} Returns `object`.
@@ -32334,7 +32334,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Util
+     * @categories Util
      * @param {Array} pairs The predicate-function pairs.
      * @returns {Function} Returns the new composite function.
      * @example
@@ -32387,7 +32387,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Util
+     * @categories Util
      * @param {Object} source The object of property predicates to conform to.
      * @returns {Function} Returns the new spec function.
      * @example
@@ -32410,7 +32410,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 2.4.0
-     * @category Util
+     * @categories Util
      * @param {*} value The value to return from the new function.
      * @returns {Function} Returns the new constant function.
      * @example
@@ -32437,7 +32437,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.14.0
-     * @category Util
+     * @categories Util
      * @param {*} value The value to check.
      * @param {*} defaultValue The default value.
      * @returns {*} Returns the resolved value.
@@ -32461,7 +32461,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category Util
+     * @categories Util
      * @param {...(Function|Function[])} [funcs] The functions to invoke.
      * @returns {Function} Returns the new composite function.
      * @see _.flowRight
@@ -32484,7 +32484,7 @@ return jQuery;
      * @static
      * @since 3.0.0
      * @memberOf _
-     * @category Util
+     * @categories Util
      * @param {...(Function|Function[])} [funcs] The functions to invoke.
      * @returns {Function} Returns the new composite function.
      * @see _.flow
@@ -32506,7 +32506,7 @@ return jQuery;
      * @static
      * @since 0.1.0
      * @memberOf _
-     * @category Util
+     * @categories Util
      * @param {*} value Any value.
      * @returns {*} Returns `value`.
      * @example
@@ -32530,7 +32530,7 @@ return jQuery;
      * @static
      * @since 4.0.0
      * @memberOf _
-     * @category Util
+     * @categories Util
      * @param {*} [func=_.identity] The value to convert to a callback.
      * @returns {Function} Returns the callback.
      * @example
@@ -32581,7 +32581,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category Util
+     * @categories Util
      * @param {Object} source The object of property values to match.
      * @returns {Function} Returns the new spec function.
      * @example
@@ -32610,7 +32610,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.2.0
-     * @category Util
+     * @categories Util
      * @param {Array|string} path The path of the property to get.
      * @param {*} srcValue The value to match.
      * @returns {Function} Returns the new spec function.
@@ -32635,7 +32635,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.7.0
-     * @category Util
+     * @categories Util
      * @param {Array|string} path The path of the method to invoke.
      * @param {...*} [args] The arguments to invoke the method with.
      * @returns {Function} Returns the new invoker function.
@@ -32666,7 +32666,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.7.0
-     * @category Util
+     * @categories Util
      * @param {Object} object The object to query.
      * @param {...*} [args] The arguments to invoke the method with.
      * @returns {Function} Returns the new invoker function.
@@ -32698,7 +32698,7 @@ return jQuery;
      * @static
      * @since 0.1.0
      * @memberOf _
-     * @category Util
+     * @categories Util
      * @param {Function|Object} [object=lodash] The destination object.
      * @param {Object} source The object of functions to add.
      * @param {Object} [options={}] The options object.
@@ -32766,7 +32766,7 @@ return jQuery;
      * @static
      * @since 0.1.0
      * @memberOf _
-     * @category Util
+     * @categories Util
      * @returns {Function} Returns the `lodash` function.
      * @example
      *
@@ -32785,7 +32785,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 2.3.0
-     * @category Util
+     * @categories Util
      * @example
      *
      * _.times(2, _.noop);
@@ -32802,7 +32802,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Util
+     * @categories Util
      * @param {number} [n=0] The index of the argument to return.
      * @returns {Function} Returns the new pass-thru function.
      * @example
@@ -32829,7 +32829,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Util
+     * @categories Util
      * @param {...(Function|Function[])} [iteratees=[_.identity]]
      *  The iteratees to invoke.
      * @returns {Function} Returns the new function.
@@ -32849,7 +32849,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Util
+     * @categories Util
      * @param {...(Function|Function[])} [predicates=[_.identity]]
      *  The predicates to check.
      * @returns {Function} Returns the new function.
@@ -32875,7 +32875,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Util
+     * @categories Util
      * @param {...(Function|Function[])} [predicates=[_.identity]]
      *  The predicates to check.
      * @returns {Function} Returns the new function.
@@ -32900,7 +32900,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 2.4.0
-     * @category Util
+     * @categories Util
      * @param {Array|string} path The path of the property to get.
      * @returns {Function} Returns the new accessor function.
      * @example
@@ -32927,7 +32927,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.0.0
-     * @category Util
+     * @categories Util
      * @param {Object} object The object to query.
      * @returns {Function} Returns the new accessor function.
      * @example
@@ -32959,7 +32959,7 @@ return jQuery;
      * @static
      * @since 0.1.0
      * @memberOf _
-     * @category Util
+     * @categories Util
      * @param {number} [start=0] The start of the range.
      * @param {number} end The end of the range.
      * @param {number} [step=1] The value to increment or decrement by.
@@ -32997,7 +32997,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Util
+     * @categories Util
      * @param {number} [start=0] The start of the range.
      * @param {number} end The end of the range.
      * @param {number} [step=1] The value to increment or decrement by.
@@ -33034,7 +33034,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.13.0
-     * @category Util
+     * @categories Util
      * @returns {Array} Returns the new empty array.
      * @example
      *
@@ -33056,7 +33056,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.13.0
-     * @category Util
+     * @categories Util
      * @returns {boolean} Returns `false`.
      * @example
      *
@@ -33073,7 +33073,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.13.0
-     * @category Util
+     * @categories Util
      * @returns {Object} Returns the new empty object.
      * @example
      *
@@ -33095,7 +33095,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.13.0
-     * @category Util
+     * @categories Util
      * @returns {string} Returns the empty string.
      * @example
      *
@@ -33112,7 +33112,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.13.0
-     * @category Util
+     * @categories Util
      * @returns {boolean} Returns `true`.
      * @example
      *
@@ -33130,7 +33130,7 @@ return jQuery;
      * @static
      * @since 0.1.0
      * @memberOf _
-     * @category Util
+     * @categories Util
      * @param {number} n The number of times to invoke `iteratee`.
      * @param {Function} [iteratee=_.identity] The function invoked per iteration.
      * @returns {Array} Returns the array of results.
@@ -33166,7 +33166,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Util
+     * @categories Util
      * @param {*} value The value to convert.
      * @returns {Array} Returns the new property path array.
      * @example
@@ -33190,7 +33190,7 @@ return jQuery;
      * @static
      * @since 0.1.0
      * @memberOf _
-     * @category Util
+     * @categories Util
      * @param {string} [prefix=''] The value to prefix the ID with.
      * @returns {string} Returns the unique ID.
      * @example
@@ -33214,7 +33214,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.4.0
-     * @category Math
+     * @categories Math
      * @param {number} augend The first number in an addition.
      * @param {number} addend The second number in an addition.
      * @returns {number} Returns the total.
@@ -33233,7 +33233,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.10.0
-     * @category Math
+     * @categories Math
      * @param {number} number The number to round up.
      * @param {number} [precision=0] The precision to round up to.
      * @returns {number} Returns the rounded up number.
@@ -33256,7 +33256,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.7.0
-     * @category Math
+     * @categories Math
      * @param {number} dividend The first number in a division.
      * @param {number} divisor The second number in a division.
      * @returns {number} Returns the quotient.
@@ -33275,7 +33275,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.10.0
-     * @category Math
+     * @categories Math
      * @param {number} number The number to round down.
      * @param {number} [precision=0] The precision to round down to.
      * @returns {number} Returns the rounded down number.
@@ -33299,7 +33299,7 @@ return jQuery;
      * @static
      * @since 0.1.0
      * @memberOf _
-     * @category Math
+     * @categories Math
      * @param {Array} array The array to iterate over.
      * @returns {*} Returns the maximum value.
      * @example
@@ -33324,7 +33324,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Math
+     * @categories Math
      * @param {Array} array The array to iterate over.
      * @param {Function} [iteratee=_.identity] The iteratee invoked per element.
      * @returns {*} Returns the maximum value.
@@ -33351,7 +33351,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Math
+     * @categories Math
      * @param {Array} array The array to iterate over.
      * @returns {number} Returns the mean.
      * @example
@@ -33371,7 +33371,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.7.0
-     * @category Math
+     * @categories Math
      * @param {Array} array The array to iterate over.
      * @param {Function} [iteratee=_.identity] The iteratee invoked per element.
      * @returns {number} Returns the mean.
@@ -33397,7 +33397,7 @@ return jQuery;
      * @static
      * @since 0.1.0
      * @memberOf _
-     * @category Math
+     * @categories Math
      * @param {Array} array The array to iterate over.
      * @returns {*} Returns the minimum value.
      * @example
@@ -33422,7 +33422,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Math
+     * @categories Math
      * @param {Array} array The array to iterate over.
      * @param {Function} [iteratee=_.identity] The iteratee invoked per element.
      * @returns {*} Returns the minimum value.
@@ -33449,7 +33449,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.7.0
-     * @category Math
+     * @categories Math
      * @param {number} multiplier The first number in a multiplication.
      * @param {number} multiplicand The second number in a multiplication.
      * @returns {number} Returns the product.
@@ -33468,7 +33468,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.10.0
-     * @category Math
+     * @categories Math
      * @param {number} number The number to round.
      * @param {number} [precision=0] The precision to round to.
      * @returns {number} Returns the rounded number.
@@ -33491,7 +33491,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Math
+     * @categories Math
      * @param {number} minuend The first number in a subtraction.
      * @param {number} subtrahend The second number in a subtraction.
      * @returns {number} Returns the difference.
@@ -33510,7 +33510,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 3.4.0
-     * @category Math
+     * @categories Math
      * @param {Array} array The array to iterate over.
      * @returns {number} Returns the sum.
      * @example
@@ -33532,7 +33532,7 @@ return jQuery;
      * @static
      * @memberOf _
      * @since 4.0.0
-     * @category Math
+     * @categories Math
      * @param {Array} array The array to iterate over.
      * @param {Function} [iteratee=_.identity] The iteratee invoked per element.
      * @returns {number} Returns the sum.
@@ -49553,7 +49553,7 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
   null,
   null,
   null
-  
+
 )
 
 /* hot reload */
@@ -49573,7 +49573,7 @@ component.options.__file = "resources/js/components/ExampleComponent.vue"
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 

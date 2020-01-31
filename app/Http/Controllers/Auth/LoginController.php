@@ -49,7 +49,7 @@ class LoginController extends Controller
     {
         $email = $request->get('email');
         $password = $request->get('password');
-        if (Auth::attempt(['email' => $email, 'password' => $password,'role'=>1])) {
+        if (Auth::attempt(['email' => $email, 'password' => $password,'role'=>[1,2,3,4]])) {
             // Authentication passed...
             return redirect()->intended('admin/dashboard');
         }
@@ -64,10 +64,11 @@ class LoginController extends Controller
         $role = Auth::user()->role;
         Auth::logout();
 
-        if ($role == 1)
-            return redirect('admin/login');
-        else
+        if ($role == 0)
             return redirect('/Home');
+        else
+            return redirect('admin/login');
+
     }
 
 

@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Backend;
 
 use App\Category;
 use App\Http\Controllers\Controller;
+use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCategoryRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
 class CategoryController extends Controller
@@ -19,7 +21,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('backend.categories.list')->with(['categories'=>$categories]);
+        return view('backend.category.list')->with(['categories'=>$categories]);
     }
 
     /**
@@ -30,7 +32,7 @@ class CategoryController extends Controller
     public function create()
     {
         $categories = Category::get();
-        return view('backend.categories.create')->with(['categories'=>$categories]);
+        return view('backend.category.create')->with(['categories'=>$categories]);
     }
 
     /**
@@ -41,10 +43,13 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
+        $parentCategory = Category::find($request->get('category_id'));
         $category = new Category();
+        $this->authorize('create', Category::class);
+
         $category->name = $request->get('name');
-        $category->slug = Str::slug('name');
-        $category->depth = $request->get('category_id') + 1;
+        $category->slug = Str::slug($category->name);
+        $category->depth = $parentCategory->depth + 1;
         $category->content = $request->get('content');
         $category->parent_id = $request->get('category_id');
         $category->user_id = Auth::user()->id;
@@ -61,7 +66,17 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $category = Category::find($id);
+        $category_data = Category::where('id',$id)->get();
+//        dd($category_data);
+        $category->parent = Category::find($category->parent_id);
+        $category->child = Category::where('parent_id',$category->id)->first();
+//        dd($category->id);
+        $category_id = $this->getCategoryId($category_data);
+        $products = Product::whereIn('category_id',$category_id)->get();
+
+//        dd($category->child);
+        return view('backend.category.show')->with(['category'=>$category,'products'=>$products]);
     }
 
     /**
@@ -74,7 +89,7 @@ class CategoryController extends Controller
     {
         $categories = Category::get();
         $category = Category::find($id);
-        return view('backend.categories.update')->with(['categories'=>$categories,'category'=>$category]);
+        return view('backend.category.update')->with(['categories'=>$categories,'categories'=>$category]);
     }
 
     /**
@@ -87,6 +102,8 @@ class CategoryController extends Controller
     public function update(StoreCategoryRequest $request, $id)
     {
         $category = Category::find($id);
+        $this->authorize('update', $category);
+
         $category->name = $request->get('name');
         $category->slug = Str::slug('name');
         $category->depth = $request->get('category_id') + 1;
@@ -106,7 +123,20 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+        $this->authorize('update', $category);
+
+        //Xóa file avatar trong thư mục
+        if($category->image)
+        {
+            $img = 'backend/dist/img/categories/'. $category->image;
+            File::delete($img);
+        }
+
+        //Xóa thư mục
+        $category->delete();
+
+        return  redirect()->route('Category.index');
     }
 
     public function test()
@@ -123,6 +153,27 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         $products  = $category->Products;
+
+
         return view('backend.categories.showProduct')->with(['products'=>$products]);
+    }
+
+    private function getCategoryId($parent_categories)
+    {
+        foreach ($parent_categories as $category)
+        {
+//            dd($categories->sub_category);
+            $category_id[] = $category->id;
+//            dd($category_id);
+            if($category->has_child)
+            {
+                foreach ($category->sub_category as $value)
+                {
+                    $category_id[] = $value->id;
+                }
+                $this->getCategoryId($category->sub_category);
+            }
+        }
+        return $category_id;
     }
 }

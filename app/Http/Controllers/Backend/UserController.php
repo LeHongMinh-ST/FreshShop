@@ -7,6 +7,7 @@ use App\User;
 use App\User_info;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 class UserController extends Controller
 {
@@ -18,7 +19,7 @@ class UserController extends Controller
     public function index()
     {
 //        $users = DB::table('users')->get();
-        $users = DB::table('users')->paginate(9);
+        $users = User::where('role','<>',0)->paginate(9);
         return view('backend.user.list')->with(['users'=>$users]);
     }
 
@@ -29,7 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.user.create');
     }
 
     /**
@@ -51,7 +52,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::find($id);
+        return view('backend.user.show')->with(['user'=>$user]);
     }
 
     /**
@@ -85,7 +87,15 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $this->authorize('delete', $user);
+        if($user->avatar)
+        {
+            $img = 'backend/dist/img/user/avatar'. $user->avatar;
+            File::delete($img);
+        }
+        $user->delete();
+        return  redirect()->route('User.index');
     }
 
     public function test()

@@ -224,6 +224,13 @@ body {
     z-index: 99;
 }
 
+.mainmenu ul ul ul
+{
+    display: none;
+    left: 230px;
+    top: 0px;
+}
+
 .mainmenu nav ul#nav li ul.sub-menu li a {
     padding: 15px;
 }
@@ -618,7 +625,7 @@ body {
 }
 
 .shop-info-area {
-    background: rgba(0, 0, 0, 0) url("img/shop-info-bg.jpg") no-repeat scroll center center;
+    background: rgba(0, 0, 0, 0) url("img/watermelon-2636_1920.jpg") no-repeat scroll center center;
     padding: 54px 0;
 }
 
@@ -884,7 +891,7 @@ body {
 /*  7.	Testimonial Area CSS
 /*----------------------------------------*/
 .testimonial-area {
-    background: rgba(0, 0, 0, 0) url("img/testimonial/bg.jpg") no-repeat scroll center center;
+    background: rgba(0, 0, 0, 0) url("img/lemons-2039830_1920.jpg") no-repeat scroll center center;
     color: #ffffff;
     padding-bottom: 100px;
     padding-top: 70px;
@@ -1248,7 +1255,7 @@ body {
 /*  13.	About page CSS
 /*----------------------------------------*/
 .breadcrumbs-area {
-    background: rgba(0, 0, 0, 0) url("img/header-bg.jpg") no-repeat scroll center center;
+    background: rgba(0, 0, 0, 0) url("img/header.jpg") no-repeat scroll center center;
     color: #fefefe;
     text-align: center;
     text-transform: capitalize;
@@ -1278,7 +1285,7 @@ body {
 }
 
 .breadcrumbs-list li, .breadcrumbs-list a {
-    color: #cfcfcf;
+    color: #444444;
 }
 
 .breadcrumbs-list a:hover {

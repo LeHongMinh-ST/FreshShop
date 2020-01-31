@@ -19,6 +19,7 @@ class CreateCustomersTable extends Migration
             $table->string('email');
             $table->integer('sex');
             $table->string('phone');
+            $table->bigInteger('user_id');
             $table->string('address');
             $table->string('node')->nullable();
             $table->timestamps();

@@ -30,7 +30,7 @@ export default class FilterItem extends FilterizrElement {
      */
     contentsMatchSearch(searchTerm: string): boolean;
     /**
-     * Returns all categories of the grid items data-category attribute
+     * Returns all categories of the grid items data-categories attribute
      * with a regexp regarding all whitespace.
      */
     getCategories(): string[];

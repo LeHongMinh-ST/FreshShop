@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('admin/login', 'Auth\LoginController@showLoginForm')->name('login.form');
 Route::post('admin/login', 'Auth\LoginController@login')->name('login.store');
 
@@ -32,6 +33,10 @@ Route::group([
     Route::resource('Product', 'ProductController');
     Route::resource('Category','CategoryController');
     Route::resource('User', 'UserController');
+    Route::resource('Import', 'ImportController');
+//    Route::get('product/edit/{product}',function (\App\Product $product){
+//        dd($product);
+//    })->middleware('can:update,product');
 });
 
 
@@ -42,6 +47,8 @@ Route::group([
     Route::get('Home','HomeController@index')->name('frontend.home');
     Route::get('About','HomeController@about')->name('frontend.about');
     Route::get('Contract','HomeController@contact')->name('frontend.contact');
+    Route::get('Product/{slug?}','HomeController@Products')->name('frontend.products');
+    Route::get('Product/detail/{slug?}','HomeController@Product')->name('frontend.detail');
 });
 
 Route::get('admin/test','Backend\UserController@test');
