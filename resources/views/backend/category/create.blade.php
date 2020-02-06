@@ -1,4 +1,4 @@
-@extends('backend.layout.master')
+    @extends('backend.layout.master')
 
 @section('title')
     Create Product

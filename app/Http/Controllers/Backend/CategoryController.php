@@ -53,7 +53,12 @@ class CategoryController extends Controller
         $category->content = $request->get('content');
         $category->parent_id = $request->get('category_id');
         $category->user_id = Auth::user()->id;
-        $category->save();
+        $save = $category->save();
+
+        if ($save)
+            $request->session()->flash('success', 'Tao mới thành công');
+        else
+            $request->session()->flash('error', 'Tạo mới thất bại');
 
         return redirect()->route('Category.index');
     }
@@ -89,7 +94,7 @@ class CategoryController extends Controller
     {
         $categories = Category::get();
         $category = Category::find($id);
-        return view('backend.category.update')->with(['categories'=>$categories,'categories'=>$category]);
+        return view('backend.category.update')->with(['categories'=>$categories,'category'=>$category]);
     }
 
     /**
@@ -110,7 +115,12 @@ class CategoryController extends Controller
         $category->content = $request->get('content');
         $category->parent_id = $request->get('category_id');
         $category->user_id = Auth::user()->id;
-        $category->save();
+        $save = $category->save();
+
+        if ($save)
+            $request->session()->flash('success-update', 'Cập nhật thành công');
+        else
+            $request->session()->flash('error-update', 'Cập nhật thất bại');
 
         return redirect()->route('Category.index');
     }

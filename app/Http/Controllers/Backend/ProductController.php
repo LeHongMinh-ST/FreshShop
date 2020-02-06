@@ -55,8 +55,8 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $product = new Product();
         $this->authorize('create', Product::class);
+        $product = new Product();
         $product->name = $request->get('name');
         $product->slug = Str::slug($request->get('name'));
         $product->category_id = $request->get('category_id');
@@ -83,7 +83,7 @@ class ProductController extends Controller
             $avatar->move($path_avatar, $profileavatar);
             $product->avatar = $profileavatar;
 
-            $product->save();
+            $save = $product->save();
 
             $i = 0;
             foreach ($images as $image) {
@@ -101,6 +101,10 @@ class ProductController extends Controller
             }
         } else dd('không có file');
 
+        if ($save)
+            $request->session()->flash('success', 'Tao mới thành công');
+        else
+            $request->session()->flash('error', 'Tạo mới thất bại');
         return redirect()->route('Product.index');
     }
 
@@ -152,9 +156,11 @@ class ProductController extends Controller
      */
     public function update(StoreProductRequest $request, $id)
     {
-        dd($request->allFiles());
+
+//        dd($request->allFiles());
         $product = Product::find($id);
         $this->authorize('update', $product);
+
         $product->name = $request->get('name');
         $product->slug = Str::slug($request->get('name'));
         $product->category_id = $request->get('category_id');
@@ -164,7 +170,6 @@ class ProductController extends Controller
         $product->status = $request->get('status');
         $product->user_id = Auth::user()->id;
         $product->unit = $request->get('unit');
-        $product->save();
         if ($request->allFiles()) {
             $avatar = $request->file('avatar');
             $images = $request->file('images');
@@ -177,7 +182,7 @@ class ProductController extends Controller
             $avatar->move($path_avatar, $profileavatar);
             $product->avatar = $profileavatar;
 
-            $product->save();
+            $save = $product->save();
 
             $i = 0;
             foreach ($images as $image) {
@@ -193,7 +198,13 @@ class ProductController extends Controller
                 $image_new->save();
                 $i++;
             }
-        } else dd('không có file');
+        }
+        $save = $product->save();
+
+        if ($save)
+            $request->session()->flash('success-update', 'Cập nhật thành công');
+        else
+            $request->session()->flash('error-update', 'Cập nhật thất bại');
 
         return redirect()->route('Product.index');
     }

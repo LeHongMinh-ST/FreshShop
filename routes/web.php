@@ -66,3 +66,8 @@ Route::get('admin/Oder/ShowProduct/{id?}','Backend\OderController@showProduct');
 //Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/get', 'HomeController@get');
+Route::get('cookie/set', 'HomeController@setCookie');
+Route::get('cookie/get', 'HomeController@getCookie');
+
+

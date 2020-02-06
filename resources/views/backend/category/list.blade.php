@@ -9,6 +9,21 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Danh sách sản phẩm</h1>
+                    @if(session()->has('success'))
+                        <span style="color: green">{{session()->get('success')}}</span>
+                    @endif
+
+                    @if(session()->has('error'))
+                        <span style="color: red">{{session()->get('error')}}</span>
+                    @endif
+
+                    @if(session()->has('success-update'))
+                        <span style="color: green">{{session()->get('success-update')}}</span>
+                    @endif
+
+                    @if(session()->has('error-update'))
+                        <span style="color: red">{{session()->get('error-update')}}</span>
+                    @endif
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">

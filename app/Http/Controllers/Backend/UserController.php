@@ -8,6 +8,7 @@ use App\User_info;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -19,8 +20,8 @@ class UserController extends Controller
     public function index()
     {
 //        $users = DB::table('users')->get();
-        $users = User::where('role','<>',0)->paginate(9);
-        return view('backend.user.list')->with(['users'=>$users]);
+        $users = User::where('role', '<>', 0)->paginate(9);
+        return view('backend.user.list')->with(['users' => $users]);
     }
 
     /**
@@ -36,30 +37,43 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+//        dd($request);
+        $user = new User();
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        $user->password = Hash::make($request->get('password'));
+        $user->phone = $request->get('phone');
+        $user->role = $request->get('role');
+        $save = $user->save();
+        if ($save)
+            $request->session()->flash('success', 'Tao mới thành công');
+        else
+            $request->session()->flash('error', 'Tạo mới thất bại');
+
+        return redirect()->route('User.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $user = User::find($id);
-        return view('backend.user.show')->with(['user'=>$user]);
+        return view('backend.user.show')->with(['user' => $user]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -70,8 +84,8 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -82,20 +96,19 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         $user = User::find($id);
         $this->authorize('delete', $user);
-        if($user->avatar)
-        {
-            $img = 'backend/dist/img/user/avatar'. $user->avatar;
+        if ($user->avatar) {
+            $img = 'backend/dist/img/user/avatar' . $user->avatar;
             File::delete($img);
         }
         $user->delete();
-        return  redirect()->route('User.index');
+        return redirect()->route('User.index');
     }
 
     public function test()
@@ -114,6 +127,6 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $products = $user->Products;
-        return view('backend.user.showProduct')->with(['products'=>$products]);
+        return view('backend.user.showProduct')->with(['products' => $products]);
     }
 }

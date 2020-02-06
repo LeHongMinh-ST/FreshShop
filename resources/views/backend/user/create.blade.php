@@ -29,7 +29,7 @@
                     <div class="card-header">
                         <h3 class="card-title">General</h3>
                     </div>
-                    <form action="{{route('register.store')}}" method="post">
+                    <form action="{{route('User.store')}}" method="post">
                         @csrf
                         <div class="card-body">
                             <div class="form-group">
@@ -48,6 +48,11 @@
                                 <label for="inputName">Password</label>
                                 <input type="Password" id="inputName" class="form-control" name="password_confirmation">
                             </div>
+
+                            <div class="form-group">
+                                <label for="inputName">phone</label>
+                                <input type="text" id="inputName" class="form-control" name="Phone">
+                            </div>
                             <div class="form-group">
                                 <label for="inputStatus">Chức vụ</label>
                                 <select class="form-control custom-select" name="role">
@@ -60,8 +65,7 @@
                         <!-- /.card-body -->
                         <div class="row">
                             <div class="col-12">
-                                <a href="#" class="btn btn-secondary">Cancel</a>
-                                <input type="submit" value="Create new Porject" class="btn btn-success float-right">
+                                <button type="submit" class="btn btn-sucess">Tạo mới</button>
                             </div>
                         </div>
                     </form>
