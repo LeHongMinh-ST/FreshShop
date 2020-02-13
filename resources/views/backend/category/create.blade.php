@@ -30,7 +30,7 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form" action="{{route('Category.store')}}" method="post">
+                <form role="form" action="{{route('Category.store')}}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
@@ -61,13 +61,16 @@
                             <label for="exampleInputFile">Hình ảnh danh mục</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" name="avatar" class="custom-file-input" id="exampleInputFile">
+                                    <input type="file" name="image" class="custom-file-input" id="exampleInputFile">
                                     <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                 </div>
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="">Upload</span>
                                 </div>
                             </div>
+                            @error('image')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <!-- /.card-body -->

@@ -16,7 +16,7 @@
             <div id="slider-direction-1" class="text-center slider-direction">
                 <!-- layer 1 -->
                 <div class="layer-1">
-                    <h2 class="title-1">LET’S WRITE IMAGINE</h2>
+                    <h2 class="title-1">Thực Phẩm Tươi Minh Tít</h2>
                 </div>
                 <!-- layer 2 -->
                 <div class="layer-2">
@@ -39,7 +39,7 @@
             <div id="slider-direction-2" class="slider-direction">
                 <!-- layer 1 -->
                 <div class="layer-1">
-                    <h2 class="title-1">LET’S WRITE IMAGINE</h2>
+                    <h2 class="title-1">Yêu Hoàng Dương <3</h2>
                 </div>
                 <!-- layer 2 -->
                 <div class="layer-2">
@@ -75,52 +75,7 @@
             </div>
         </div>
     </div>
-{{--    <!-- Online Banner Area End -->--}}
-{{--    <!-- Shop Info Area Start -->--}}
-{{--    <div class="shop-info-area">--}}
-{{--        <div class="container">--}}
-{{--            <div class="row">--}}
-{{--                <div class="col-md-4 col-sm-6">--}}
-{{--                    <div class="single-shop-info">--}}
-{{--                        <div class="shop-info-icon">--}}
-{{--                            <i class="flaticon-transport"></i>--}}
-{{--                        </div>--}}
-{{--                        <div class="shop-info-content">--}}
-{{--                            <h2>FREE SHIPPING</h2>--}}
-{{--                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor. </p>--}}
-{{--                            <a href="#">READ MORE</a>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="col-md-4 col-sm-6">--}}
-{{--                    <div class="single-shop-info">--}}
-{{--                        <div class="shop-info-icon">--}}
-{{--                            <i class="flaticon-money"></i>--}}
-{{--                        </div>--}}
-{{--                        <div class="shop-info-content">--}}
-{{--                            <h2>FREE SHIPPING</h2>--}}
-{{--                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor. </p>--}}
-{{--                            <a href="#">READ MORE</a>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="col-md-4 hidden-sm">--}}
-{{--                    <div class="single-shop-info">--}}
-{{--                        <div class="shop-info-icon">--}}
-{{--                            <i class="flaticon-school"></i>--}}
-{{--                        </div>--}}
-{{--                        <div class="shop-info-content">--}}
-{{--                            <h2>FREE SHIPPING</h2>--}}
-{{--                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor. </p>--}}
-{{--                            <a href="#">READ MORE</a>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--    <!-- Shop Info Area End -->--}}
-{{--    <!-- Featured Product Area Start -->--}}
+
     <div class="featured-product-area section-padding">
         <h2 class="section-title">Sản phẩm</h2>
         <div class="container">
@@ -143,19 +98,21 @@
                 <div class="product-list tab-content">
                     <div role="tabpanel" class="tab-pane fade in active" id="arrival">
                         <div class="featured-product-list indicator-style">
-                            @foreach($products as $product)
+                            @for($i=0;$i<sizeof($products);$i+=2)
                                 <div class="single-p-banner">
                                     <div class="col-md-3">
                                         <div class="single-banner">
                                             <div class="product-wrapper">
-                                                <a href="{{route('frontend.detail',$product->slug)}}"
+                                                <a href="{{route('frontend.detail',$products[$i]->slug)}}"
                                                    class="single-banner-image-wrapper">
-                                                    @if($product->avatar)
+                                                    @if($products[$i]->avatar)
                                                         <img alt=""
-                                                             src="{{asset('backend/dist/img/product/avatar/'.$product->avatar)}}">
+                                                             src="{{asset('storage/images/product/avatar/'.$products[$i]->avatar)}}"
+                                                             style="height: 280px">
                                                     @else
                                                         <img alt=""
-                                                             src="{{asset('backend/dist/img/product/avatar/demo.png')}}">
+                                                             src="{{asset('backend/dist/img/product/avatar/demo.png')}}"
+                                                             style="height: 280px">
                                                     @endif
                                                     <div class="rating-icon">
                                                         <i class="fa fa-star icolor"></i>
@@ -181,15 +138,62 @@
                                                 </div>
                                             </div>
                                             <div class="banner-bottom text-center">
-                                                <a href="#">{{$product->price_sell}} đ</a>
+                                                <a href="#">{{$products[$i]->price_sell}} đ</a>
                                             </div>
                                             <div class="banner-bottom text-center">
-                                                <a href="#">{{$product->name}}</a>
+                                                <a href="#">{{$products[$i]->name}}</a>
                                             </div>
                                         </div>
                                     </div>
+                                    @if(isset($products[$i+1]))
+                                        <div class="col-md-3">
+                                            <div class="single-banner">
+                                                <div class="product-wrapper">
+                                                    <a href="{{route('frontend.detail',$products[$i+1]->slug)}}"
+                                                       class="single-banner-image-wrapper">
+                                                        @if($products[$i+1]->avatar)
+                                                            <img alt=""
+                                                                 src="{{asset('storage/images/product/avatar/'.$products[$i+1]->avatar)}}"
+                                                                 style="height: 280px">
+                                                        @else
+                                                            <img alt=""
+                                                                 src="{{asset('backend/dist/img/product/avatar/demo.png')}}"
+                                                                 style="height: 280px">
+                                                        @endif
+                                                        <div class="rating-icon">
+                                                            <i class="fa fa-star icolor"></i>
+                                                            <i class="fa fa-star icolor"></i>
+                                                            <i class="fa fa-star icolor"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                        </div>
+                                                    </a>
+                                                    <div class="product-description">
+                                                        <div class="functional-buttons">
+                                                            <a href="#" title="Add to Cart">
+                                                                <i class="fa fa-shopping-cart"></i>
+                                                            </a>
+                                                            <a href="#" title="Add to Wishlist">
+                                                                <i class="fa fa-heart-o"></i>
+                                                            </a>
+                                                            <a href="#" title="Quick view" data-toggle="modal"
+                                                               data-target="#productModal">
+                                                                <i class="fa fa-compress"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="banner-bottom text-center">
+                                                    <a href="#">{{$products[$i+1]->price_sell}} đ</a>
+                                                </div>
+                                                <div class="banner-bottom text-center">
+                                                    <a href="#">{{$products[$i+1]->name}}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
                                 </div>
-                            @endforeach
+                            @endfor
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="sale">

@@ -23,13 +23,52 @@ class StoreProductRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required|min:10|max:255',
-            'price_import' => 'required|numeric',
-            'price_sell' => 'required|numeric',
+        if ($this->method()=='POST') return [
+            'name' => 'required|min:10|max:255|unique:products,name',
+            'price_import' => 'required|numeric|min:0',
+            'price_sell' => 'required|numeric|min:0',
             'content' => 'required',
-//            'avatar' => 'required|mimes:jpg,png,jpeg|max:512',
-//            'images' => 'required|mimes:jpg,png,jpeg|max:512',
+            'avatar' => 'required|image|max:512',
+            'images.*' => 'image|max:512',
+            'unit' => 'required|in:kg,gam,khay,ml,lít',
+        ];
+        else return [
+            'name' => 'required|min:10|max:255|',
+            'price_import' => 'required|numeric|min:0',
+            'price_sell' => 'required|numeric|min:0',
+            'content' => 'required',
+            'avatar' => '|image|max:512',
+            'images.*' => '|image|max:512',
+            'unit' => 'required|in:kg,gam,khay,ml,lít,',
+            'status' => 'required|numeric'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'required' => ':attribute không được để trống',
+            'min' => ':attribute phải lớn hơn :min ',
+            'max' => ':attribute phải nhỏ hơn :max ',
+            'unique'=> ':attribute đã tồn tại',
+            'numeric' => ':attribute phải là số',
+            'mimes'=>':attribute không đúng định dạng',
+            'in'=>':attribute không đúng đơn vị',
+            'image'=>'không phai anh'
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'name' => 'Tên sản phẩm',
+            'price_import' =>'Giá nhập',
+            'price_sell' => 'Giá bán',
+            'content' => 'Nội dung',
+            'avatar' => 'Ảnh đại diện',
+            'images' => 'Ảnh mô tả',
+            'unit' => 'Đơn vị',
+            'status' => 'Trạng thái'
         ];
     }
 }

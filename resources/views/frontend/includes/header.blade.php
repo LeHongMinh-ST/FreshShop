@@ -13,8 +13,9 @@
                 <div class="header-right">
                     <ul>
                         <li>
-                            <a href="account.html"><i class="flaticon-people"></i></a>
+                            <a href="#"><i class="flaticon-people"></i></a>
                         </li>
+
                         <li class="shoping-cart">
                             <a href="#">
                                 <i class="flaticon-shop"></i>
@@ -86,32 +87,17 @@
                         <ul id="nav">
                             <li><a href="{{route('frontend.home')}}">Trang Chủ</a></li>
                             <li><a href="{{route('frontend.about')}}">Giới thiêu</a></li>
-                            <li><a href="shop.html">Sản phẩm</a>
-{{--                                <ul class="">--}}
-{{--                                    @foreach($parent_categories as $parent_category)--}}
-{{--                                        <li><a href="about.html">{{$parent_category->name}}</a>--}}
-{{--                                            @if($parent_category->has_chid)--}}
-{{--                                                <ul>--}}
-{{--                                                    <li><a href="#">A</a>--}}
-{{--                                                        <ul>--}}
-{{--                                                            <li><a href="#">A</a></li>--}}
-{{--                                                            <li><a href="#">B</a></li>--}}
-{{--                                                            <li><a href="#">C</a></li>--}}
-{{--                                                        </ul>--}}
-{{--                                                    </li>--}}
-{{--                                                    <li><a href="#">B</a></li>--}}
-{{--                                                    <li><a href="#">C</a></li>--}}
-{{--                                                </ul>--}}
-{{--                                            @endif--}}
-{{--                                        </li>--}}
-{{--                                    @endforeach--}}
-{{--                                </ul>--}}
+                            <li><a>Sản phẩm</a>
                                 {!! $parent_categories !!}
                             </li>
                             <li><a href="shop.html">BLOG Món ngon</a></li>
                             <li><a href="#">pages</a>
                                 <ul class="sub-menu">
-                                    <li><a href="about.html">About Us</a></li>
+                                    <li><a href="about.html">About Us</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="cart.html">Cart Page</a></li>
+                                        </ul>
+                                    </li>
                                     <li><a href="cart.html">Cart Page</a></li>
                                     <li><a href="checkout.html">Check Out</a></li>
                                     <li><a href="contact.html">Contact</a></li>
@@ -131,13 +117,47 @@
             <div class="col-md-1 hidden-sm">
                 <div class="header-right">
                     <ul>
-                        <li>
-                            <a href="account.html"><i class="flaticon-people"></i></a>
+                        <li class="shoping-cart">
+                            <a href="#">
+                                <i class="flaticon-people"></i>
+                            </a>
+                            @guest
+                                <div class="add-to-cart-product">
+                                    <div class="cart-checkout">
+                                        <a href="{{ route('login.form-guest') }}">
+                                            Đăng nhập
+                                        </a>
+                                    </div>
+                                    <div class="cart-checkout">
+                                        <a href="{{ route('register.form') }}">
+                                            Đăng kí
+                                        </a>
+                                    </div>
+                                </div>
+                            @else
+
+                                <div class="add-to-cart-product">
+                                    <div class="cart-product">
+                                        <div class="cart-product-info" style="width: 100%">
+                                            <p style="font-size: 18px">xin chào {{Auth::user()->name}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="cart-checkout">
+                                        <a href="{{ route('logout') }}">
+                                            Đăng xuất
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="get" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </div>
+                            @endguest
                         </li>
+
                         <li class="shoping-cart">
                             <a href="#">
                                 <i class="flaticon-shop"></i>
-                                <span>2</span>
+                                <span>3</span>
                             </a>
                             <div class="add-to-cart-product">
                                 <div class="cart-product">

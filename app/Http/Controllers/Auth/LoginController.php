@@ -45,6 +45,11 @@ class LoginController extends Controller
         return view('backend.user.login');
     }
 
+    public function showLoginFormRegister()
+    {
+        return view('frontend.page.login');
+    }
+
     public function login(Request $request)
     {
         $email = $request->get('email');

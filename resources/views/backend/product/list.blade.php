@@ -37,6 +37,22 @@
                     @if(session()->has('error-update'))
                         <span style="color: red">{{session()->get('error-update')}}</span>
                     @endif
+
+                    @if(session()->has('success-delete'))
+                        <span style="color: green">{{session()->get('success-delete')}}</span>
+                    @endif
+
+                    @if(session()->has('error-delete'))
+                        <span style="color: red">{{session()->get('error-delete')}}</span>
+                    @endif
+
+                    @if(session()->has('success-restore'))
+                        <span style="color: green">{{session()->get('success-restore')}}</span>
+                    @endif
+
+                    @if(session()->has('error-restore'))
+                        <span style="color: red">{{session()->get('error-restore')}}</span>
+                    @endif
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -76,6 +92,9 @@
                             Loại sản pẩm
                         </th>
                         <th>
+                            Giá bán
+                        </th>
+                        <th>
                             Đơn vị
                         </th>
                         <th>
@@ -101,13 +120,13 @@
                                     @if($value->avatar)
                                         <li class="list-inline-item">
                                             <img class="table-avatar" alt="Avatar"
-                                                 src="{{asset('backend/dist/img/product/avatar/' . $value->avatar)}}"
-                                                 style="max-inline-size: 100px">
+                                                 src="{{asset('storage/images/product/avatar/' . $value->avatar)}}"
+                                                 style="max-inline-size: 100px; ">
                                         </li>
                                     @else
                                         <li class="list-inline-item">
                                             <img class="table-avatar" alt="Avatar"
-                                                 src="{{asset('backend/dist/img/product/avatar/demo.png')}}"
+                                                 src="{{asset('storage/images/avatar/demo.png')}}"
                                                  style="max-inline-size: 100px">
                                         </li>
                                     @endif
@@ -115,6 +134,13 @@
                             </td>
                             <td>
                                 {{$value->category}}
+                            </td>
+                            <td>
+                                @if(isset($value->price_sale)) {{number_format($value->price_sale)}} vnđ <span class="badge badge-danger">
+                                    sale
+                                </span>
+                                @else{{number_format($value->price_sell)}} vnđ
+                                @endif
                             </td>
                             <td>
                                 {{$value->unit}}
@@ -159,15 +185,10 @@
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm">
-                                            <i class="fa fa-btn fa-trash"></i> Xoá
+                                            <i class="fa fa-btn fa-lock"></i> Gỡ
                                         </button>
                                     </form>
                                 @endcan
-                                <a class="btn btn-success btn-sm" href="#">
-                                    <i class="fas fa-plus">
-                                    </i>
-                                    Nhập
-                                </a>
                             </td>
 
 

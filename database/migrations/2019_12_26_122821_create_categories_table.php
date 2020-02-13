@@ -22,7 +22,7 @@ class CreateCategoriesTable extends Migration
             $table->bigInteger('parent_id')->nullable();
             $table->integer('depth');
             $table->bigInteger('user_id');
-            $table->timestamp('delete_at')->nullable();
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

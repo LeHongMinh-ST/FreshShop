@@ -13,4 +13,9 @@ class Import extends Model
     {
         return $this->belongsToMany(Product::class);
     }
+
+    public function Supplier()
+    {
+        return $this->belongsTo(Supplier::class);
+    }
 }

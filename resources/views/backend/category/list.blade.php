@@ -80,12 +80,12 @@
                                     @if($value->image)
                                         <li>
                                             <img style="max-width: 100px" alt="Avatar"
-                                                 src="{{asset('backend/dist/img/category/'.$value->image)}}">
+                                                 src="{{asset('storage/images/category/'.$value->image)}}">
                                         </li>
                                     @else
                                         <li>
                                             <img style="max-width: 100px" alt="Avatar"
-                                                 src="{{asset('backend/dist/img/category/demo.png')}}">
+                                                 src="{{asset('storage/images/category/demo.png')}}">
                                         </li>
                                     @endif
                                 </ul>
@@ -114,7 +114,7 @@
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm">
-                                            <i class="fa fa-btn fa-trash"></i> Xoá
+                                            <i class="fa fa-btn fa-trash"></i> Gỡ
                                         </button>
                                     </form>
                                 @endcan

@@ -36,7 +36,7 @@
                                 <a class="venobox" href="img/single-product/bg-1.jpg" data-gall="gallery" title="">
                                     @if($product->avatar)
                                         <img alt=""
-                                             src="{{asset('backend/dist/img/product/avatar/'.$product->avatar)}}">
+                                             src="{{asset('storage/images/product/avatar/'.$product->avatar)}}" style="height: 550px">
                                     @else
                                         <img alt="" src="{{asset('frontend/img/single-product/bg-1.jpg')}}">
                                     @endif

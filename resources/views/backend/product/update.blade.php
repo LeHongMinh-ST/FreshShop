@@ -1,7 +1,7 @@
 @extends('backend.layout.master')
 
 @section('title')
-    Create Product
+    Upade Product
 @endsection
 @section('content-header')
     <div class="container-fluid">
@@ -30,7 +30,7 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form" action="{{route('Product.update',$product->id)}}" method="POST">
+                <form role="form" action="{{route('Product.update',$product->id)}}" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     {{ method_field('PUT') }}
                     @csrf
@@ -113,15 +113,6 @@
                         <div class="form-group">
                             <label>Đơn vị</label>
                             <input type="text" class="form-control" id="" placeholder="Điền đơn vị" name="unit" value="{{$product->unit}}">
-                        </div>
-                        <div class="form-group">
-                            <label>Trạng thái sản phẩm</label>
-                            <select class="form-control select2" style="width: 100%;" name="status">
-                                <option>--Chọn trạng thái---</option>
-                                <option value="1" @if($product->status ==1) selected @endif >Đang nhập</option>
-                                <option value="2" @if($product->status ==2) selected @endif >Mở bán</option>
-                                <option value="3" @if($product->status ==3) selected @endif >Hết hàng</option>
-                            </select>
                         </div>
                     </div>
                     <!-- /.card-body -->

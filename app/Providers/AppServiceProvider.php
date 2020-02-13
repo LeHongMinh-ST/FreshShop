@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Category;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
@@ -27,9 +28,15 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //Xử lý menu đa cấp
-        $parent_categories = Category::where('parent_id',0)->get();
-        $parent_categories = $this->addSubMenu($parent_categories);
-        $parent_categories = $this->getHtmlSubmenu($parent_categories);
+        $mega_menu = Cache::remember('menu', 60*60*24*7, function() {
+            $categories = Category::where('parent_id',0)->get();
+            $categories = $this->addSubMenu($categories);
+            return $categories;
+        });
+
+        $parent_categories = $this->getHtmlSubmenu($mega_menu);
+
+
         View::share('parent_categories',$parent_categories);
 
         Schema::defaultStringLength(191);

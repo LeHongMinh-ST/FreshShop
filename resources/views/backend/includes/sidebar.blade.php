@@ -12,16 +12,13 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex dropdown">
             <div class="image">
-                @if(Auth::user()->avatar)
-                    <img src="{{asset('backend/dist/img/user/avatar').'/'. Auth::user()->avatar }}" class="img-circle elevation-2"
-                         alt="User Image">
-                @else
-                    <img src="{{asset('backend/dist/img/user/avatar/default-avatar.png')}}" class="img-circle elevation-2"
-                         alt="User Image">
-                @endif
+                <img src="{{asset('backend/dist/img/user/avatar').'/'. Auth::user()->avatar }}"
+                     class="img-circle elevation-2"
+                     alt="User Image">
+
             </div>
             <div class="info">
-                <a href="#" class="d-block">{{Auth::user()->name}}</a>
+                <a href="{{route('User.show',Auth::user()->id)}}" class="d-block">{{Auth::user()->name}}</a>
             </div>
         </div>
 
@@ -61,6 +58,18 @@
                                 <p>Danh sách</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{route('Sale.index')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách khuyến mãi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('Product.trashed')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách tạm gỡ</p>
+                            </a>
+                        </li>
 
                     </ul>
                 </li>
@@ -83,6 +92,12 @@
                             <a href="{{route('Category.index')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh sách</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('Category.trashed')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách tạm gỡ</p>
                             </a>
                         </li>
                     </ul>
@@ -153,15 +168,15 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="{{route('Customer.index')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Tạo mới</p>
+                                <p>Danh sách</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('User.index')}}" class="nav-link">
+                            <a href="{{route('Customer.trashed')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Danh sách</p>
+                                <p>Danh sách tạm khóa</p>
                             </a>
                         </li>
                     </ul>
@@ -177,22 +192,30 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="pages/UI/general.html" class="nav-link">
+                            <a href="{{route('Supplier.create')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Tạo mới</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('User.index')}}" class="nav-link">
+                            <a href="{{route('Supplier.index')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh sách</p>
                             </a>
                         </li>
+                        @can('viewAny',Auth::user())
+                            <li class="nav-item">
+                                <a href="{{route('Supplier.trashed')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Danh sách đã gỡ</p>
+                                </a>
+                            </li>
+                        @endcan
                     </ul>
                 </li>
 
 
-            @if(Auth::user()->role == 1)
+                @can('viewAny',Auth::user())
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-users-cog"></i>
@@ -214,9 +237,25 @@
                                     <p>Danh sách</p>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{route('User.trashed')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Danh sách tạm khóa</p>
+                                </a>
+                            </li>
                         </ul>
                     </li>
-                @endif
+                @endcan
+
+                <li class="nav-item has-treeview">
+                    <a href="{{route('Warehouse.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-warehouse"></i>
+                        <p>
+                            Kho hàng
+                        </p>
+                    </a>
+                    </ul>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

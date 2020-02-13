@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUserRequest;
 use App\User;
 use App\User_info;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -20,6 +24,8 @@ class UserController extends Controller
     public function index()
     {
 //        $users = DB::table('users')->get();
+        $this->authorize('viewAny',Auth::user());
+
         $users = User::where('role', '<>', 0)->paginate(9);
         return view('backend.user.list')->with(['users' => $users]);
     }
@@ -31,6 +37,7 @@ class UserController extends Controller
      */
     public function create()
     {
+        $this->authorize('viewAny',Auth::user());
         return view('backend.user.create');
     }
 
@@ -40,9 +47,10 @@ class UserController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreUserRequest $request)
     {
-//        dd($request);
+
+        $this->authorize('create', User::class);
         $user = new User();
         $user->name = $request->get('name');
         $user->email = $request->get('email');
@@ -88,9 +96,33 @@ class UserController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreUserRequest $request, $id)
     {
-        //
+        dd($request);
+        $user =  User::find($id);
+        $this->authorize('update', $user);
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        $user->phone = $request->get('phone');
+        if($request->hasFile('avatar'))
+        {
+            if ($user->avatar != 'default-avatar.png') {
+                $img = 'storage/images/user/avatar' . $user->avatar;
+                File::delete($img);
+            }
+            $avatar = $request->file('avatar');
+            $profileavatar = date('YmdHis') . "." . $avatar->getClientOriginalExtension();
+            Storage::disk('public')->putFileAs('storage/images/user/avatar', $avatar, $profileavatar);
+            $user->avatar = $profileavatar;
+        }
+        $save = $user->save();
+
+        if ($save)
+            $request->session()->flash('success', 'Tao mới thành công');
+        else
+            $request->session()->flash('error', 'Tạo mới thất bại');
+
+        return redirect()->route('User.show',$user->id);
     }
 
     /**
@@ -103,30 +135,33 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $this->authorize('delete', $user);
-        if ($user->avatar) {
-            $img = 'backend/dist/img/user/avatar' . $user->avatar;
-            File::delete($img);
-        }
+
         $user->delete();
         return redirect()->route('User.index');
     }
 
-    public function test()
+    public function trashed()
     {
-//        $user = User::find(2);
-//        $userInfo = $user->userInfo;
-//        dd($userInfo);
-
-        $user_info = User_info::find(1);
-//        dd($user_info);
-        $user = $user_info->user;
-        dd($user);
+        $users = User::onlyTrashed()->where('role', '<>', 0)->paginate(6);
+        return view('backend.user.trashed')->with(['users'=>$users]);
     }
 
-    public function showProduct($id)
+    public function restore($id)
     {
-        $user = User::find($id);
-        $products = $user->Products;
-        return view('backend.user.showProduct')->with(['products' => $products]);
+        $user = User::onlyTrashed()->find($id);
+        $user->restore();
+        return redirect()->route('User.index');
     }
+
+    public function hardDelete($id)
+    {
+        $user = User::onlyTrashed()->find($id);
+        if ($user->avatar != 'default-avatar.png') {
+            $img = 'storage/images/user/avatar' . $user->avatar;
+            File::delete($img);
+        }
+        $user->forceDelete();
+        return redirect()->route('User.trashed');
+    }
+
 }

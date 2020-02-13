@@ -1,6 +1,6 @@
 @extends('backend.layout.master')
-@section('tilte')
-    User
+@section('title')
+    User List
 @endsection
 
 @section('content-header')
@@ -34,16 +34,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Title</h3>
-
-                <div class="card-tools">
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
-                            title="Collapse">
-                        <i class="fas fa-minus"></i></button>
-                    <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip"
-                            title="Remove">
-                        <i class="fas fa-times"></i></button>
-                </div>
+                <h3 class="card-title">Danh sách nhân viên</h3>
             </div>
             <div class="card-body">
                 <section class="content">
@@ -66,8 +57,7 @@
                                                             <p class="text-muted text-sm"><b>Chức vụ: </b>Quản trị viên
                                                             </p>
                                                         @else
-                                                            <p class="text-muted text-sm"><b>Chức vụ: </b>Nhân viên quản
-                                                                lý bán hàng</p>
+                                                            <p class="text-muted text-sm"><b>Chức vụ: </b>Nhân viên</p>
                                                         @endif
                                                         <ul class="ml-4 mb-0 fa-ul text-muted">
                                                             <li class="small"><span class="fa-li"><i
@@ -81,32 +71,28 @@
                                                         </ul>
                                                     </div>
                                                     <div class="col-5 text-center">
-                                                        @if($user->avatar)
-                                                            <img class="img-circle img-fluid" alt=""
-                                                                 src="{{asset('backend/dist/img/user/avatar/' . $user->avatar)}}">
-                                                        @else
-                                                            <img class="img-circle img-fluid" alt=""
-                                                                 src="{{asset('backend/dist/img/user/avatar/default-avatar.png')}}">
-                                                        @endif
+                                                        <img class="img-circle img-fluid" alt=""
+                                                             src="{{asset('storage/images/user/avatar/' . $user->avatar)}}">
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="card-footer">
                                                 <div class="text-right" style="display: flex">
-                                                    <a class="btn btn-sm btn-primary" href="{{route('User.show',$user->id)}}"
+                                                    <a class="btn btn-sm btn-primary"
+                                                       href="{{route('User.show',$user->id)}}"
                                                        style="margin-right: 5px">
                                                         <i class="fas fa-user"></i> Xem thông tin
                                                     </a>
-                                                    @if(Auth::user()->role == 1)
-                                                        <form action="{{route('User.destroy',$user->id)}}" method="POST">
+                                                    @can('delete',$user)
+                                                        <form action="{{route('User.destroy',$user->id)}}"
+                                                              method="POST">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger btn-sm">
-                                                                <i class="fa fa-btn fa-trash"></i> Xoá
+                                                                <i class="fa fa-btn fa-trash"></i> Khóa tài khoản
                                                             </button>
                                                         </form>
-                                                    @endif
-
+                                                    @endcan
                                                 </div>
                                             </div>
                                         </div>

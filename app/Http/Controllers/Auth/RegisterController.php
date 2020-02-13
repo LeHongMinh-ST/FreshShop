@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Customer;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
@@ -92,6 +93,18 @@ class RegisterController extends Controller
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
+        if ($user->role == 0)
+        {
+            $customer = new Customer();
+            $customer->name = $request->get('name');
+            $customer->email = $request->get('email');
+            $customer->sex = 0;
+            $customer->phone = $request->get('phone');
+            $customer->address = $request->get('address');
+            $customer->user_id = $user->id;
+            $customer->save();
+        }
+
         $this->guard()->login($user);
 
         return $this->registered($request, $user)

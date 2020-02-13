@@ -10,7 +10,11 @@
             <div class="row">
                 <div class="col-md-12">
                     <div style="background: none;padding-top: 140px;padding-bottom: 140px;">
-                        <h2 style="color: #000000">{{$category->name}}</h2>
+                        @if($category->name)
+                            <h2 style="color: #000000">{{$category->name}}</h2>
+                        @else
+                            <h2 style="color: #000000">Sản phẩm</h2>
+                        @endif
                         <ul class="breadcrumbs-list">
                             <li>
                                 <a title="Return to Home" href="{{route('frontend.home')}}">Home</a>
@@ -190,10 +194,11 @@
                                         <div class="col-md-4 col-sm-6">
                                             <div class="single-banner">
                                                 <div class="product-wrapper">
-                                                    <a href="{{route('frontend.detail',$product->slug)}}" class="single-banner-image-wrapper">
+                                                    <a href="{{route('frontend.detail',$product->slug)}}"
+                                                       class="single-banner-image-wrapper">
                                                         @if($product->avatar)
                                                             <img alt=""
-                                                                 src="{{asset('backend/dist/img/product/avatar/'.$product->avatar)}}">
+                                                                 src="{{asset('storage/images/product/avatar/'.$product->avatar)}}" style="height: 280px">
                                                         @else
                                                             <img alt="" src="{{asset('frontend/img/featured/1.jpg')}}">
                                                         @endif

@@ -21,7 +21,7 @@ class CreateCustomersTable extends Migration
             $table->string('phone');
             $table->bigInteger('user_id');
             $table->string('address');
-            $table->string('node')->nullable();
+            $table->string('note')->nullable();
             $table->timestamps();
         });
     }

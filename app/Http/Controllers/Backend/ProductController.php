@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Depot;
 use App\Http\Controllers\Controller;
 use App\Image;
 use App\Oder;
+use App\Warehouse;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
@@ -17,6 +19,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use PHPUnit\Framework\StaticAnalysis\HappyPath\AssertNotInstanceOf\A;
 use \Illuminate\Support\Facades\File;
+use Intervention\Image\ImageManager;
 
 class ProductController extends Controller
 {
@@ -25,11 +28,29 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $products = Product::get();
+//        dd($products);
+        foreach ($products as $product) {
+            $warehouse = $product->Warehouse;
+//            dd($warehouse);
+            if ($warehouse['remain'] > 0) {
+                $product->status = 1;
+            } elseif ($warehouse['remain'] == 0 && $warehouse['status'] == 1)
+                $product->status = 2;
+            else $product->status = 0;
+            $product->save();
+        }
+    }
+
     public function index()
     {
-        $products = Product::paginate(10);
+        $products = Product::paginate(6);
         foreach ($products as $product) {
             $category = $product->Category;
+            $sale = $product->Sale;
+            if (isset($sale)) $product->price_sale = $sale->price_sale;
             $product->category = $category->name;
         }
 
@@ -63,43 +84,46 @@ class ProductController extends Controller
         $product->price_import = $request->get('price_import');
         $product->price_sell = $request->get('price_sell');
         $product->content = $request->get('content');
-        $product->status = $request->get('status');
         $product->user_id = Auth::user()->id;
         $product->unit = $request->get('unit');
-        if ($request->allFiles()) {
-//            $path = Storage::disk('public')->putFile('images/avatar', $request->file('avatar'));
-//            dd($path);
-//            $file = $request->file('avatar');
-//            Lưu vào trong thư mục storage
-//            $path = $file->store('images');
 
+        if ($request->hasFile('avatar')) {
             $avatar = $request->file('avatar');
-            $images = $request->file('images');
-
-            $path_avatar = 'backend/dist/img/product/avatar';
-            $path_img = 'backend/dist/img/product/description';
-
+            $path_avatar = 'images/product/avatar';
             $profileavatar = date('YmdHis') . "." . $avatar->getClientOriginalExtension();
-            $avatar->move($path_avatar, $profileavatar);
+            Storage::disk('public')->putFileAs($path_avatar, $avatar, $profileavatar);
             $product->avatar = $profileavatar;
+//            $resize_avatar = \Intervention\Image\Facades\Image::make('images/product/avatar/'.$profileavatar)->resize(270,280);
+//            Storage::disk('public')->putFileAs('images/product/avatar/thumbnail', $resize_avatar, $profileavatar);
 
-            $save = $product->save();
+
+        }
+        $save = $product->save();
+
+        if ($request->hasFile('images')) {
+            $images = $request->file('images');
+            $path_img = 'images/product/description';
 
             $i = 0;
             foreach ($images as $image) {
                 $profileimage = date('YmdHis') . $i . "." . $image->getClientOriginalExtension();
-                $image->move($path_img, $profileimage);
-
+                Storage::disk('public')->putFileAs($path_img, $image, $profileimage);
                 $image_new = new Image();
 
                 $image_new->name = $profileimage;
-                $image_new->path = $path_img;
+                $image_new->path = 'storage/' . $path_img;
                 $image_new->product_id = $product->id;
 
                 $image_new->save();
                 $i++;
             }
-        } else dd('không có file');
+        }
+
+        //Thêm dữ liệu vào bảng kho
+        $warehouse = new Warehouse();
+        $warehouse->product_id = $product->id;
+        $warehouse->save();
+
 
         if ($save)
             $request->session()->flash('success', 'Tao mới thành công');
@@ -114,13 +138,16 @@ class ProductController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public
+    function show($id)
     {
         $product = Product::find($id);
         $images = $product->Images;
         $category = $product->Category;
+        $sale = $product->Sale;
+        if (isset($sale))
+            $product->price_sale = $sale->price_sale;
         $product->category = $category->name;
-//        dd($images);
         return view('backend.product.show')->with(['product' => $product, 'images' => $images]);
     }
 
@@ -130,17 +157,11 @@ class ProductController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public
+    function edit($id)
     {
         $product = Product::find($id);
         $categories = Category::get();
-
-//        if (Gate::allows('update-product', $product)){
-//
-//            return view('backend.product.update')->with(['product'=>$product,'categories'=>$categories]);
-//        }
-//        else return abort(404);
-
         $user = Auth::user();
         if ($user->can('update', $product)) {
             return view('backend.product.update')->with(['product' => $product, 'categories' => $categories]);
@@ -154,10 +175,11 @@ class ProductController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreProductRequest $request, $id)
+    public
+    function update(StoreProductRequest $request, $id)
     {
 
-//        dd($request->allFiles());
+//        dd($request->all());
         $product = Product::find($id);
         $this->authorize('update', $product);
 
@@ -167,28 +189,30 @@ class ProductController extends Controller
         $product->price_import = $request->get('price_import');
         $product->price_sell = $request->get('price_sell');
         $product->content = $request->get('content');
-        $product->status = $request->get('status');
         $product->user_id = Auth::user()->id;
         $product->unit = $request->get('unit');
-        if ($request->allFiles()) {
+        if ($request->hasFile('avatar')) {
+//            dd(1);
+            if (isset($product->avatar)) {
+                $avatar = 'storage/images/product/avatar/' . $product->avatar;
+                File::delete($avatar);
+            }
             $avatar = $request->file('avatar');
-            $images = $request->file('images');
-
-
-            $path_avatar = 'backend/dist/img/product/avatar';
-            $path_img = 'backend/dist/img/product/description';
-
+            $path_avatar = 'images/product/avatar';
             $profileavatar = date('YmdHis') . "." . $avatar->getClientOriginalExtension();
-            $avatar->move($path_avatar, $profileavatar);
+            Storage::disk('public')->putFileAs($path_avatar, $avatar, $profileavatar);
             $product->avatar = $profileavatar;
+        }
 
-            $save = $product->save();
-
+        $save = $product->save();
+        if ($request->hasFile('images')) {
+            $images = $request->file('images');
+            $path_img = 'images/product/description';
             $i = 0;
             foreach ($images as $image) {
                 $profileimage = date('YmdHis') . $i . "." . $image->getClientOriginalExtension();
-                $image->move($path_img, $profileimage);
 
+                Storage::disk('public')->putFileAs($path_img, $images, $profileimage);
                 $image_new = new Image();
 
                 $image_new->name = $profileimage;
@@ -199,7 +223,7 @@ class ProductController extends Controller
                 $i++;
             }
         }
-        $save = $product->save();
+
 
         if ($save)
             $request->session()->flash('success-update', 'Cập nhật thành công');
@@ -215,13 +239,55 @@ class ProductController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public
+    function destroy($id)
     {
         $product = Product::find($id);
         $this->authorize('delete', $product);
         //Xóa file avatar trong thư mục
+
+        //Xóa sản phẩm
+        $delete = $product->delete();
+        if ($delete)
+            session()->flash('success-delete', 'Gỡ thành công');
+        else
+            session()->flash('error-delete', 'Gỡ thất bại');
+        return redirect()->route('Product.index');
+
+    }
+
+
+    public function trashed()
+    {
+        $products = Product::onlyTrashed()->paginate(10);
+
+        foreach ($products as $product) {
+            $category = $product->Category;
+            $product->category = $category->name;
+        }
+        return view('backend.product.trashed')->with(['products' => $products]);
+    }
+
+    public function restore($id)
+    {
+        $product = Product::onlyTrashed()->find($id);
+        $this->authorize('restore', $product);
+        $restore = $product->restore();
+
+        if ($restore)
+            session()->flash('success-restore', 'Khôi phục thành công');
+        else
+            session()->flash('error-restore', 'Khôi phục thất bại');
+        return redirect()->route('Product.index');
+    }
+
+    public function hardDelete($id)
+    {
+        $product = Product::onlyTrashed()->find($id);
+        $wearhouse = Warehouse::where('product_id',$product->id);
+        $this->authorize('forceDelete', $product);
         if ($product->avatar) {
-            $avatar = 'backend/dist/img/product/avatar/' . $product->avatar;
+            $avatar = 'storage/images/product/avatar/' . $product->avatar;
             File::delete($avatar);
         }
 
@@ -229,34 +295,17 @@ class ProductController extends Controller
         $images = $product->Images;
         if ($images) {
             foreach ($images as $image) {
-                $img = 'backend/dist/img/product/description/' . $image->name;
+                $img = 'storage/images/product/description/' . $image->name;
                 File::delete($img);
                 $image->delete();
             }
         }
-
-        //Xóa sản phẩm
-        $product->delete();
-
-
-        return redirect()->route('Product.index');
-    }
-
-    public function test()
-    {
-//        $product = Product::find(1);
-//        $oder = $product->Oder;
-//        dd($oder);
-
-        $oder = Oder::find(1);
-        $products = $oder->Products;
-        dd($products);
-    }
-
-    public function showImage($id)
-    {
-        $product = Product::find($id);
-        $images = $product->Images;
-        return view('backend.image.image')->with(['images' => $images]);
+        $forceDelete = $product->forceDelete();
+        $wearhouse->delete();
+        if ($forceDelete)
+            session()->flash('success-forceDelete', 'Xóa thành công');
+        else
+            session()->flash('error-forceDelete', 'Xóa thất bại');
+        return redirect()->route('Product.trashed');
     }
 }

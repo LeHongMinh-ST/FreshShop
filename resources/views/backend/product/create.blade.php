@@ -86,13 +86,16 @@
                             <label for="exampleInputFile">Hình ảnh đại diện sản phẩm</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" name="avatar" class="custom-file-input" id="exampleInputFile">
+                                    <input type="file" name="avatar" class="custom-file-input" id="exampleInputFile" value="">
                                     <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                 </div>
                                 <div class="input-group-append">
                                     <span class="input-group-text" id="">Upload</span>
                                 </div>
                             </div>
+                            @error('avatar')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group">
@@ -106,20 +109,17 @@
                                     <span class="input-group-text" id="">Upload</span>
                                 </div>
                             </div>
+                            @error('images')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label>Đơn vị</label>
                             <input type="text" class="form-control" id="" placeholder="Điền đơn vị" name="unit">
                         </div>
-                        <div class="form-group">
-                            <label>Trạng thái sản phẩm</label>
-                            <select class="form-control select2" style="width: 100%;" name="status">
-                                <option>--Chọn trạng thái---</option>
-                                <option value="2">Đang nhập</option>
-                                <option value="1">Mở bán</option>
-                                <option value="0">Hết hàng</option>
-                            </select>
-                        </div>
+                        @error('unit')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
                     </div>
                     <!-- /.card-body -->
 

@@ -24,7 +24,7 @@ class CreateProductsTable extends Migration
             $table->string('unit');
             $table->bigInteger('user_id');
             $table->bigInteger('category_id');
-            $table->integer('status');
+            $table->integer('status')->default(2);
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });

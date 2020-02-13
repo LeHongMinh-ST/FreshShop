@@ -31,10 +31,10 @@
                         {{--                        <h3 class="d-inline-block d-sm-none">{{asset('backend/dist/img/product/avatar/'. $category->image)}}</h3>--}}
                         <div class="col-12">
                             @if($category->image)
-                                <img src="{{asset('backend/dist/img/category/'. $category->image)}}"
+                                <img src="{{asset('storage/images/category/'. $category->image)}}"
                                      class="product-image" alt="Product Image">
                             @else
-                                <img src="{{asset('backend/dist/img/category/demo.png')}}"
+                                <img src="{{asset('storage/images/category/demo.png')}}"
                                      class="product-image" alt="Product Image">
                             @endif
                         </div>
@@ -50,9 +50,9 @@
                         <div>Danh mục cha:</div>
                         <div>
                             @if($category->parent)
-                                <h4>{{$category->parent->name}}</h4>
+                                <a href="{{route('Category.show',$category->parent->id)}}">{{$category->parent->name}}</a>
                             @else
-                                <h4>Không có</h4>
+                                <p>Không có</p>
                             @endif
                         </div>
                         <div>
@@ -60,13 +60,11 @@
                         </div>
                         <div>
                             @if($category->child)
-                                <h4>
-                                    {{$category->child->name}}
-                                </h4>
+                                @foreach($category->child as $value)
+                                    <a href="{{route('Category.show',$value->id)}}">{{$value->name}}</a>,
+                                @endforeach
                             @else
-                                <h4 class="mt-3">
-                                    Không có
-                                </h4>
+                                <p>Không có</p>
                             @endif
                         </div>
 
@@ -85,7 +83,7 @@
                     </nav>
                     <div class="tab-content p-3" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="product-desc" role="tabpanel"
-                             aria-labelledby="product-desc-tab"> {{$category->content}}
+                             aria-labelledby="product-desc-tab"> {!!$category->content!!}
                         </div>
                         <div class="tab-pane fade" id="product-comments" role="tabpanel"
                              aria-labelledby="product-comments-tab">
@@ -95,11 +93,11 @@
                                         <a href="{{route('Product.show',$product->id)}}">
                                             @if($product->avatar)
                                                 <img
-                                                    src="{{asset('backend/dist/img/product/avatar/'. $product->avatar)}}"
-                                                    alt="Product Image">
+                                                    src="{{asset('storage/images/product/avatar/'. $product->avatar)}}"
+                                                    alt="Product Image" style="height: 100px">
                                             @else
                                                 <img
-                                                    src="{{asset('backend/dist/img/product/avatar/demo.png')}}"
+                                                    src="{{asset('storage/images/images/product/avatar/demo.png')}}"
                                                     alt="Product Image">
                                             @endif
                                         </a>

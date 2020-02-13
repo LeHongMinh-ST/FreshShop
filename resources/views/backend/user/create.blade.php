@@ -35,38 +35,46 @@
                             <div class="form-group">
                                 <label for="inputName">Name</label>
                                 <input type="text" id="inputName" class="form-control" name="name">
+                                @error('name')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="inputName">Email</label>
                                 <input type="email" id="inputName" class="form-control" name="email">
+                                @error('email')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="inputName">Password</label>
                                 <input type="Password" id="inputName" class="form-control" name="password">
+                                @error('password')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
-                            <div class="form-group">
-                                <label for="inputName">Password</label>
-                                <input type="Password" id="inputName" class="form-control" name="password_confirmation">
-                            </div>
-
                             <div class="form-group">
                                 <label for="inputName">phone</label>
-                                <input type="text" id="inputName" class="form-control" name="Phone">
+                                <input type="text" id="inputName" class="form-control" name="phone">
+                                @error('phone')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <label for="inputStatus">Chức vụ</label>
                                 <select class="form-control custom-select" name="role">
                                     <option selected disabled>Select one</option>
                                     <option value="1">Quản trị viên</option>
-                                    <option value="2">Nhân viên bán hàng</option>
+                                    <option value="2">Nhân viên</option>
                                 </select>
+                                @error('role')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <!-- /.card-body -->
-                        <div class="row">
-                            <div class="col-12">
-                                <button type="submit" class="btn btn-sucess">Tạo mới</button>
-                            </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Tạo mới</button>
                         </div>
                     </form>
                 </div>

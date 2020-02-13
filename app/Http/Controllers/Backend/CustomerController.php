@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
+use App\Customer;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ImportController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,8 @@ class ImportController extends Controller
      */
     public function index()
     {
-        //
+        $customers = Customer::paginate(10);
+        return view('backend.customer.list')->with(['customers'=>$customers]);
     }
 
     /**
@@ -80,5 +83,11 @@ class ImportController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function trashed()
+    {
+        $customers = Customer::onlyTrashed()->paginate(6);
+        return view('backend.customer.trashed')->with(['customers'=>$customers]);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Cookie;
 
 class HomeController extends Controller
@@ -27,11 +28,26 @@ class HomeController extends Controller
     public function index()
     {
 
-        session([
-            'key' => 'value',
-            'name'=>'minh'
-        ]);
-        session()->put('age',16);
+        $array = ['1','2','3'];
+
+//        $user  = User::get();
+//        $cache =  Cache::put('menus',$user);
+//        $view_number = Cache::increment('view',3);
+//        $view_number = Cache::decrement('view',1);
+//        $number = Cache::get('view');
+//        dd($number);
+
+//        $value = Cache::remember('users',120,function (){
+//           return User::get();
+//        });
+        $value = Cache::put('value',$array);
+//        dd($value);
+
+//        session([
+//            'key' => 'value',
+//            'name'=>'minh'
+//        ]);
+//        session()->put('age',16);
 //        if (session()->has('age')) echo 'co';
 //        else echo 'khong';
 //        $user = Auth::user();
@@ -40,8 +56,14 @@ class HomeController extends Controller
     }
     public function get()
     {
-        session()->forget('name');
-        dd(session()->all());
+//        $users = Cache::get('users');
+//        if(Cache::has('menus'))
+//        {
+//            $value = Cache::pull('value');
+//        }else dd(1);
+        Cache::forget('value');
+        $value = Cache::get('value');
+        dd($value);
     }
 
     public function setCookie()

@@ -16,7 +16,7 @@ class CreateRatesTable extends Migration
         Schema::create('rates', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('product_id');
-            $table->string('name_customer');
+            $table->bigInteger('customer_id');
             $table->string('comment');
             $table->float('rate');
             $table->timestamps();
