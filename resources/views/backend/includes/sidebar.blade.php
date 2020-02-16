@@ -12,7 +12,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex dropdown">
             <div class="image">
-                <img src="{{asset('backend/dist/img/user/avatar').'/'. Auth::user()->avatar }}"
+                <img src="{{asset('storage/images/user/avatar').'/'. Auth::user()->avatar }}"
                      class="img-circle elevation-2"
                      alt="User Image">
 
@@ -113,7 +113,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                            <a href="" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>
                                     Bán ra
@@ -122,7 +122,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{route('Oder.index')}}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Danh sách</p>
                                     </a>
@@ -141,15 +141,9 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{route('Import.index')}}" class="nav-link">
                                         <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Tạo đơn nhập</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="#" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Danh sách đơn</p>
+                                        <p>Danh sách</p>
                                     </a>
                                 </li>
                             </ul>
@@ -173,12 +167,14 @@
                                 <p>Danh sách</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{route('Customer.trashed')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Danh sách tạm khóa</p>
-                            </a>
-                        </li>
+                        @if(Auth::user()->role ==1)
+                            <li class="nav-item">
+                                <a href="{{route('Customer.trashed')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Danh sách tạm khóa</p>
+                                </a>
+                            </li>
+                        @endif
                     </ul>
                 </li>
 
@@ -191,26 +187,28 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{route('Supplier.create')}}" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Tạo mới</p>
-                            </a>
-                        </li>
+                        @if(Auth::user()->role == 1 )
+                            <li class="nav-item">
+                                <a href="{{route('Supplier.create')}}" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Tạo mới</p>
+                                </a>
+                            </li>
+                        @endif
                         <li class="nav-item">
                             <a href="{{route('Supplier.index')}}" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh sách</p>
                             </a>
                         </li>
-                        @can('viewAny',Auth::user())
+                        @if(Auth::user()->role == 1)
                             <li class="nav-item">
                                 <a href="{{route('Supplier.trashed')}}" class="nav-link">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Danh sách đã gỡ</p>
                                 </a>
                             </li>
-                        @endcan
+                        @endif
                     </ul>
                 </li>
 
@@ -248,14 +246,44 @@
                 @endcan
 
                 <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-pager"></i>
+                        <p>
+                            Quản lý bài viết
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('Post.create')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Tạo mới</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('Post.index')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('Post.trashed')}}" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Danh sách tạm khóa</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-treeview">
                     <a href="{{route('Warehouse.index')}}" class="nav-link">
                         <i class="nav-icon fas fa-warehouse"></i>
                         <p>
                             Kho hàng
                         </p>
                     </a>
-                    </ul>
-                </li>
+            </ul>
+            </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

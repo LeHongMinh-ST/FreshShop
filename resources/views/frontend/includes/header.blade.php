@@ -91,24 +91,6 @@
                                 {!! $parent_categories !!}
                             </li>
                             <li><a href="shop.html">BLOG Món ngon</a></li>
-                            <li><a href="#">pages</a>
-                                <ul class="sub-menu">
-                                    <li><a href="about.html">About Us</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="cart.html">Cart Page</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="cart.html">Cart Page</a></li>
-                                    <li><a href="checkout.html">Check Out</a></li>
-                                    <li><a href="contact.html">Contact</a></li>
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="my-account.html">My Account</a></li>
-                                    <li><a href="shop.html">Shopping Page</a></li>
-                                    <li><a href="single-product.html">Single Shop Page</a></li>
-                                    <li><a href="wishlist.html">Wishlist Page</a></li>
-                                    <li><a href="404.html">404 Page</a></li>
-                                </ul>
-                            </li>
                             <li><a href="{{route('frontend.contact')}}">Liên Hệ</a></li>
                         </ul>
                     </nav>
@@ -146,7 +128,8 @@
                                         <a href="{{ route('logout') }}">
                                             Đăng xuất
                                         </a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="get" style="display: none;">
+                                        <form id="logout-form" action="{{ route('logout') }}" method="get"
+                                              style="display: none;">
                                             @csrf
                                         </form>
                                     </div>
@@ -155,66 +138,16 @@
                         </li>
 
                         <li class="shoping-cart">
-                            <a href="#">
+                            <a href="{{route('cart.index')}}">
                                 <i class="flaticon-shop"></i>
-                                <span>3</span>
+
+                                @if($count > 0)
+                                    <span class="number_cart">{{$count}}</span>
+                                @else
+                                    <span class="number_cart">0</span>
+                                @endif
+
                             </a>
-                            <div class="add-to-cart-product">
-                                <div class="cart-product">
-                                    <div class="cart-product-image">
-                                        <a href="single-product.html">
-                                            <img src="img/shop/1.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="cart-product-info">
-                                        <p>
-                                            <span>1</span>
-                                            x
-                                            <a href="single-product.html">East of eden</a>
-                                        </p>
-                                        <a href="single-product.html">S, Orange</a>
-                                        <span class="cart-price">$ 140.00</span>
-                                    </div>
-                                    <div class="cart-product-remove">
-                                        <i class="fa fa-times"></i>
-                                    </div>
-                                </div>
-                                <div class="cart-product">
-                                    <div class="cart-product-image">
-                                        <a href="single-product.html">
-                                            <img src="img/shop/1.jpg" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="cart-product-info">
-                                        <p>
-                                            <span>1</span>
-                                            x
-                                            <a href="single-product.html">East of eden</a>
-                                        </p>
-                                        <a href="single-product.html">S, Orange</a>
-                                        <span class="cart-price">$ 140.00</span>
-                                    </div>
-                                    <div class="cart-product-remove">
-                                        <i class="fa fa-times"></i>
-                                    </div>
-                                </div>
-                                <div class="total-cart-price">
-                                    <div class="cart-product-line fast-line">
-                                        <span>Shipping</span>
-                                        <span class="free-shiping">$10.50</span>
-                                    </div>
-                                    <div class="cart-product-line">
-                                        <span>Total</span>
-                                        <span class="total">$ 140.00</span>
-                                    </div>
-                                </div>
-                                <div class="cart-checkout">
-                                    <a href="checkout.html">
-                                        Check out
-                                        <i class="fa fa-chevron-right"></i>
-                                    </a>
-                                </div>
-                            </div>
                         </li>
                     </ul>
                 </div>

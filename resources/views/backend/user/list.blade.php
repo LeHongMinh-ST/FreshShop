@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Danh sách nhân viên</h1>
+                    <h1>Danh sách nhân viên đang hoạt động</h1>
                     @if(session()->has('success'))
                         <span style="color: green">{{session()->get('success')}}</span>
                     @endif
@@ -34,7 +34,18 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Danh sách nhân viên</h3>
+                <h3 class="card-title"></h3>
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <input type="text" name="table_search" class="form-control float-right"
+                               placeholder="Search">
+
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-default"><i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <section class="content">
@@ -89,7 +100,7 @@
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger btn-sm">
-                                                                <i class="fa fa-btn fa-trash"></i> Khóa tài khoản
+                                                                <i class="fa fa-btn fa-lock"></i> Khóa tài khoản
                                                             </button>
                                                         </form>
                                                     @endcan

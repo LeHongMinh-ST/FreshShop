@@ -87,7 +87,8 @@
                     <div class="card">
                         <div class="card-header p-2">
                             <ul class="nav nav-pills">
-                                <li class="nav-item "><a class="nav-link active" href="#timeline" data-toggle="tab">Timeline</a>
+                                <li class="nav-item "><a class="nav-link active" href="#timeline" data-toggle="tab">Sản
+                                        phẩm đã đăng</a>
                                 </li>
                                 <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Cập nhật</a>
                                 </li>
@@ -100,104 +101,48 @@
                                     <!-- The timeline -->
                                     <div class="timeline timeline-inverse">
                                         <!-- timeline time label -->
-                                        <div class="time-label">
-                        <span class="bg-danger">
-                          10 Feb. 2014
-                        </span>
-                                        </div>
-                                        <!-- /.timeline-label -->
-                                        <!-- timeline item -->
-                                        <div>
-                                            <i class="fas fa-envelope bg-primary"></i>
-
-                                            <div class="timeline-item">
-                                                <span class="time"><i class="far fa-clock"></i> 12:05</span>
-
-                                                <h3 class="timeline-header"><a href="#">Support Team</a> sent you an
-                                                    email</h3>
-
-                                                <div class="timeline-body">
-                                                    Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                                                    weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                                                    jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                                                    quora plaxo ideeli hulu weebly balihoo...
+                                        @if(isset($dates))
+                                            @for($i = 0;$i<sizeof($dates);$i++)
+                                                <div class="time-label">
+                                                    <span class="bg-success">
+                                                      {{$dates[$i]}}
+                                                    </span>
                                                 </div>
-                                                <div class="timeline-footer">
-                                                    <a href="#" class="btn btn-primary btn-sm">Read more</a>
-                                                    <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- END timeline item -->
-                                        <!-- timeline item -->
-                                        <div>
-                                            <i class="fas fa-user bg-info"></i>
+                                                <!-- /.timeline-label -->
+                                                <!-- timeline item -->
+                                                @for($j=0;$j<sizeof($products);$j++)
+                                                    @if($date = date_format($products[$j]->created_at,"j M \.\ Y") == $dates[$i])
+                                                        <div>
+                                                            <i class="fas fa-cart-plus bg-primary"></i>
 
-                                            <div class="timeline-item">
-                                                <span class="time"><i class="far fa-clock"></i> 5 mins ago</span>
+                                                            <div class="timeline-item">
+                                                                <span class="time"><i class="far fa-clock"></i>{{date_format($products[$j]->created_at,"H:i")}}</span>
 
-                                                <h3 class="timeline-header border-0"><a href="#">Sarah Young</a>
-                                                    accepted your friend request
-                                                </h3>
-                                            </div>
-                                        </div>
-                                        <!-- END timeline item -->
-                                        <!-- timeline item -->
-                                        <div>
-                                            <i class="fas fa-comments bg-warning"></i>
+                                                                <h3 class="timeline-header"> Thêm mới sản phẩm <a
+                                                                        href="{{route('Product.show',$products[$j]->id)}}">{{$products[$j]->name}}</a>
+                                                                </h3>
+                                                            </div>
+                                                        </div>
+                                                    @endif
+                                                @endfor
+                                            @endfor
+                                        @else
+                                            <div>
+                                                <i class="fas fa-times bg-danger"></i>
 
-                                            <div class="timeline-item">
-                                                <span class="time"><i class="far fa-clock"></i> 27 mins ago</span>
-
-                                                <h3 class="timeline-header"><a href="#">Jay White</a> commented on your
-                                                    post</h3>
-
-                                                <div class="timeline-body">
-                                                    Take me to your leader!
-                                                    Switzerland is small and neutral!
-                                                    We are more like Germany, ambitious and misunderstood!
-                                                </div>
-                                                <div class="timeline-footer">
-                                                    <a href="#" class="btn btn-warning btn-flat btn-sm">View comment</a>
+                                                <div class="timeline-item">
+                                                    <h3 class="timeline-header"> Chưa đăng sản phẩm nào !
+                                                    </h3>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <!-- END timeline item -->
-                                        <!-- timeline time label -->
-                                        <div class="time-label">
-                        <span class="bg-success">
-                          3 Jan. 2014
-                        </span>
-                                        </div>
-                                        <!-- /.timeline-label -->
-                                        <!-- timeline item -->
-                                        <div>
-                                            <i class="fas fa-camera bg-purple"></i>
-
-                                            <div class="timeline-item">
-                                                <span class="time"><i class="far fa-clock"></i> 2 days ago</span>
-
-                                                <h3 class="timeline-header"><a href="#">Mina Lee</a> uploaded new photos
-                                                </h3>
-
-                                                <div class="timeline-body">
-                                                    <img src="http://placehold.it/150x100" alt="...">
-                                                    <img src="http://placehold.it/150x100" alt="...">
-                                                    <img src="http://placehold.it/150x100" alt="...">
-                                                    <img src="http://placehold.it/150x100" alt="...">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- END timeline item -->
-                                        <div>
-                                            <i class="far fa-clock bg-gray"></i>
-                                        </div>
+                                        @endif
                                     </div>
                                 </div>
                                 <!-- /.tab-pane -->
                                 @can('update',$user)
                                     <div class="tab-pane" id="settings">
-                                        <form class="form-horizontal" action="{{'User.update'}}" method="post" enctype="multipart/form-data">
+                                        <form class="form-horizontal" action="{{route('User.update',$user->id)}}"
+                                           method="post" enctype="multipart/form-data">
                                             @csrf
                                             @method('PUT')
                                             <div class="form-group row">
@@ -220,7 +165,8 @@
                                                     thoại</label>
                                                 <div class="col-sm-10">
                                                     <input type="text" class="form-control" id="inputSkills"
-                                                           placeholder="Số điện thoại" name="phone" value="{{$user->phone}}">
+                                                           placeholder="Số điện thoại" name="phone"
+                                                           value="{{$user->phone}}">
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -242,15 +188,21 @@
 
                                 @can('updateRole',$user)
                                     <div class="tab-pane" id="settings">
-                                        <form class="form-horizontal" action="" method="" enctype="multipart/form-data">
+                                        <form class="form-horizontal" action="{{route('User.update-role',$user->id)}}"
+                                              method="post" enctype="multipart/form-data">
+                                            @csrf
+                                            @method('put')
                                             <div class="form-group row">
-                                                <label for="inputSkills" class="col-sm-2 col-form-label">Số điện
-                                                    thoại</label>
+                                                <label for="inputSkills" class="col-sm-2 col-form-label">Chức vụ</label>
                                                 <div class="col-sm-10">
                                                     <select class="form-control custom-select" name="role">
                                                         <option selected disabled>Select one</option>
-                                                        <option value="1">Quản trị viên</option>
-                                                        <option value="2">Nhân viên</option>
+                                                        <option value="1" @if($user->role == 1) selected @endif>Quản trị
+                                                            viên
+                                                        </option>
+                                                        <option value="2" @if($user->role == 2) selected @endif>Nhân
+                                                            viên
+                                                        </option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -262,7 +214,7 @@
                                             </div>
                                         </form>
                                     </div>
-                                @endcan
+                            @endcan
                             <!-- /.tab-pane -->
                             </div>
                             <!-- /.tab-content -->

@@ -6,6 +6,7 @@ use App\Depot;
 use App\Http\Controllers\Controller;
 use App\Image;
 use App\Oder;
+use App\Sale;
 use App\Warehouse;
 use Illuminate\Http\Request;
 use App\Product;
@@ -30,17 +31,25 @@ class ProductController extends Controller
      */
     public function __construct()
     {
+        //===Cập nhật trạng thái sản phẩm===
         $products = Product::get();
-//        dd($products);
         foreach ($products as $product) {
             $warehouse = $product->Warehouse;
-//            dd($warehouse);
             if ($warehouse['remain'] > 0) {
                 $product->status = 1;
             } elseif ($warehouse['remain'] == 0 && $warehouse['status'] == 1)
                 $product->status = 2;
             else $product->status = 0;
             $product->save();
+        }
+
+        //===Cập nhật sản phẩm khuyến mãi===
+        $sales = Sale::all();
+        foreach ($sales as $sale)
+        {
+            if (strtotime(date('Y-m-d'))-strtotime($sale->end)) $sale->status = 1;
+            else $sale->status =0;
+            $sale->save();
         }
     }
 
@@ -50,7 +59,7 @@ class ProductController extends Controller
         foreach ($products as $product) {
             $category = $product->Category;
             $sale = $product->Sale;
-            if (isset($sale)) $product->price_sale = $sale->price_sale;
+            if (isset($sale) && $sale->status == 1) $product->price_sale = $sale->price_sale;
             $product->category = $category->name;
         }
 
@@ -79,7 +88,7 @@ class ProductController extends Controller
         $this->authorize('create', Product::class);
         $product = new Product();
         $product->name = $request->get('name');
-        $product->slug = Str::slug($request->get('name'));
+        $product->slug = Str::slug($product->name);
         $product->category_id = $request->get('category_id');
         $product->price_import = $request->get('price_import');
         $product->price_sell = $request->get('price_sell');
@@ -145,8 +154,7 @@ class ProductController extends Controller
         $images = $product->Images;
         $category = $product->Category;
         $sale = $product->Sale;
-        if (isset($sale))
-            $product->price_sale = $sale->price_sale;
+        if (isset($sale) && $sale->status == 1) $product->price_sale = $sale->price_sale;
         $product->category = $category->name;
         return view('backend.product.show')->with(['product' => $product, 'images' => $images]);
     }
@@ -184,7 +192,7 @@ class ProductController extends Controller
         $this->authorize('update', $product);
 
         $product->name = $request->get('name');
-        $product->slug = Str::slug($request->get('name'));
+        $product->slug = Str::slug($product->name);
         $product->category_id = $request->get('category_id');
         $product->price_import = $request->get('price_import');
         $product->price_sell = $request->get('price_sell');

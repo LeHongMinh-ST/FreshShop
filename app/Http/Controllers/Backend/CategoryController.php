@@ -22,7 +22,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('backend.category.list')->with(['categories'=>$categories]);
+        return view('backend.category.list')->with(['categories' => $categories]);
     }
 
     /**
@@ -32,14 +32,14 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::where('depth','<=',2)->get();
-        return view('backend.category.create')->with(['categories'=>$categories]);
+        $categories = Category::where('depth', '<=', 2)->get();
+        return view('backend.category.create')->with(['categories' => $categories]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreCategoryRequest $request)
@@ -54,11 +54,10 @@ class CategoryController extends Controller
         $category->content = $request->get('content');
         $category->parent_id = $request->get('category_id');
         $category->user_id = Auth::user()->id;
-        if($request->hasFile('image'))
-        {
+        if ($request->hasFile('image')) {
             $image = $request->file('image');
             $profileimage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            Storage::disk('public')->putFileAs('images/category/',$image,$profileimage);
+            Storage::disk('public')->putFileAs('images/category/', $image, $profileimage);
             $category->image = $profileimage;
         }
         $save = $category->save();
@@ -74,40 +73,40 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         $category = Category::find($id);
-        $category_data = Category::where('id',$id)->get();
+        $category_data = Category::where('id', $id)->get();
 //        dd($category_data);
         $category->parent = Category::find($category->parent_id);
         $category_data = $this->getCategories($category_data);
         $category_id = $this->getCategoryId($category_data);
-        $products = Product::whereIn('category_id',$category_id)->get();
-        $category->child = Category::whereIn('parent_id',$category_id)->get();
-        return view('backend.category.show')->with(['category'=>$category,'products'=>$products]);
+        $products = Product::whereIn('category_id', $category_id)->get();
+        $category->child = Category::whereIn('parent_id', $category_id)->get();
+        return view('backend.category.show')->with(['category' => $category, 'products' => $products]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         $categories = Category::get();
         $category = Category::find($id);
-        return view('backend.category.update')->with(['categories'=>$categories,'category'=>$category]);
+        return view('backend.category.update')->with(['categories' => $categories, 'category' => $category]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(StoreCategoryRequest $request, $id)
@@ -115,18 +114,18 @@ class CategoryController extends Controller
         $parentCategory = Category::find($request->get('category_id'));
         $category = Category::find($id);
         $this->authorize('update', $category);
-
         $category->name = $request->get('name');
-        $category->slug = Str::slug('$category->name');
-        $category->depth = $parentCategory->depth + 1;
+        $category->slug = Str::slug($category->name);
+        if (isset($parentCategory))
+            $category->depth = $parentCategory->depth + 1;
+        else $category->depth = 1;
         $category->content = $request->get('content');
         $category->parent_id = $request->get('category_id');
         $category->user_id = Auth::user()->id;
-        if($request->hasFile('image'))
-        {
+        if ($request->hasFile('image')) {
             $image = $request->file('image');
             $profileimage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            Storage::disk('public')->putFileAs('images/category/',$image,$profileimage);
+            Storage::disk('public')->putFileAs('images/category/', $image, $profileimage);
             $category->image = $profileimage;
         }
         $save = $category->save();
@@ -142,7 +141,7 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -153,22 +152,21 @@ class CategoryController extends Controller
         //Xóa thư mục
         $category->delete();
 
-        return  redirect()->route('Category.index');
+        return redirect()->route('Category.index');
     }
 
     public function trashed()
     {
         $categories = Category::onlyTrashed()->paginate(10);
-        return view('backend.category.trashed')->with(['categories'=>$categories]);
+        return view('backend.category.trashed')->with(['categories' => $categories]);
     }
 
     public function hardDelete($id)
     {
         $category = Category::withTrashed()->find($id);
         //Xóa file avatar trong thư mục
-        if($category->image)
-        {
-            $img = 'storage/images/category/'. $category->image;
+        if ($category->image) {
+            $img = 'storage/images/category/' . $category->image;
             File::delete($img);
         }
         $category->forceDelete();
@@ -178,8 +176,8 @@ class CategoryController extends Controller
     public function showProduct($id)
     {
         $category = Category::find($id);
-        $products  = $category->Products;
-        return view('backend.categories.showProduct')->with(['products'=>$products]);
+        $products = $category->Products;
+        return view('backend.categories.showProduct')->with(['products' => $products]);
     }
 
     private function getCategoryId($parent_categories)
@@ -187,11 +185,12 @@ class CategoryController extends Controller
         foreach ($parent_categories as $category) {
             $category_id[] = $category->id;
             if ($category->has_child) {
-                $category_id = array_merge($category_id,$this->getCategoryId($category->sub_category));
+                $category_id = array_merge($category_id, $this->getCategoryId($category->sub_category));
             }
         }
         return array_unique($category_id);
     }
+
     //Lấy các danh mục con
     private function getCategories($parent_categories)
     {

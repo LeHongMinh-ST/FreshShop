@@ -11,8 +11,8 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Sản phẩm</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('backend.dashboard')}}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('Product.index')}}">Sản phẩm</a></li>
                     <li class="breadcrumb-item active">Tạo sản phẩm</li>
                 </ol>
             </div><!-- /.col -->
@@ -20,13 +20,12 @@
     </div><!-- /.container-fluid -->
 @endsection
 @section('content')
-    <!-- Main row -->
     <div class="row">
         <div class="col-md-12">
             <!-- general form elements -->
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Tạo sản phẩm</h3>
+                    <h3 class="card-title"></h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
@@ -131,6 +130,5 @@
             </div>
         </div>
     </div>
-    <!-- /.row (main row) -->
-    </div><!-- /.container-fluid -->
+    </div>
 @endsection

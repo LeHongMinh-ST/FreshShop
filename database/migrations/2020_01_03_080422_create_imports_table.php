@@ -16,10 +16,11 @@ class CreateImportsTable extends Migration
         Schema::create('imports', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('supplier_id');
-            $table->dateTime('date_import');
-            $table->integer('payment');
+            $table->dateTime('date_import')->nullable();
             $table->string('status');
+            $table->text('note')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

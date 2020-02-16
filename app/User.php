@@ -48,4 +48,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Product::class);
     }
+
+    public function Posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

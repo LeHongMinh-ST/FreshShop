@@ -33,9 +33,8 @@ class StoreUserRequest extends FormRequest
         else return [
             'name' => 'required|min:5|max:255|',
             'email'=>'required|email',
-            'password'=>'required|min:8|max:255',
             'phone'=>'required|numeric',
-            'role'=>'required|numeric'
+            'image'=>'image|max:512'
         ];
     }
 
@@ -48,7 +47,8 @@ class StoreUserRequest extends FormRequest
             'unique'=> ':attribute đã tồn tại',
             'numeric' => ':attribute phải là số',
             'mimes'=>':attribute không đúng định dạng',
-            'email'=>':attribute không đúng cấu trúc email'
+            'email'=>':attribute không đúng cấu trúc email',
+            'image'=>':attribute không phải là ảnh'
         ];
     }
 
@@ -59,7 +59,8 @@ class StoreUserRequest extends FormRequest
             'email'=>'Email',
             'password'=>'Mật Khẩu',
             'phone'=>'Số điện thoại',
-            'role'=>'Chức vụ'
+            'role'=>'Chức vụ',
+            'image'=>'ảnh'
         ];
     }
 }

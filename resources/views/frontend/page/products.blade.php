@@ -38,34 +38,14 @@
                             <aside class="widget widget-categories">
                                 <h2 class="sidebar-title text-center">Danh mục</h2>
                                 <ul class="sidebar-menu">
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-angle-double-right"></i>
-                                            LEARNING
-                                            <span>(5)</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-angle-double-right"></i>
-                                            LIGHTING
-                                            <span>(8)</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-angle-double-right"></i>
-                                            LIVING ROOMS
-                                            <span>(4)</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="fa fa-angle-double-right"></i>
-                                            LAMP
-                                            <span>(7)</span>
-                                        </a>
-                                    </li>
+                                    @foreach($categories_parent as $category_parent)
+                                        <li>
+                                            <a href="{{route('frontend.products',$category_parent->slug)}}">
+                                                <i class="fa fa-angle-double-right"></i>
+                                                {{$category_parent->name}}
+                                            </a>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </aside>
                             <aside class="widget shop-filter">
@@ -85,29 +65,6 @@
                             </aside>
                         </div>
                         <div class="shop-widget-bottom">
-                            <aside class="widget widget-tag">
-                                <h2 class="sidebar-title">POPULAR TAG</h2>
-                                <ul class="tag-list">
-                                    <li>
-                                        <a href="#">e-book</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">writer</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">book’s</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">eassy</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">nice</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">author</a>
-                                    </li>
-                                </ul>
-                            </aside>
                             <aside class="widget widget-seller">
                                 <h2 class="sidebar-title">TOP SELLERS</h2>
                                 <div class="single-seller">
@@ -198,28 +155,43 @@
                                                        class="single-banner-image-wrapper">
                                                         @if($product->avatar)
                                                             <img alt=""
-                                                                 src="{{asset('storage/images/product/avatar/'.$product->avatar)}}" style="height: 280px">
+                                                                 src="{{asset('storage/images/product/avatar/'.$product->avatar)}}"
+                                                                 style="height: 280px">
                                                         @else
                                                             <img alt="" src="{{asset('frontend/img/featured/1.jpg')}}">
                                                         @endif
-                                                        <div class="price"><span>{{$product->price_sell}}</span>Đ</div>
+                                                        @if(isset($product->sale))
+                                                            <div class="price"><span class="badge"
+                                                                                     style="background-color:red">sale</span>
+                                                            </div>
+                                                        @endif
                                                     </a>
                                                     <div class="product-description">
                                                         <div class="functional-buttons">
-                                                            <a href="#" title="Add to Cart">
-                                                                <i class="fa fa-shopping-cart"></i>
-                                                            </a>
                                                             <a href="#" title="Add to Wishlist">
                                                                 <i class="fa fa-heart-o"></i>
                                                             </a>
-                                                            <a href="#" title="Quick view" data-toggle="modal"
-                                                               data-target="#productModal">
+                                                            <a href="#" title="Quick view"
+                                                               data-product="{{$product->id}}"
+                                                               class="quickviewProduct">
                                                                 <i class="fa fa-compress"></i>
                                                             </a>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="banner-bottom text-center">
+                                                    @if(isset($product->sale))
+                                                        <div class="banner-bottom-title">
+                                                            <p>
+                                                                <strike>{{number_format($product->price_sell)}}</strike> {{number_format($product->sale)}}
+                                                                vnđ</p>
+                                                        </div>
+                                                    @else
+                                                        <div class="banner-bottom-title">
+                                                            <p>{{number_format($product->price_sell)}} vnđ</p>
+                                                        </div>
+                                                    @endif
+
                                                     <div class="banner-bottom-title">
                                                         <a href="#">{{$product->name}}</a>
                                                     </div>
@@ -245,9 +217,11 @@
                                                     <a href="single-product.html" title="East of eden">
                                                         @if($product->avatar)
                                                             <img alt=""
-                                                                 src="{{asset('backend/dist/img/product/avatar/'.$product->avatar)}}">
+                                                                 src="{{asset('storage/images/product/avatar/'.$product->avatar)}}"
+                                                                 style="height: 280px">
                                                         @else
-                                                            <img alt="" src="{{asset('frontend/img/featured/1.jpg')}}">
+                                                            <img alt=""
+                                                                 src="{{asset('storage/images/product/avatar/demo.png')}}">
                                                         @endif
                                                     </a>
                                                 </div>
@@ -259,8 +233,15 @@
                                                            title="East of eden">{{$product->name}}</a>
                                                     </h4>
                                                     <div class="product-price">
-                                                        <span class="new-price">$ 140.00</span>
-                                                        <span class="old-price">$ 120.00</span>
+                                                        @if(isset($product->sale))
+                                                            <span class="new-price">{{number_format($product->sale)}} vnđ</span>
+                                                            <span class="old-price">{{number_format($product->price_sell)}} vnđ</span>
+                                                            <div class="price"><span class="badge"
+                                                                                     style="background-color:red">sale</span>
+                                                            </div>
+                                                        @else
+                                                            <span>{{number_format($product->price_sell)}} vnđ</span>
+                                                        @endif
                                                     </div>
                                                     <div class="list-rating-icon">
                                                         <i class="fa fa-star icolor"></i>
@@ -273,8 +254,7 @@
                                                         material for a comfortable fit. Accessorize with a straw hat and
                                                         you're ready for summer!</p>
                                                     <div class="availability">
-                                                        <span>In stock</span>
-                                                        <span><a href="cart.html">Add to cart</a></span>
+                                                        <span><a href="cart.html">Thêm vào giỏ hàng</a></span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -282,6 +262,59 @@
                                     @endforeach
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection
+@section('modal')
+    <div id="quickview-wrapper">
+        <!-- Modal -->
+        <div class="modal fade" id="productModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-product">
+                            <div class="product-images">
+                                <div class="main-image images">
+                                    <img id="quickImage" src=""
+                                         style="height: 406px">
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <h1></h1>
+                                <div class="price-box">
+                                    <p class="s-price"><span class="special-price"><span
+                                                class="amount"></span></span></p>
+                                </div>
+                                <a href="product-details.html" class="see-all">Xem chi tiết sản phẩm</a>
+                                <div>
+                                    <span style="color: green" class="alert-create"></span>
+                                </div>
+
+                                <div class="quick-add-to-cart">
+                                    <form action="" method="POST" class="cart">
+                                        <meta name="csrf-token" content="{{ csrf_token() }}">
+                                        <div class="numbers-row">
+                                            <input type="number" id="french-hens" value="1" min="1" name="qty">
+                                        </div>
+                                        <button class="single_add_to_cart_button" product_id="" type="submit">Thêm vào giỏ hàng
+                                        </button>
+                                    </form>
+                                </div>
+                                <div class="quick-desc">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est
+                                    tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis
+                                    justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id
+                                    nulla.
+                                </div>
+                            </div><!-- .product-info -->
                         </div>
                     </div>
                 </div>

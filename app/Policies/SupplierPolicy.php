@@ -18,7 +18,7 @@ class SupplierPolicy
      */
     public function viewAny(User $user)
     {
-        if ($user->role == 1) return true ;
+        return $user->role == 1;
     }
 
     /**
@@ -41,7 +41,7 @@ class SupplierPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->role ==1;
     }
 
     /**
@@ -53,7 +53,7 @@ class SupplierPolicy
      */
     public function update(User $user, Supplier $supplier)
     {
-        //
+        return $user->role == 1;
     }
 
     /**
@@ -87,8 +87,4 @@ class SupplierPolicy
      * @param  \App\Supplier  $supplier
      * @return mixed
      */
-    public function forceDelete(User $user, Supplier $supplier)
-    {
-        if ($user->role == 1) return true ;
-    }
 }

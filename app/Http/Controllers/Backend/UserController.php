@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
+use App\Product;
 use App\User;
 use App\User_info;
 use Illuminate\Http\Request;
@@ -24,7 +25,7 @@ class UserController extends Controller
     public function index()
     {
 //        $users = DB::table('users')->get();
-        $this->authorize('viewAny',Auth::user());
+        $this->authorize('viewAny', Auth::user());
 
         $users = User::where('role', '<>', 0)->paginate(9);
         return view('backend.user.list')->with(['users' => $users]);
@@ -37,7 +38,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $this->authorize('viewAny',Auth::user());
+        $this->authorize('viewAny', Auth::user());
         return view('backend.user.create');
     }
 
@@ -75,7 +76,16 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        return view('backend.user.show')->with(['user' => $user]);
+        $products = $user->Products;
+
+//        $date->products =  $products = Product::where('user_id',$user->id)->latest()->get();
+        $dates = $this->getDateCreated($products);
+        if ($dates){
+            $dates = array_reverse($dates);
+            return view('backend.user.show')->with(['user' => $user, 'products' => $products, 'dates' => $dates]);
+        } else return view('backend.user.show')->with(['user' => $user, 'products' => $products]);
+
+
     }
 
     /**
@@ -98,21 +108,22 @@ class UserController extends Controller
      */
     public function update(StoreUserRequest $request, $id)
     {
-        dd($request);
-        $user =  User::find($id);
+//        dd($request->all());
+        $user = User::find($id);
+
         $this->authorize('update', $user);
         $user->name = $request->get('name');
         $user->email = $request->get('email');
         $user->phone = $request->get('phone');
-        if($request->hasFile('avatar'))
-        {
+
+        if ($request->hasFile('avatar')) {
             if ($user->avatar != 'default-avatar.png') {
                 $img = 'storage/images/user/avatar' . $user->avatar;
                 File::delete($img);
             }
             $avatar = $request->file('avatar');
             $profileavatar = date('YmdHis') . "." . $avatar->getClientOriginalExtension();
-            Storage::disk('public')->putFileAs('storage/images/user/avatar', $avatar, $profileavatar);
+            Storage::disk('public')->putFileAs('images/user/avatar', $avatar, $profileavatar);
             $user->avatar = $profileavatar;
         }
         $save = $user->save();
@@ -122,7 +133,17 @@ class UserController extends Controller
         else
             $request->session()->flash('error', 'Tạo mới thất bại');
 
-        return redirect()->route('User.show',$user->id);
+        return redirect()->route('User.show', $user->id);
+    }
+
+    public function updateRole(StoreUserRequest $request, $id)
+    {
+        $user = User::find($id);
+        dd(1);
+        $user->role = $request->get('role');
+        $user->save();
+
+        return redirect()->route('User.index');
     }
 
     /**
@@ -143,7 +164,7 @@ class UserController extends Controller
     public function trashed()
     {
         $users = User::onlyTrashed()->where('role', '<>', 0)->paginate(6);
-        return view('backend.user.trashed')->with(['users'=>$users]);
+        return view('backend.user.trashed')->with(['users' => $users]);
     }
 
     public function restore($id)
@@ -164,4 +185,13 @@ class UserController extends Controller
         return redirect()->route('User.trashed');
     }
 
+    public function getDateCreated($products)
+    {
+        foreach ($products as $product) {
+            $date[] = date_format($product->created_at, 'j M \.\ Y');
+        }
+
+        if (isset($date)) return array_unique($date);
+        else return 0;
+    }
 }

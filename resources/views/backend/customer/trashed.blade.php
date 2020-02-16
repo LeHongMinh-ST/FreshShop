@@ -67,13 +67,13 @@
                                         <td>{{$customer->phone}}</td>
                                         <td><span class="tag tag-success">{{$customer->address}}</span></td>
                                         <td class="project-actions text-right" style="display: flex; float: right">
-                                            <a class="btn btn-primary btn-sm" href="{{route('Supplier.show',$supplier->id)}}"
+                                            <a class="btn btn-primary btn-sm" href="{{route('Customer.show',$customer->id)}}"
                                                style="margin-right: 5px">
                                                 <i class="fas fa-folder">
                                                 </i>
                                                 Chi tiết
                                             </a>
-                                            <form action="{{route('Supplier.restore',$supplier->id)}}" method="POST"
+                                            <form action="{{route('Customer.restore',$customer->id)}}" method="POST"
                                                   style="margin-right: 5px">
                                                 @csrf
                                                 @method('put')
@@ -81,7 +81,7 @@
                                                     <i class="fa fa-btn fa-trash-restore"></i> Khôi phục
                                                 </button>
                                             </form>
-                                            <form action="{{route('Supplier.hardDelete',$supplier->id)}}" method="POST"
+                                            <form action="{{route('Customer.hardDelete',$customer->id)}}" method="POST"
                                                   style="margin-right: 5px">
                                                 @csrf
                                                 @method('DELETE')

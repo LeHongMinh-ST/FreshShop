@@ -1,5 +1,5 @@
 @extends('backend.layout.master')
-@section('tilte')
+@section('title')
     Sales
 @endsection
 @section('script')
@@ -23,6 +23,29 @@
                 <div class="col-sm-6">
                     <h1>Danh sách sản phẩm khuyến mãi</h1>
 
+                    @if(session()->has('success'))
+                        <span style="color: green">{{session()->get('success')}}</span>
+                    @endif
+
+                    @if(session()->has('error'))
+                        <span style="color: red">{{session()->get('error')}}</span>
+                    @endif
+
+                    @if(session()->has('success-update'))
+                        <span style="color: green">{{session()->get('success-update')}}</span>
+                    @endif
+
+                    @if(session()->has('error-update'))
+                        <span style="color: red">{{session()->get('error-update')}}</span>
+                    @endif
+
+                    @if(session()->has('success-delete'))
+                        <span style="color: green">{{session()->get('success-delete')}}</span>
+                    @endif
+
+                    @if(session()->has('error-delete'))
+                        <span style="color: red">{{session()->get('error-delete')}}</span>
+                    @endif
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -61,13 +84,20 @@
                         <th>
                             Loại sản pẩm
                         </th>
-
+                        <th>
+                            Giá cũ
+                        </th>
                         <th>
                             Giá khuyến mãi
                         </th>
-
                         <th>
-                            Đơn vị
+                            %
+                        </th>
+                        <th>
+                            Ngày bắt đầu
+                        </th>
+                        <th>
+                            Ngày kết thúc
                         </th>
                         <th>
                             Trạng thái
@@ -108,10 +138,19 @@
                                 {{$sale->category}}
                             </td>
                             <td>
-                                {{$sale->price_sale}} đ
+                                {{number_format($sale->price_old)}} vnđ
                             </td>
                             <td>
-                                {{$sale->unit}}
+                                {{number_format($sale->price_sale)}} vnđ
+                            </td>
+                            <td>
+                                {{100-round(($sale->price_sale/$sale->price_old)*100)}}%
+                            </td>
+                            <td>
+                                {{$sale->start}}
+                            </td>
+                            <td>
+                                {{$sale->end}}
                             </td>
                             <td class="project-state">
                                 @if($sale->status == 1)
@@ -125,14 +164,6 @@
                                 @endif
                             </td>
                             <td class="text-right" style="display: flex">
-                                <form action="{{route('Sale.show',$sale->id)}}" method="GET"
-                                      style="margin-right: 5px">
-                                    <button type="submit" class="btn btn-primary btn-sm">
-                                        <i class="fas fa-folder">
-                                        </i>
-                                        Chi tiết
-                                    </button>
-                                </form>
 {{--                                @can('update',$value)--}}
                                     <form action="{{route('Sale.edit',$sale->id)}}" method="GET"
                                           style="margin-right: 5px">

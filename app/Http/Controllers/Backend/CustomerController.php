@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Customer;
+use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -82,12 +83,36 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $customer = Customer::find($id);
+        $user = User::find($customer->user_id);
+        $customer->delete();
+        $user->delete();
+
+        return redirect()->route('Customer.index');
     }
 
     public function trashed()
     {
         $customers = Customer::onlyTrashed()->paginate(6);
         return view('backend.customer.trashed')->with(['customers'=>$customers]);
+    }
+    public function restore($id)
+    {
+        $customer = Customer::onlyTrashed()->find($id);
+        $user = User::onlyTrashed()->find($customer->user_id);
+        $user->restore();
+        $customer->restore();
+
+        return redirect()->route('Customer.index');
+    }
+
+    public function hardDelete($id)
+    {
+        $customer = Customer::onlyTrashed()->find($id);
+        $user = User::onlyTrashed()->find($customer->user_id);
+        $customer->forceDelete();
+        $user->forceDelete();
+
+        return redirect()->route('Customer.trashed');
     }
 }

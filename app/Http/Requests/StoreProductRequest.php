@@ -37,10 +37,9 @@ class StoreProductRequest extends FormRequest
             'price_import' => 'required|numeric|min:0',
             'price_sell' => 'required|numeric|min:0',
             'content' => 'required',
-            'avatar' => '|image|max:512',
-            'images.*' => '|image|max:512',
+            'avatar' => 'image|max:512',
+            'images.*' => 'image|max:512',
             'unit' => 'required|in:kg,gam,khay,ml,lít,',
-            'status' => 'required|numeric'
         ];
     }
 

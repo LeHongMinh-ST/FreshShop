@@ -47,6 +47,8 @@
     @include('backend.includes.footer')
 </div>
 
+@yield('modal')
+
 <!-- ./wrapper -->
 
 <!-- jQuery -->
@@ -83,6 +85,8 @@
 <script src="{{asset('backend/dist/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('backend/dist/js/demo.js')}}"></script>
+
+<script src="{{asset('backend/dist/js/modal.js')}}"></script>
 
 @yield('script')
 </body>

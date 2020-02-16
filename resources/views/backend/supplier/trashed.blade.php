@@ -10,6 +10,13 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Nhà cung cấp đã gỡ</h1>
+                    @if(session()->has('success-forceDelete'))
+                        <span style="color: green">{{session()->get('success-forceDelete')}}</span>
+                    @endif
+
+                    @if(session()->has('error-forceDelete'))
+                        <span style="color: red">{{session()->get('error-forceDelete')}}</span>
+                    @endif
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -31,7 +38,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Nhà cung cấp đã bị gỡ</h3>
+                            <h3 class="card-title"></h3>
 
                             <div class="card-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">

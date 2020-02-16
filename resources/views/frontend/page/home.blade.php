@@ -20,43 +20,29 @@
                 </div>
                 <!-- layer 2 -->
                 <div class="layer-2">
-                    <p class="title-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua.</p>
+                    <p class="title-2">Chúng tôi chuyên cung cấp các thực phẩm tươi ngon nhất đến tay người tiêu
+                        dùng</p>
                 </div>
                 <!-- layer 3 -->
                 <div class="layer-3">
-                    <a href="#" class="title-3">SEE MORE</a>
-                </div>
-                <!-- layer 4 -->
-                <div class="layer-4">
-                    <form action="#" class="title-4">
-                        <input type="text" placeholder="Enter your book title here">
-                        <button type="submit"><i class="fa fa-search"></i></button>
-                    </form>
+                    <a href="{{route('frontend.about')}}" class="title-3">TÌM HIỂU THÊM</a>
                 </div>
             </div>
             <!-- direction 2 -->
             <div id="slider-direction-2" class="slider-direction">
                 <!-- layer 1 -->
                 <div class="layer-1">
-                    <h2 class="title-1">Yêu Hoàng Dương <3</h2>
+                    <h2 class="title-1">Thực phẩm tươi ngon cho mọi gia đình</h2>
                 </div>
                 <!-- layer 2 -->
                 <div class="layer-2">
-                    <p class="title-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua.</p>
+                    <p class="title-2"></p>
                 </div>
                 <!-- layer 3 -->
                 <div class="layer-3">
-                    <a href="#" class="title-3">SEE MORE</a>
+                    <a href="{{route('frontend.about')}}" class="title-3">TÌM HIỂU THÊM</a>
                 </div>
-                <!-- layer 4 -->
-                <div class="layer-4">
-                    <form action="#" class="title-4">
-                        <input type="text" placeholder="Enter your book title here">
-                        <button type="submit"><i class="fa fa-search"></i></button>
-                    </form>
-                </div>
+                ss
             </div>
         </div>
     </div>
@@ -64,18 +50,6 @@
 @endsection
 
 @section('content')
-    <!-- Online Banner Area Start -->
-    <div class="online-banner-area">
-        <div class="container">
-            <div class="banner-title text-center">
-                <h2>ONLINE <span>FRESH STORE</span></h2>
-                <p>The Guide is the biggest big store and the biggest books library in the world that has
-                    alot of the popular and the most top category books presented here. Top Authors are here just
-                    subscribe your email address and get updated with us.</p>
-            </div>
-        </div>
-    </div>
-
     <div class="featured-product-area section-padding">
         <h2 class="section-title">Sản phẩm</h2>
         <div class="container">
@@ -85,10 +59,11 @@
                         <!-- Nav tabs -->
                         <ul class="nav nav-tabs" role="tablist">
                             <li role="presentation" class="first-item active">
-                                <a href="#arrival" aria-controls="arrival" role="tab" data-toggle="tab">New Arrival</a>
+                                <a href="#arrival" aria-controls="arrival" role="tab" data-toggle="tab">Sản phẩm mới</a>
                             </li>
                             <li role="presentation">
-                                <a href="#sale" aria-controls="sale" role="tab" data-toggle="tab">BEST SELLERS</a>
+                                <a href="#sale" aria-controls="sale" role="tab" data-toggle="tab">Sản phẩm khuyến
+                                    mãi</a>
                             </li>
                         </ul>
                     </div>
@@ -98,22 +73,31 @@
                 <div class="product-list tab-content">
                     <div role="tabpanel" class="tab-pane fade in active" id="arrival">
                         <div class="featured-product-list indicator-style">
-                            @for($i=0;$i<sizeof($products);$i+=2)
+                            @for($i=0;$i<sizeof($products_new);$i+=2)
                                 <div class="single-p-banner">
                                     <div class="col-md-3">
                                         <div class="single-banner">
                                             <div class="product-wrapper">
-                                                <a href="{{route('frontend.detail',$products[$i]->slug)}}"
+                                                <a href="{{route('frontend.detail',$products_new[$i]->slug)}}"
                                                    class="single-banner-image-wrapper">
-                                                    @if($products[$i]->avatar)
+                                                    @if($products_new[$i]->avatar)
                                                         <img alt=""
-                                                             src="{{asset('storage/images/product/avatar/'.$products[$i]->avatar)}}"
+                                                             src="{{asset('storage/images/product/avatar/'.$products_new[$i]->avatar)}}"
                                                              style="height: 280px">
                                                     @else
                                                         <img alt=""
                                                              src="{{asset('backend/dist/img/product/avatar/demo.png')}}"
                                                              style="height: 280px">
                                                     @endif
+
+
+                                                    <div class="price">
+                                                        @if(isset($products_new[$i]->sale))
+                                                            <span class="badge" style="background-color:red">sale</span>
+                                                        @endif
+                                                        <span class="badge" style="background-color:red">new</span>
+                                                    </div>
+
                                                     <div class="rating-icon">
                                                         <i class="fa fa-star icolor"></i>
                                                         <i class="fa fa-star icolor"></i>
@@ -124,41 +108,115 @@
                                                 </a>
                                                 <div class="product-description">
                                                     <div class="functional-buttons">
-                                                        <a href="#" title="Add to Cart">
-                                                            <i class="fa fa-shopping-cart"></i>
-                                                        </a>
                                                         <a href="#" title="Add to Wishlist">
                                                             <i class="fa fa-heart-o"></i>
                                                         </a>
-                                                        <a href="#" title="Quick view" data-toggle="modal"
-                                                           data-target="#productModal">
+                                                        <a href="" class="quickviewProduct"
+                                                           data-product="{{$products_new[$i]->id}}" title="Quick view">
                                                             <i class="fa fa-compress"></i>
                                                         </a>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="banner-bottom text-center">
-                                                <a href="#">{{$products[$i]->price_sell}} đ</a>
+                                                @if(isset($products_new[$i]->sale))
+                                                    <p>
+                                                        <strike>{{number_format($products_new[$i]->price_sell)}}</strike> {{number_format($products_new[$i]->sale)}}
+                                                        vnđ</p>
+                                                @else
+                                                    <p>{{number_format($products_new[$i]->price_sell)}} vnđ</p>
+                                                @endif
                                             </div>
                                             <div class="banner-bottom text-center">
-                                                <a href="#">{{$products[$i]->name}}</a>
+                                                <a href="#">{{$products_new[$i]->name}}</a>
                                             </div>
                                         </div>
                                     </div>
-                                    @if(isset($products[$i+1]))
+                                    @if(isset($products_new[$i+1]))
                                         <div class="col-md-3">
                                             <div class="single-banner">
                                                 <div class="product-wrapper">
-                                                    <a href="{{route('frontend.detail',$products[$i+1]->slug)}}"
+                                                    <a href="{{route('frontend.detail',$products_new[$i+1]->slug)}}"
                                                        class="single-banner-image-wrapper">
-                                                        @if($products[$i+1]->avatar)
+                                                        @if($products_new[$i+1]->avatar)
                                                             <img alt=""
-                                                                 src="{{asset('storage/images/product/avatar/'.$products[$i+1]->avatar)}}"
+                                                                 src="{{asset('storage/images/product/avatar/'.$products_new[$i+1]->avatar)}}"
                                                                  style="height: 280px">
                                                         @else
                                                             <img alt=""
                                                                  src="{{asset('backend/dist/img/product/avatar/demo.png')}}"
                                                                  style="height: 280px">
+                                                        @endif
+
+                                                        <div class="price">
+                                                            @if(isset($products_new[$i+1]->sale))
+                                                                <span class="badge"
+                                                                      style="background-color:red">sale</span>
+                                                            @endif
+                                                            <span class="badge" style="background-color:red">new</span>
+                                                        </div>
+                                                        <div class="rating-icon">
+                                                            <i class="fa fa-star icolor"></i>
+                                                            <i class="fa fa-star icolor"></i>
+                                                            <i class="fa fa-star icolor"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                        </div>
+                                                    </a>
+                                                    <div class="product-description">
+                                                        <div class="functional-buttons">
+                                                            <a href="#" title="Add to Wishlist">
+                                                                <i class="fa fa-heart-o"></i>
+                                                            </a>
+                                                            <a href="" class="quickviewProduct"
+                                                               data-product="{{$products_new[$i+1]->id}}"
+                                                               title="Quick view">
+                                                                <i class="fa fa-compress"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="banner-bottom text-center">
+                                                    @if(isset($products_new[$i+1]->sale))
+                                                        <p>
+                                                            <strike>{{number_format($products_new[$i+1]->price_sell)}}</strike> {{number_format($products_new[$i+1]->sale)}}
+                                                            vnđ</p>
+                                                    @else
+                                                        <p>{{number_format($products_new[$i+1]->price_sell)}} vnđ</p>
+                                                    @endif
+                                                </div>
+                                                <div class="banner-bottom text-center">
+                                                    <a href="#">{{$products_new[$i+1]->name}}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                </div>
+                            @endfor
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="sale">
+                        <div class="featured-product-list indicator-style">
+                            @for($i = 0;$i<sizeof($products_sale);$i+=2)
+                                <div class="single-p-banner">
+                                    @if(isset($products_sale[$i]->sale))
+                                        <div class="col-md-3">
+                                            <div class="single-banner">
+                                                <div class="product-wrapper">
+                                                    <a href="#" class="single-banner-image-wrapper">
+                                                        @if($products_sale[$i]->avatar)
+                                                            <img alt=""
+                                                                 src="{{asset('storage/images/product/avatar/'.$products_sale[$i]->avatar)}}"
+                                                                 style="height: 280px">
+                                                        @else
+                                                            <img alt=""
+                                                                 src="{{asset('backend/dist/img/product/avatar/demo.png')}}"
+                                                                 style="height: 280px">
+                                                        @endif
+                                                        @if(isset($products_sale[$i]->sale))
+                                                            <div class="price"><span class="badge"
+                                                                                     style="background-color:red">sale</span>
+                                                            </div>
                                                         @endif
                                                         <div class="rating-icon">
                                                             <i class="fa fa-star icolor"></i>
@@ -170,455 +228,91 @@
                                                     </a>
                                                     <div class="product-description">
                                                         <div class="functional-buttons">
-                                                            <a href="#" title="Add to Cart">
-                                                                <i class="fa fa-shopping-cart"></i>
-                                                            </a>
                                                             <a href="#" title="Add to Wishlist">
                                                                 <i class="fa fa-heart-o"></i>
                                                             </a>
-                                                            <a href="#" title="Quick view" data-toggle="modal"
-                                                               data-target="#productModal">
+                                                            <a href="" class="quickviewProduct"
+                                                               data-product="{{$products_sale[$i+1]->id}}"
+                                                               title="Quick view">
                                                                 <i class="fa fa-compress"></i>
                                                             </a>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="banner-bottom text-center">
-                                                    <a href="#">{{$products[$i+1]->price_sell}} đ</a>
+                                                    @if(isset($products_sale[$i+1]->sale))
+                                                        <p>
+                                                            <strike>{{number_format($products_sale[$i]->price_sell)}}</strike> {{number_format($products_sale[$i]->sale)}}
+                                                            vnđ</p>
+                                                    @else
+                                                        <p>{{number_format($products_sale[$i]->price_sell)}} vnđ</p>
+                                                    @endif
                                                 </div>
                                                 <div class="banner-bottom text-center">
-                                                    <a href="#">{{$products[$i+1]->name}}</a>
+                                                    <a href="#">{{$products_sale[$i+1]->name}}</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                    @if(isset($products_sale[$i+1]->sale))
+                                        <div class="col-md-3">
+                                            <div class="single-banner">
+                                                <div class="product-wrapper">
+                                                    <a href="{{route('frontend.detail',$products_sale[$i+1]->slug)}}"
+                                                       class="single-banner-image-wrapper">
+                                                        @if($products_sale[$i+1]->avatar)
+                                                            <img alt=""
+                                                                 src="{{asset('storage/images/product/avatar/'.$products_sale[$i+1]->avatar)}}"
+                                                                 style="height: 280px">
+                                                        @else
+                                                            <img alt=""
+                                                                 src="{{asset('backend/dist/img/product/avatar/demo.png')}}"
+                                                                 style="height: 280px">
+                                                        @endif
+
+                                                        @if(isset($products_sale[$i+1]->sale))
+                                                            <div class="price"><span class="badge"
+                                                                                     style="background-color:red">sale</span>
+                                                            </div>
+                                                        @endif
+                                                        <div class="rating-icon">
+                                                            <i class="fa fa-star icolor"></i>
+                                                            <i class="fa fa-star icolor"></i>
+                                                            <i class="fa fa-star icolor"></i>
+                                                            <i class="fa fa-star"></i>
+                                                            <i class="fa fa-star"></i>
+                                                        </div>
+                                                    </a>
+                                                    <div class="product-description">
+                                                        <div class="functional-buttons">
+                                                            <a href="#" title="Add to Wishlist">
+                                                                <i class="fa fa-heart-o"></i>
+                                                            </a>
+                                                            <a href="" class="quickviewProduct"
+                                                               data-product="{{$products_sale[$i+1]->id}}"
+                                                               title="Quick view">
+                                                                <i class="fa fa-compress"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="banner-bottom text-center">
+                                                    @if(isset($products_sale[$i+1]->sale))
+                                                        <p>
+                                                            <strike>{{number_format($products_sale[$i+1]->price_sell)}}</strike> {{number_format($products_sale[$i+1]->sale)}}
+                                                            vnđ</p>
+                                                    @else
+                                                        <p>{{number_format($products_sale[$i+1]->price_sell)}} vnđ</p>
+                                                    @endif
+                                                </div>
+                                                <div class="banner-bottom text-center">
+                                                    <a href="#">{{$products_sale[$i+1]->name}}</a>
                                                 </div>
                                             </div>
                                         </div>
                                     @endif
                                 </div>
                             @endfor
-                        </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane fade" id="sale">
-                        <div class="featured-product-list indicator-style">
-                            <div class="single-p-banner">
-                                <div class="col-md-3">
-                                    <div class="single-banner">
-                                        <div class="product-wrapper">
-                                            <a href="#" class="single-banner-image-wrapper">
-                                                <img alt="" src="{{asset('frontend/img/featured/2.jpg')}}">
-                                                <div class="price"><span>$</span>160</div>
-                                                <div class="rating-icon">
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                            </a>
-                                            <div class="product-description">
-                                                <div class="functional-buttons">
-                                                    <a href="#" title="Add to Cart">
-                                                        <i class="fa fa-shopping-cart"></i>
-                                                    </a>
-                                                    <a href="#" title="Add to Wishlist">
-                                                        <i class="fa fa-heart-o"></i>
-                                                    </a>
-                                                    <a href="#" title="Quick view" data-toggle="modal"
-                                                       data-target="#productModal">
-                                                        <i class="fa fa-compress"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="banner-bottom text-center">
-                                            <a href="#">People of the book</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="single-banner">
-                                        <div class="product-wrapper">
-                                            <a href="#" class="single-banner-image-wrapper">
-                                                <img alt="" src="{{asset('frontend/img/featured/6.jpg')}}">
-                                                <div class="price"><span>$</span>160</div>
-                                                <div class="rating-icon">
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                            </a>
-                                            <div class="product-description">
-                                                <div class="functional-buttons">
-                                                    <a href="#" title="Add to Cart">
-                                                        <i class="fa fa-shopping-cart"></i>
-                                                    </a>
-                                                    <a href="#" title="Add to Wishlist">
-                                                        <i class="fa fa-heart-o"></i>
-                                                    </a>
-                                                    <a href="#" title="Quick view" data-toggle="modal"
-                                                       data-target="#productModal">
-                                                        <i class="fa fa-compress"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="banner-bottom text-center">
-                                            <a href="#">Cold mountain</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-p-banner">
-                                <div class="col-md-3">
-                                    <div class="single-banner">
-                                        <div class="product-wrapper">
-                                            <a href="#" class="single-banner-image-wrapper">
-                                                <img alt="" src="{{asset('frontend/img/featured/3.jpg')}}">
-                                                <div class="price"><span>$</span>160</div>
-                                                <div class="rating-icon">
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                            </a>
-                                            <div class="product-description">
-                                                <div class="functional-buttons">
-                                                    <a href="#" title="Add to Cart">
-                                                        <i class="fa fa-shopping-cart"></i>
-                                                    </a>
-                                                    <a href="#" title="Add to Wishlist">
-                                                        <i class="fa fa-heart-o"></i>
-                                                    </a>
-                                                    <a href="#" title="Quick view" data-toggle="modal"
-                                                       data-target="#productModal">
-                                                        <i class="fa fa-compress"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="banner-bottom text-center">
-                                            <a href="#">The secret letter</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="single-banner">
-                                        <div class="product-wrapper">
-                                            <a href="#" class="single-banner-image-wrapper">
-                                                <img alt="" src="{{asset('frontend/img/featured/7.jpg')}}">
-                                                <div class="price"><span>$</span>160</div>
-                                                <div class="rating-icon">
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                            </a>
-                                            <div class="product-description">
-                                                <div class="functional-buttons">
-                                                    <a href="#" title="Add to Cart">
-                                                        <i class="fa fa-shopping-cart"></i>
-                                                    </a>
-                                                    <a href="#" title="Add to Wishlist">
-                                                        <i class="fa fa-heart-o"></i>
-                                                    </a>
-                                                    <a href="#" title="Quick view" data-toggle="modal"
-                                                       data-target="#productModal">
-                                                        <i class="fa fa-compress"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="banner-bottom text-center">
-                                            <a href="#">The historian</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-p-banner">
-                                <div class="col-md-3">
-                                    <div class="single-banner">
-                                        <div class="product-wrapper">
-                                            <a href="#" class="single-banner-image-wrapper">
-                                                <img alt="" src="{{asset('frontend/img/featured/4.jpg')}}">
-                                                <div class="price"><span>$</span>160</div>
-                                                <div class="rating-icon">
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                            </a>
-                                            <div class="product-description">
-                                                <div class="functional-buttons">
-                                                    <a href="#" title="Add to Cart">
-                                                        <i class="fa fa-shopping-cart"></i>
-                                                    </a>
-                                                    <a href="#" title="Add to Wishlist">
-                                                        <i class="fa fa-heart-o"></i>
-                                                    </a>
-                                                    <a href="#" title="Quick view" data-toggle="modal"
-                                                       data-target="#productModal">
-                                                        <i class="fa fa-compress"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="banner-bottom text-center">
-                                            <a href="#">Lone some dove</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="single-banner">
-                                        <div class="product-wrapper">
-                                            <a href="#" class="single-banner-image-wrapper">
-                                                <img alt="" src="{{asset('frontend/img/featured/8.jpg')}}">
-                                                <div class="price"><span>$</span>160</div>
-                                                <div class="rating-icon">
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                            </a>
-                                            <div class="product-description">
-                                                <div class="functional-buttons">
-                                                    <a href="#" title="Add to Cart">
-                                                        <i class="fa fa-shopping-cart"></i>
-                                                    </a>
-                                                    <a href="#" title="Add to Wishlist">
-                                                        <i class="fa fa-heart-o"></i>
-                                                    </a>
-                                                    <a href="#" title="Quick view" data-toggle="modal"
-                                                       data-target="#productModal">
-                                                        <i class="fa fa-compress"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="banner-bottom text-center">
-                                            <a href="#">The secret garden</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-p-banner">
-                                <div class="col-md-3">
-                                    <div class="single-banner">
-                                        <div class="product-wrapper">
-                                            <a href="#" class="single-banner-image-wrapper">
-                                                <img alt="" src="{{asset('frontend/img/featured/1.jpg')}}">
-                                                <div class="price"><span>$</span>160</div>
-                                                <div class="rating-icon">
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                            </a>
-                                            <div class="product-description">
-                                                <div class="functional-buttons">
-                                                    <a href="#" title="Add to Cart">
-                                                        <i class="fa fa-shopping-cart"></i>
-                                                    </a>
-                                                    <a href="#" title="Add to Wishlist">
-                                                        <i class="fa fa-heart-o"></i>
-                                                    </a>
-                                                    <a href="#" title="Quick view" data-toggle="modal"
-                                                       data-target="#productModal">
-                                                        <i class="fa fa-compress"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="banner-bottom text-center">
-                                            <a href="#">East of eden</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="single-banner">
-                                        <div class="product-wrapper">
-                                            <a href="#" class="single-banner-image-wrapper">
-                                                <img alt="" src="{{asset('frontend/img/featured/5.jpg')}}">
-                                                <div class="price"><span>$</span>160</div>
-                                                <div class="rating-icon">
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                            </a>
-                                            <div class="product-description">
-                                                <div class="functional-buttons">
-                                                    <a href="#" title="Add to Cart">
-                                                        <i class="fa fa-shopping-cart"></i>
-                                                    </a>
-                                                    <a href="#" title="Add to Wishlist">
-                                                        <i class="fa fa-heart-o"></i>
-                                                    </a>
-                                                    <a href="#" title="Quick view" data-toggle="modal"
-                                                       data-target="#productModal">
-                                                        <i class="fa fa-compress"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="banner-bottom text-center">
-                                            <a href="#">The historian</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-p-banner">
-                                <div class="col-md-3">
-                                    <div class="single-banner">
-                                        <div class="product-wrapper">
-                                            <a href="#" class="single-banner-image-wrapper">
-                                                <img alt="" src="{{asset('frontend/img/featured/1.jpg')}}">
-                                                <div class="price"><span>$</span>160</div>
-                                                <div class="rating-icon">
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                            </a>
-                                            <div class="product-description">
-                                                <div class="functional-buttons">
-                                                    <a href="#" title="Add to Cart">
-                                                        <i class="fa fa-shopping-cart"></i>
-                                                    </a>
-                                                    <a href="#" title="Add to Wishlist">
-                                                        <i class="fa fa-heart-o"></i>
-                                                    </a>
-                                                    <a href="#" title="Quick view" data-toggle="modal"
-                                                       data-target="#productModal">
-                                                        <i class="fa fa-compress"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="banner-bottom text-center">
-                                            <a href="#">East of eden</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="single-banner">
-                                        <div class="product-wrapper">
-                                            <a href="#" class="single-banner-image-wrapper">
-                                                <img alt="" src="{{asset('frontend/img/featured/5.jpg')}}">
-                                                <div class="price"><span>$</span>160</div>
-                                                <div class="rating-icon">
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                            </a>
-                                            <div class="product-description">
-                                                <div class="functional-buttons">
-                                                    <a href="#" title="Add to Cart">
-                                                        <i class="fa fa-shopping-cart"></i>
-                                                    </a>
-                                                    <a href="#" title="Add to Wishlist">
-                                                        <i class="fa fa-heart-o"></i>
-                                                    </a>
-                                                    <a href="#" title="Quick view" data-toggle="modal"
-                                                       data-target="#productModal">
-                                                        <i class="fa fa-compress"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="banner-bottom text-center">
-                                            <a href="#">The historian</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="single-p-banner">
-                                <div class="col-md-3">
-                                    <div class="single-banner">
-                                        <div class="product-wrapper">
-                                            <a href="#" class="single-banner-image-wrapper">
-                                                <img alt="" src="{{asset('frontend/img/featured/4.jpg')}}">
-                                                <div class="price"><span>$</span>160</div>
-                                                <div class="rating-icon">
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                            </a>
-                                            <div class="product-description">
-                                                <div class="functional-buttons">
-                                                    <a href="#" title="Add to Cart">
-                                                        <i class="fa fa-shopping-cart"></i>
-                                                    </a>
-                                                    <a href="#" title="Add to Wishlist">
-                                                        <i class="fa fa-heart-o"></i>
-                                                    </a>
-                                                    <a href="#" title="Quick view" data-toggle="modal"
-                                                       data-target="#productModal">
-                                                        <i class="fa fa-compress"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="banner-bottom text-center">
-                                            <a href="#">East of eden</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="single-banner">
-                                        <div class="product-wrapper">
-                                            <a href="#" class="single-banner-image-wrapper">
-                                                <img alt="" src="{{asset('frontend/img/featured/8.jpg')}}">
-                                                <div class="price"><span>$</span>160</div>
-                                                <div class="rating-icon">
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star icolor"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                            </a>
-                                            <div class="product-description">
-                                                <div class="functional-buttons">
-                                                    <a href="#" title="Add to Cart">
-                                                        <i class="fa fa-shopping-cart"></i>
-                                                    </a>
-                                                    <a href="#" title="Add to Wishlist">
-                                                        <i class="fa fa-heart-o"></i>
-                                                    </a>
-                                                    <a href="#" title="Quick view" data-toggle="modal"
-                                                       data-target="#productModal">
-                                                        <i class="fa fa-compress"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="banner-bottom text-center">
-                                            <a href="#">The historian</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
                     </div>
                 </div>
@@ -775,22 +469,29 @@
                         <div class="modal-product">
                             <div class="product-images">
                                 <div class="main-image images">
-                                    <img alt="" src="{{asset('frontend/img/quick-view.jpg')}}">
+                                    <img id="quickImage" src="{{asset('frontend/img/quick-view.jpg')}}"
+                                         style="height: 406px">
                                 </div>
                             </div>
                             <div class="product-info">
-                                <h1>Frame Princes Cut Diamond</h1>
+                                <h1></h1>
                                 <div class="price-box">
                                     <p class="s-price"><span class="special-price"><span
-                                                class="amount">$280.00</span></span></p>
+                                                class="amount"></span></span></p>
                                 </div>
-                                <a href="product-details.html" class="see-all">See all features</a>
+                                <a href="product-details.html" class="see-all">Xem chi tiết sản phẩm</a>
+                                <div>
+                                    <span style="color: green" class="alert-create"></span>
+                                </div>
+
                                 <div class="quick-add-to-cart">
-                                    <form method="post" class="cart">
+                                    <form action="" method="POST" class="cart">
+                                        <meta name="csrf-token" content="{{ csrf_token() }}">
                                         <div class="numbers-row">
-                                            <input type="number" id="french-hens" value="3">
+                                            <input type="number" id="french-hens" value="1" min="1" name="qty">
                                         </div>
-                                        <button class="single_add_to_cart_button" type="submit">Add to cart</button>
+                                        <button class="single_add_to_cart_button" product_id="" type="submit">Thêm vào giỏ hàng
+                                        </button>
                                     </form>
                                 </div>
                                 <div class="quick-desc">
@@ -799,24 +500,6 @@
                                     justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id
                                     nulla.
                                 </div>
-                                <div class="social-sharing">
-                                    <div class="widget widget_socialsharing_widget">
-                                        <h3 class="widget-title-modal">Share this product</h3>
-                                        <ul class="social-icons">
-                                            <li><a target="_blank" title="Facebook" href="#"
-                                                   class="facebook social-icon"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a target="_blank" title="Twitter" href="#" class="twitter social-icon"><i
-                                                        class="fa fa-twitter"></i></a></li>
-                                            <li><a target="_blank" title="Pinterest" href="#"
-                                                   class="pinterest social-icon"><i class="fa fa-pinterest"></i></a>
-                                            </li>
-                                            <li><a target="_blank" title="Google +" href="#"
-                                                   class="gplus social-icon"><i class="fa fa-google-plus"></i></a></li>
-                                            <li><a target="_blank" title="LinkedIn" href="#"
-                                                   class="linkedin social-icon"><i class="fa fa-linkedin"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
                             </div><!-- .product-info -->
                         </div>
                     </div>
@@ -824,4 +507,7 @@
             </div>
         </div>
     </div>
+
+
 @endsection
+

@@ -15,12 +15,17 @@ class CreateOdersTable extends Migration
     {
         Schema::create('oders', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('customer_id');
+            $table->bigInteger('customer_id')->nullable();
+            $table->string('name');
+            $table->string('email');
+            $table->string('phone');
             $table->dateTime('date_oder');
-            $table->integer('payment');
-            $table->integer('status');
-            $table->string('node');
+            $table->string('payment');
+            $table->string('address');
+            $table->integer('status')->default(0);
+            $table->text('note')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreSupplierRequest;
 use App\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SupplierController extends Controller
 {
@@ -29,6 +30,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
+        $this->authorize('viewAny',Auth::user());
         return view('backend.supplier.create');
     }
 
@@ -40,13 +42,21 @@ class SupplierController extends Controller
      */
     public function store(StoreSupplierRequest $request)
     {
+        $this->authorize('create', Supplier::class);
+
         $supplier = new Supplier();
         $supplier->name = $request->get('name');
         $supplier->email = $request->get('email');
         $supplier->phone = $request->get('phone');
         $supplier->address = $request->get('address');
         $supplier->note = $request->get('note');
-        $supplier->save();
+        $save = $supplier->save();
+
+        if ($save)
+            $request->session()->flash('success', 'Tao mới thành công');
+        else
+            $request->session()->flash('error', 'Tạo mới thất bại');
+
         return redirect()->route('Supplier.index');
     }
 
@@ -69,7 +79,10 @@ class SupplierController extends Controller
      */
     public function edit($id)
     {
+
         $supplier = Supplier::find($id);
+        $this->authorize('delete', $supplier);
+
         return view('backend.supplier.update')->with(['supplier'=>$supplier]);
     }
 
@@ -82,13 +95,22 @@ class SupplierController extends Controller
      */
     public function update(StoreSupplierRequest $request, $id)
     {
+
         $supplier = Supplier::find($id);
+        $this->authorize('update', $supplier);
+
         $supplier->name = $request->get('name');
         $supplier->email = $request->get('email');
         $supplier->phone = $request->get('phone');
         $supplier->address = $request->get('address');
         $supplier->note = $request->get('note');
-        $supplier->save();
+        $save = $supplier->save();
+
+        if ($save)
+            $request->session()->flash('success-update', 'Cập nhật thành công');
+        else
+            $request->session()->flash('error-update', 'Cập nhật thất bại');
+
         return redirect()->route('Supplier.index');
     }
 
@@ -101,14 +123,18 @@ class SupplierController extends Controller
     public function destroy($id)
     {
         $supplier = Supplier::find($id);
-        $supplier->delete();
-
+        $this->authorize('delete', $supplier);
+        $delete = $supplier->delete();
+        if ($delete)
+            session()->flash('success-delete', 'Gỡ thành công');
+        else
+            session()->flash('error-delete', 'Gỡ thất bại');
         return redirect()->route('Supplier.index');
     }
 
     public function trashed()
     {
-//        $this->authorize('viewAny');
+        $this->authorize('viewAny',Auth::user());
         $suppliers = Supplier::onlyTrashed()->paginate(10);
         return view('backend.supplier.trashed')->with(['suppliers'=>$suppliers]);
     }
@@ -116,17 +142,25 @@ class SupplierController extends Controller
     public function restore($id)
     {
         $supplier = Supplier::onlyTrashed()->find($id);
-//        $this->authorize('restore', $supplier);
-        $supplier->restore();
+        $this->authorize('restore', $supplier);
+        $restore = $supplier->restore();
+        if ($restore)
+            session()->flash('success-restore', 'Khôi phục thành công');
+        else
+            session()->flash('error-restore', 'Khôi phục thất bại');
         return redirect()->route('Supplier.index');
     }
 
     public function hardDelete($id)
     {
         $supplier = Supplier::onlyTrashed()->find($id);
-        $this->authorize('forceDelete', $supplier);
+        $this->authorize('delete', $supplier);
 
-        $supplier->forceDelete();
+        $forceDelete=$supplier->forceDelete();
+        if ($forceDelete)
+            session()->flash('success-forceDelete', 'Xóa thành công');
+        else
+            session()->flash('error-forceDelete', 'Xóa thất bại');
 
         return redirect()->route('Supplier.trashed');
     }

@@ -14,15 +14,26 @@ class SaleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $sales = Sale::all();
+        foreach ($sales as $sale)
+        {
+            if (strtotime(date('Y-m-d'))>=strtotime($sale->start) && strtotime(date('Y-m-d')) <= strtotime($sale->end)) $sale->status = 1;
+            else $sale->status =0;
+            $sale->save();
+        }
+    }
+
     public function index()
     {
-        $sales = Sale::where('status',1)->paginate(10);
+        $sales = Sale::paginate(10);
         foreach ($sales as $sale)
         {
             $product = $sale->Product;
             $sale->name = $product->name;
             $sale->avatar = $product->avatar;
-            $sale->unit = $product->unit;
+            $sale->price_old = $product->price_sell;
             $sale->category = $product->Category->name;
         }
         return view('backend.sale.list')->with('sales',$sales);
@@ -35,6 +46,7 @@ class SaleController extends Controller
      */
     public function create($id)
     {
+        $this->authorize('create', Sale::class);
         $product = Product::find($id);
         return view('backend.sale.create')->with('product',$product);
     }
@@ -48,6 +60,7 @@ class SaleController extends Controller
     public function store(Request $request)
     {
 //        dd($request);
+        $this->authorize('create', Sale::class);
         $sale = new Sale();
         $sale->product_id = $request->get('product_id');
         $sale->price_sale = $request->get('price_sale');
@@ -58,8 +71,14 @@ class SaleController extends Controller
         if(strtotime(date('Y-m-d'))-strtotime($sale->end)<0) $sale->status = 1;
         else $sale->status = 0;
 
-        $sale->save();
-        return redirect()->route('backend.sale.list');
+        $save = $sale->save();
+
+        if ($save)
+            session()->flash('success', 'Tạo mới thành công');
+        else
+            session()->flash('error', 'Tạo mới thất bại');
+
+        return redirect()->route('Sale.index');
     }
 
     /**
@@ -81,7 +100,11 @@ class SaleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $sale = Sale::find($id);
+        $this->authorize('update', $sale);
+        $product = $sale->Product;
+//        dd(date("Y-m-d",strtotime($sale->start)));
+        return view('backend.sale.update')->with(['sale'=>$sale,'product'=>$product]);
     }
 
     /**
@@ -93,7 +116,22 @@ class SaleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $sale = Sale::find($id);
+        $this->authorize('update', $sale);
+        $sale->price_sale = $request->get('price_sale');
+        $sale->start = $request->get('start');
+        $sale->end = $request->get('end');
+        $sale->note = $request->get('note');
+        if(strtotime(date('Y-m-d'))-strtotime($sale->end)<0) $sale->status = 1;
+        else $sale->status = 0;
+
+        $update = $sale->save();
+        if ($update)
+            session()->flash('success-update', 'Cập nhật thành công');
+        else
+            session()->flash('error-update', 'Cập nhật thất bại');
+
+        return redirect()->route('Sale.index');
     }
 
     /**
@@ -104,6 +142,15 @@ class SaleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $sale = Sale::find($id);
+        $this->authorize('delete', $sale);
+        $delete = $sale->delete();
+        if ($delete)
+            session()->flash('success-delete', 'Gỡ thành công');
+        else
+            session()->flash('error-delete', 'Gỡ thất bại');
+
+        return redirect()->route('Sale.index');
+
     }
 }

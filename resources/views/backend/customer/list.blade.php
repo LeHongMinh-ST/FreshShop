@@ -67,22 +67,23 @@
                                         <td>{{$customer->phone}}</td>
                                         <td><span class="tag tag-success">{{$customer->address}}</span></td>
                                         <td class="project-actions text-right" style="display: flex; float: right">
-                                            <a class="btn btn-primary btn-sm" href="{{route('Customer.show',$customer->id)}}"
+                                            <a class="btn btn-primary btn-sm"
+                                               href="{{route('Customer.show',$customer->id)}}"
                                                style="margin-right: 5px">
                                                 <i class="fas fa-folder">
                                                 </i>
                                                 Chi tiết
                                             </a>
-                                            {{--                                            @can('delete',$value)--}}
-                                            <form action="{{route('Customer.destroy',$customer->id)}}" method="POST"
-                                                  style="margin-right: 5px">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">
-                                                    <i class="fa fa-btn fa-trash"></i> Khóa tài khoản
-                                                </button>
-                                            </form>
-                                            {{--                                            @endcan--}}
+                                            @if(Auth::user()->role == 1)
+                                                <form action="{{route('Customer.destroy',$customer->id)}}" method="POST"
+                                                      style="margin-right: 5px">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm">
+                                                        <i class="fa fa-btn fa-lock"></i> Khóa tài khoản
+                                                    </button>
+                                                </form>
+                                            @endcan
                                         </td>
                                     </tr>
                                 @endforeach

@@ -19,7 +19,6 @@ class WarehouseController extends Controller
         $warehouses = Warehouse::all();
         foreach ($warehouses as $warehouse)
         {
-//            dd($warehouse['import']);
             $warehouse->remain = $warehouse->import - $warehouse->sell;
             $warehouse->save();
         }
@@ -94,7 +93,7 @@ class WarehouseController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
     }
 
     /**

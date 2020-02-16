@@ -47,7 +47,7 @@ class LoginController extends Controller
 
     public function showLoginFormRegister()
     {
-        return view('frontend.page.login');
+        return view('frontend.page.customer.login');
     }
 
     public function login(Request $request)
@@ -61,7 +61,7 @@ class LoginController extends Controller
 
         if (Auth::attempt(['email' => $email, 'password' => $password,'role'=>0])) {
             // Authentication passed...
-            return redirect()->intended('Home');
+            return redirect()->back();
         }
     }
 

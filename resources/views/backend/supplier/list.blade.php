@@ -10,6 +10,37 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Nhà cung cấp</h1>
+                    @if(session()->has('success'))
+                        <span style="color: green">{{session()->get('success')}}</span>
+                    @endif
+
+                    @if(session()->has('error'))
+                        <span style="color: red">{{session()->get('error')}}</span>
+                    @endif
+
+                    @if(session()->has('success-update'))
+                        <span style="color: green">{{session()->get('success-update')}}</span>
+                    @endif
+
+                    @if(session()->has('error-update'))
+                        <span style="color: red">{{session()->get('error-update')}}</span>
+                    @endif
+
+                    @if(session()->has('success-delete'))
+                        <span style="color: green">{{session()->get('success-delete')}}</span>
+                    @endif
+
+                    @if(session()->has('error-delete'))
+                        <span style="color: red">{{session()->get('error-delete')}}</span>
+                    @endif
+
+                    @if(session()->has('success-restore'))
+                        <span style="color: green">{{session()->get('success-restore')}}</span>
+                    @endif
+
+                    @if(session()->has('error-restore'))
+                        <span style="color: red">{{session()->get('error-restore')}}</span>
+                    @endif
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -31,7 +62,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Nhà cung cấp</h3>
+                            <h3 class="card-title"></h3>
 
                             <div class="card-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
@@ -73,15 +104,15 @@
                                                 </i>
                                                 Chi tiết
                                             </a>
-{{--                                            @can('update',$value)--}}
+                                            @can('update',$supplier)
                                                 <a class="btn btn-info btn-sm" href="{{route('Supplier.edit',$supplier->id)}}"
                                                    style="margin-right: 5px">
                                                     <i class="fas fa-pencil-alt">
                                                     </i>
                                                     Sửa
                                                 </a>
-{{--                                            @endcan--}}
-{{--                                            @can('delete',$value)--}}
+                                            @endcan
+                                            @can('delete',$supplier)
                                                 <form action="{{route('Supplier.destroy',$supplier->id)}}" method="POST"
                                                       style="margin-right: 5px">
                                                     @csrf
@@ -90,7 +121,7 @@
                                                         <i class="fa fa-btn fa-trash"></i> Gỡ
                                                     </button>
                                                 </form>
-{{--                                            @endcan--}}
+                                            @endcan
                                         </td>
                                     </tr>
                                 @endforeach

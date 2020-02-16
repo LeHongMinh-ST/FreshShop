@@ -57,6 +57,8 @@
 
 @yield('modal')
 
+@yield('script')
+
 <!-- all js here -->
 <!-- jquery latest version -->
 <script src="{{asset('frontend/js/vendor/jquery-1.12.0.min.js')}}"></script>
@@ -89,5 +91,6 @@
 <script src="{{asset('frontend/lib/home.js')}}" type="text/javascript"></script>
 <!-- main js -->
 <script src="{{asset('frontend/js/main.js')}}"></script>
+<script src="{{asset('frontend/js/quickview.js')}}"></script>
 </body>
 </html>

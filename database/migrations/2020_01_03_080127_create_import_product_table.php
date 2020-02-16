@@ -18,7 +18,6 @@ class CreateImportProductTable extends Migration
             $table->bigInteger('product_id');
             $table->bigInteger('import_id');
             $table->integer('quantity');
-            $table->integer('unit_price_import');
             $table->timestamps();
         });
     }

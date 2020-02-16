@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Category;
+use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -36,8 +37,11 @@ class AppServiceProvider extends ServiceProvider
 
         $parent_categories = $this->getHtmlSubmenu($mega_menu);
 
-
-        View::share('parent_categories',$parent_categories);
+        $count = Cart::count();
+        View::share([
+            'parent_categories'=>$parent_categories,
+            'count'=>$count
+        ]);
 
         Schema::defaultStringLength(191);
     }

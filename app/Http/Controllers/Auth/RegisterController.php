@@ -79,7 +79,7 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        return view('backend.user.register');
+        return view('frontend.page.customer.register');
     }
 
 //    public function showRegisterAdmodForm()

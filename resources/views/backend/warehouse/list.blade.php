@@ -1,5 +1,5 @@
 @extends('backend.layout.master')
-@section('tilte')
+@section('title')
     Product
 @endsection
 @section('script')
@@ -22,37 +22,6 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Danh sách sản phẩm</h1>
-                    @if(session()->has('success'))
-                        <span style="color: green">{{session()->get('success')}}</span>
-                    @endif
-
-                    @if(session()->has('error'))
-                        <span style="color: red">{{session()->get('error')}}</span>
-                    @endif
-
-                    @if(session()->has('success-update'))
-                        <span style="color: green">{{session()->get('success-update')}}</span>
-                    @endif
-
-                    @if(session()->has('error-update'))
-                        <span style="color: red">{{session()->get('error-update')}}</span>
-                    @endif
-
-                    @if(session()->has('success-delete'))
-                        <span style="color: green">{{session()->get('success-delete')}}</span>
-                    @endif
-
-                    @if(session()->has('error-delete'))
-                        <span style="color: red">{{session()->get('error-delete')}}</span>
-                    @endif
-
-                    @if(session()->has('success-restore'))
-                        <span style="color: green">{{session()->get('success-restore')}}</span>
-                    @endif
-
-                    @if(session()->has('error-restore'))
-                        <span style="color: red">{{session()->get('error-restore')}}</span>
-                    @endif
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -74,7 +43,17 @@
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Product</h3>
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <a class="btn btn-success btn-sm" href="{{route('Import.create')}}">
+                            <i class="fas fa-cart-arrow-down">
+                            </i>
+                            Tạo đơn nhập
+                        </a>
+                    </div>
+                </div>
             </div>
+
             <div class="card-body p-0">
                 <table class="table table-striped" id="example1 ">
                     <thead>
@@ -109,7 +88,7 @@
                     </thead>
                     <tbody>
                     @foreach($products as $value)
-                        <tr>
+                        <tr id="row_{{$value->id}}">
                             <td>
                                 {{$value->id}}
                             </td>
@@ -152,33 +131,30 @@
                                     <span class="badge badge-success">
                                     Đang nhập
                                 </span>
-                                @else
+                                @elseif($value->status_import == 0)
                                     <span class="badge badge-warning">
                                     không có
+                                </span>
+                                @else
+                                    <span class="badge badge-info">
+                                    Đã thêm vào đơn nhập
                                 </span>
                                 @endif
                             </td>
                             <td class="text-right" style="display: flex">
-                                @can('update',$value)
-                                    <form action="{{route('Product.edit',$value->id)}}" method="GET"
-                                          style="margin-right: 5px">
-                                        <button type="submit" class="btn btn-info btn-sm">
-                                            <i class="fas fa-pencil-alt">
-                                            </i>
-                                            Sửa
-                                        </button>
-                                    </form>
-                                @endcan
-                                <a class="btn btn-warning btn-sm" href="{{route('Sale.create',$value->id)}}" style="margin-right: 5px">
+                                <a class="btn btn-warning btn-sm" href="{{route('Sale.create',$value->id)}}"
+                                   style="margin-right: 5px">
                                     <i class="fas fa-piggy-bank">
                                     </i>
                                     Tạo sale
                                 </a>
-                                <a class="btn btn-success btn-sm" href="#">
-                                    <i class="fas fa-plus">
-                                    </i>
-                                    Nhập
-                                </a>
+                                @if($value->status_import == 0)
+                                    <a class="btn btn-success btn-sm import" href="#" data-product="{{$value->id}}">
+                                        <i class="fas fa-plus">
+                                        </i>
+                                        Nhập
+                                    </a>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
@@ -190,5 +166,36 @@
         <!-- /.card -->
         {!! $products->links() !!}
     </section>
+@endsection
+
+@section('modal')
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <form action="">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Thêm sản phẩm vào đơn nhập hàng</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="" method="post">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>Số lượng hàng cần nhập: </label>
+                                <input style=" text-align: center" type="number" class="qty" name="qty" value="10"
+                                       min="10">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary import_success">Thêm vào đơn nhập</button>
+                        </div>
+                    </form>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
