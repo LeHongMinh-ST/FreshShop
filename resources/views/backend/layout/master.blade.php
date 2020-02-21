@@ -86,6 +86,7 @@
 <script src="{{asset('backend/dist/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('backend/dist/js/demo.js')}}"></script>
+<script src="{{asset('backend/dist/js/menu.js')}}"></script>
 <script src="{{asset('backend/dist/js/Chart.js')}}"></script>
 
 <script src="{{asset('backend/dist/js/sweealert.js')}}"></script>

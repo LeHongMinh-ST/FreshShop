@@ -49,16 +49,21 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title"></h3>
+                @if(isset($key))
+                    <h3 class="card-title">Từ khóa: {{$key}}</h3>
+                @endif
                 <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
-                        <input type="text" name="table_search" class="form-control float-right"
-                               placeholder="Search">
-
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-default"><i class="fas fa-search"></i>
-                            </button>
-                        </div>
+                        <form action="{{route('Post.search')}}" method="get" style="display: flex">
+                            @csrf
+                            <input type="text" name="key" class="form-control float-right"
+                                   placeholder="Search">
+                            <input type="text" hidden name="role" value="0">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

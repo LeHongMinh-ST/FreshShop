@@ -24,7 +24,7 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::paginate(6);
+        $posts = Post::latest()->paginate(6);
         foreach ($posts as $post)
         {
             $post->user = $post->User->name;
@@ -71,7 +71,11 @@ class PostController extends Controller
             $post->thumbnail = $profie;
         }
 
-        $post->save();
+        $success = $post->save();
+        if ($success)
+            $request->session()->flash('success', 'Tao mới thành công bài viết '.$post->name);
+        else
+            $request->session()->flash('error', 'Tạo mới thất bại');
 
         return redirect()->route('Post.index');
 
@@ -125,7 +129,11 @@ class PostController extends Controller
             $post->thumbnail = $profie;
         }
 
-        $post->save();
+        $success = $post->save();
+        if ($success)
+            $request->session()->flash('success', 'Cập nhật thành công bài viết '.$post->name);
+        else
+            $request->session()->flash('error', 'Gỡ thất bại');
 
         return redirect()->route('Post.index');
     }
@@ -139,7 +147,11 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::find($id);
-        $post->delete();
+        $success = $post->delete();
+        if ($success)
+            session()->flash('success', 'Gỡ thành công  bài viết '.$post->name);
+        else
+            session()->flash('error', 'Gỡ thất bại');
         return redirect()->route('Post.index');
     }
 
@@ -159,8 +171,11 @@ class PostController extends Controller
     public function restore($id)
     {
         $post = Post::onlyTrashed()->find($id);
-        $post->restore();
-
+        $success = $post->restore();
+        if ($success)
+            session()->flash('success', 'Khôi phục thành công  bài viết '.$post->name);
+        else
+            session()->flash('error', 'Khôi phục thất bại');
         return redirect()->route('Post.index');
     }
 
@@ -171,7 +186,35 @@ class PostController extends Controller
         $thumbnail = 'storage/images/post/' . $post->thumbnail;
         File::delete($thumbnail);
 
-        $post->forceDelete();
+        $success = $post->forceDelete();
+        if ($success)
+            session()->flash('success', 'Xóa thành thành công  bài viết '.$post->name);
+        else
+            session()->flash('error', 'Xóa thất bại');
         return redirect()->route('Post.trashed');
+    }
+
+    public function search(Request $request)
+    {
+        $key = $request->get('key');
+        $role = $request->get('role');
+        $posts = Post::where('title','like','%'.$key.'%')->paginate(9);
+        foreach ($posts as $post)
+        {
+            $post->user = $post->User->name;
+        }
+        if ($role == 1 )
+        {
+            return view('frontend.page.post.posts')->with([
+                'posts' => $posts,
+                'key'=>$key
+            ]);
+        }else {
+            return view('backend.post.list')->with([
+                'posts' => $posts,
+                'key'=>$key
+            ]);
+        }
+
     }
 }

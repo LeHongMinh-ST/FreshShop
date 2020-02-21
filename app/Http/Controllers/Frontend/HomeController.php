@@ -13,6 +13,7 @@ use App\Warehouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
@@ -229,7 +230,8 @@ class HomeController extends Controller
 
     public function Blog()
     {
-        $posts = Post::paginate(9);
+        $posts = Post::latest()->paginate(9);
+
         return view('frontend.page.post.posts')->with([
             'posts' => $posts
         ]);
@@ -238,10 +240,17 @@ class HomeController extends Controller
     public function Post($id)
     {
         $post = Post::find($id);
+        $count = Cache::increment($post->id);
+        if ($count>20){
+            $post->view += Cache::pull($post->id);
+            $post->save();
+        }
+        $posts = Post::paginate(6);
         $comments = $post->Comments;
         return view('frontend.page.post.post_single')->with([
             'post' => $post,
-            'comments' => $comments
+            'comments' => $comments,
+            'posts' => $posts
         ]);
     }
 
@@ -281,8 +290,7 @@ class HomeController extends Controller
                     }
                 }
 //                dd($count_oder);
-                if ($check && $count_oder>$rate->count())
-                {
+                if ($check && $count_oder > $rate->count()) {
                     return true;
                 }
             }

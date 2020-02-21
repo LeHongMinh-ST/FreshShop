@@ -82,13 +82,28 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $products = $user->Products;
+        $posts = $user->Posts;
+        $date_post = $user->Posts()->select(DB::raw('date(created_at) as ngay'))
+            ->orderBy('ngay','desc')
+            ->groupBy(DB::raw('date(created_at)'))
+            ->get();
 
-//        $date->products =  $products = Product::where('user_id',$user->id)->latest()->get();
         $dates = $this->getDateCreated($products);
         if ($dates){
             $dates = array_reverse($dates);
-            return view('backend.user.show')->with(['user' => $user, 'products' => $products, 'dates' => $dates]);
-        } else return view('backend.user.show')->with(['user' => $user, 'products' => $products]);
+            return view('backend.user.show')->with([
+                'user' => $user,
+                'products' => $products,
+                'dates' => $dates,
+                'date_post'=>$date_post,
+                'posts'=>$posts
+            ]);
+        } else return view('backend.user.show')->with([
+            'user' => $user,
+            'products' => $products,
+            'date_post'=>$date_post,
+            'posts'=>$posts
+            ]);
 
 
     }
@@ -218,5 +233,13 @@ class UserController extends Controller
 
         if (isset($date)) return array_unique($date);
         else return 0;
+    }
+
+    public function search(Request $request)
+    {
+        $this->authorize('viewAny', Auth::user());
+        $key = $request->get('key');
+        $users = User::where('name','like', '%'. $key.'%')->paginate(9);
+        return view('backend.user.list')->with(['users' => $users,'key'=>$key]);
     }
 }

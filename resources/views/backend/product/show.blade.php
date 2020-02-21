@@ -238,14 +238,14 @@
                                         <div class="media-body">
                                             <h5 class="mt-0">{{$rate->Customer->name}}</h5>
                                             <span>
-                                                        @for($i=1;$i<=5;$i++)
+                                                @for($i=1;$i<=5;$i++)
                                                     @if($i<=$rate->rate)
                                                         <i class="fa fa-star" style="color:orange;"></i>
                                                     @else
                                                         <i class="fa fa-star"></i>
                                                     @endif
                                                 @endfor
-                                                    </span>
+                                            </span>
                                             <p>{{$rate->comment}}</p>
                                         </div>
                                     </div>

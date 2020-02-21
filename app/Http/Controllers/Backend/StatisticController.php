@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Customer;
 use App\Http\Controllers\Controller;
 use App\Oder;
+use App\Post;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -31,6 +32,7 @@ class StatisticController extends Controller
                 }
             }
         }
+        //===thống kê sản phẩm bán chạy và tồn kho nhiều
         $productsDecs = $products->sortByDesc(function ($product) {
             return $product->count;
         })->take(10);
@@ -38,11 +40,39 @@ class StatisticController extends Controller
             return $product->count;
         })->take(10);
 
+        //===thống kê bài viết===
+        $posts = Post::select('title','created_at','view')->orderBy('view','desc')->get(10);
+
+        //===Thống kê đánh giá sản phẩm
+        foreach ($products as $product) {
+            $sale = $product->Sale;
+            if (isset($sale) && $sale->status == 1) $product->sale = $sale->price_sale;
+
+            $rates = $product->Rates;
+            $avg = 0;
+            if ($rates->count() > 0) {
+                $count = 0;
+                foreach ($rates as $rate) {
+                    $avg += $rate->rate;
+                    $count++;
+                }
+                $avg = $avg / $count;
+                $product->ratecount = $count;
+            }
+            $product->avg = $avg;
+        }
+
+        $productRate = $products->sortByDesc(function ($product){
+           return $product->avg;
+        })->take(10);
+
 //        dd($productsAsc);
         return view('backend.statistic.index')->with([
             'customers_oder' => $customers_oder,
             'productsDecs' => $productsDecs,
-            'productsAsc' => $productsAsc
+            'productsAsc' => $productsAsc,
+            'posts'=>$posts,
+            'rates'=>$productRate,
         ]);
     }
 

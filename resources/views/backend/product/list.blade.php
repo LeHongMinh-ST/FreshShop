@@ -88,7 +88,7 @@
                             @sortablelink('price_sell','Giá bán')
                         </th>
                         <th>
-                           @sortablelink('unit','Đơn vị')
+                            @sortablelink('unit','Đơn vị')
                         </th>
                         <th>
                             @sortablelink('status','Trạng thái')

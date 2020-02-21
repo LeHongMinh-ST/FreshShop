@@ -27,6 +27,11 @@
 @section('content')
     <div class="shopping-area section-padding">
         <div class="container">
+            @if(isset($key))
+                <div>
+                    <h3>Từ khóa: {{$key}}</h3>
+                </div>
+            @endif
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="shop-tab-area">
@@ -37,9 +42,22 @@
                                                 class="fa fa-th-list"></i><span>List</span></a></li>
                                 </ul>
                             </div>
+                            <div class="shop-tab-pill pull-right">
+                                <form action="{{route('Post.search')}}" method="get" style="display: flex">
+                                    @csrf
+                                    <input type="text" name="key" class="form-control float-right"
+                                           placeholder="Search">
+                                    <input type="text" hidden name="role" value="1">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                         <div class="tab-content">
-                            <div id="home" class="row tab-pane fade in active" id="home">
+                            <div id="home" class="row tab-pane fade in active" id="home"
+                                 style="max-width: 1140px;margin: 0 auto;">
                                 <div class="row">
                                     @foreach($posts as $post)
                                         <div class="single-shop-product">
@@ -60,6 +78,17 @@
                                                     </h4>
 
                                                     <p>{{$post->description}}</p>
+
+                                                    <div>
+                                                        <i class="fa fa-eye"></i>
+                                                        Lượt xem: {{$post->view}}
+                                                    </div>
+                                                    <div>
+                                                        bởi: {{$post->User->name}}
+                                                    </div>
+                                                    <div>
+                                                        Ngày đăng: {{date_format($post->created_at,'d-m-Y')}}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

@@ -50,28 +50,30 @@
                         <li class="nav-item">
                             <a href="{{route('Product.create')}}"
                                class="nav-link {{ request()->is('admin/Product/create') ? 'active' : null }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Tạo mới</p>
+                                <i class="fa fa-plus nav-icon"></i>
+                                <p>
+                                    Tạo mới
+                                </p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('Product.index')}}"
                                class="nav-link {{ request()->is('admin/Product') ? 'active' : null }}">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fa fa-list-alt nav-icon"></i>
                                 <p>Danh sách</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('Sale.index')}}"
                                class="nav-link {{ request()->is('admin/Product/Sale') ? 'active' : null }}">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fa fa-piggy-bank nav-icon"></i>
                                 <p>Danh sách khuyến mãi</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('Product.trashed')}}"
                                class="nav-link {{ request()->is('admin/Product/trashed') ? 'active' : null }}">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fa fa-trash-alt nav-icon"></i>
                                 <p>Danh sách tạm gỡ</p>
                             </a>
                         </li>
@@ -90,21 +92,21 @@
                         <li class="nav-item">
                             <a href="{{route('Category.create')}}"
                                class="nav-link {{ request()->is('admin/Category/create')? 'active' : null }}">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fa fa-plus nav-icon"></i>
                                 <p>Tạo mới</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('Category.index')}}"
                                class="nav-link {{ request()->is('admin/Category')? 'active' : null }}">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fa fa-list-alt nav-icon"></i>
                                 <p>Danh sách</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('Category.trashed')}}"
                                class="nav-link {{ request()->is('admin/Category/trashed')? 'active' : null }}">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fa fa-trash-alt nav-icon"></i>
                                 <p>Danh sách tạm gỡ</p>
                             </a>
                         </li>
@@ -157,7 +159,7 @@
                         <li class="nav-item">
                             <a href="{{route('Customer.index')}}"
                                class="nav-link {{ request()->is('admin/Customer')? 'active' : null }}">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fa fa-list-alt nav-icon"></i>
                                 <p>Danh sách</p>
                             </a>
                         </li>
@@ -165,7 +167,7 @@
                             <li class="nav-item">
                                 <a href="{{route('Customer.trashed')}}"
                                    class="nav-link {{ request()->is('admin/Customer/trashed')? 'active' : null }}">
-                                    <i class="far fa-circle nav-icon"></i>
+                                    <i class="fa fa-trash-alt nav-icon"></i>
                                     <p>Danh sách tạm khóa</p>
                                 </a>
                             </li>
@@ -186,7 +188,7 @@
                             <li class="nav-item">
                                 <a href="{{route('Supplier.create')}}"
                                    class="nav-link {{ request()->is('admin/Supplier/create')? 'active' : null }}">
-                                    <i class="far fa-circle nav-icon"></i>
+                                    <i class="fa fa-plus nav-icon"></i>
                                     <p>Tạo mới</p>
                                 </a>
                             </li>
@@ -194,7 +196,7 @@
                         <li class="nav-item">
                             <a href="{{route('Supplier.index')}}"
                                class="nav-link {{ request()->is('admin/Supplier')? 'active' : null }}">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fa fa-list-alt nav-icon"></i>
                                 <p>Danh sách</p>
                             </a>
                         </li>
@@ -202,7 +204,7 @@
                             <li class="nav-item">
                                 <a href="{{route('Supplier.trashed')}}"
                                    class="nav-link {{ request()->is('admin/Supplier/trashed')? 'active' : null }}">
-                                    <i class="far fa-circle nav-icon"></i>
+                                    <i class="fa fa-trash-alt nav-icon"></i>
                                     <p>Danh sách đã gỡ</p>
                                 </a>
                             </li>
@@ -224,21 +226,21 @@
                             <li class="nav-item">
                                 <a href="{{route('User.create')}}"
                                    class="nav-link  {{ request()->is('admin/User/create')? 'active' : null }}">
-                                    <i class="far fa-circle nav-icon"></i>
+                                    <i class="fa fa-plus nav-icon"></i>
                                     <p>Tạo mới</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{route('User.index')}}"
                                    class="nav-link  {{ request()->is('admin/User')? 'active' : null }}">
-                                    <i class="far fa-circle nav-icon"></i>
+                                    <i class="fa fa-list-alt nav-icon"></i>
                                     <p>Danh sách</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="{{route('User.trashed')}}"
                                    class="nav-link  {{ request()->is('admin/User/trashed')? 'active' : null }}">
-                                    <i class="far fa-circle nav-icon"></i>
+                                    <i class="fa fa-trash-alt nav-icon"></i>
                                     <p>Danh sách tạm khóa</p>
                                 </a>
                             </li>
@@ -258,21 +260,21 @@
                         <li class="nav-item">
                             <a href="{{route('Post.create')}}"
                                class="nav-link  {{ request()->is('admin/Post/create')? 'active' : null }}">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fa fa-plus nav-icon"></i>
                                 <p>Tạo mới</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('Post.index')}}"
                                class="nav-link  {{ request()->is('admin/Post')? 'active' : null }}">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fa fa-list-alt nav-icon"></i>
                                 <p>Danh sách</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{route('Post.trashed')}}"
                                class="nav-link  {{ request()->is('admin/Post/trashed')? 'active' : null }}">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="fa fa-trash-alt nav-icon"></i>
                                 <p>Danh sách tạm khóa</p>
                             </a>
                         </li>
@@ -303,3 +305,4 @@
     </div>
     <!-- /.sidebar -->
 </aside>
+S

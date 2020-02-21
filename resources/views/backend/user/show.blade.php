@@ -97,6 +97,8 @@
                                 <li class="nav-item "><a class="nav-link active" href="#timeline" data-toggle="tab">Sản
                                         phẩm đã đăng</a>
                                 </li>
+                                <li class="nav-item "><a class="nav-link" href="#posttimeline" data-toggle="tab">Bài viết đã đăng</a>
+                                </li>
                                 <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Cập nhật</a>
                                 </li>
                             </ul>
@@ -138,6 +140,50 @@
                                                 <i class="fas fa-times bg-danger"></i>
 
                                                 <div class="timeline-item">
+                                                    <h3 class="timeline-header"> Chưa đăng bài viết nào !
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="posttimeline">
+                                    <!-- The timeline -->
+                                    <div class="timeline timeline-inverse">
+                                        <!-- timeline time label -->
+                                        @if($date_post->count()>0)
+                                        @foreach($date_post as $value)
+                                            <div class="time-label">
+                                                    <span class="bg-success">
+                                                      {{date("j M \.\ Y",strtotime($value->ngay))}}
+                                                    </span>
+                                            </div>
+                                            <!-- /.timeline-label -->
+                                            <!-- timeline item -->
+                                            @foreach($posts as $post)
+                                                @if($date = date_format($post->created_at,"Y-m-d") == $value->ngay)
+                                                    <div>
+                                                        <i class="fas fa-cart-plus bg-primary"></i>
+
+                                                        <div class="timeline-item">
+                                                            <span class="time"><i class="far fa-clock"></i>{{date_format($post->created_at,"H:i")}}</span>
+
+                                                            <h3 class="timeline-header"> Thêm mới bài viết
+                                                                <a href="{{route('frontend.post',$post->id)}}">{{$post->title}}</a>
+                                                                <div>
+                                                                    <img style="width: 160px; height: 150px;" src="{{asset('storage/images/post/'.$post->thumbnail)}}" alt="">
+                                                                </div>
+                                                            </h3>
+                                                        </div>
+                                                    </div>
+                                                @endif
+                                            @endforeach
+                                        @endforeach
+                                        @else
+                                            <div>
+                                                <i class="fas fa-times bg-danger"></i>
+
+                                                <div class="timeline-item">
                                                     <h3 class="timeline-header"> Chưa đăng sản phẩm nào !
                                                     </h3>
                                                 </div>
@@ -145,6 +191,8 @@
                                         @endif
                                     </div>
                                 </div>
+
+
                                 <!-- /.tab-pane -->
                                 @can('update',$user)
                                     <div class="tab-pane" id="settings">

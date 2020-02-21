@@ -101,9 +101,87 @@
                         </table>
                     </div>
                 </div>
-
             </div>
-            <div style="margin-top: 50px">
+            <div class="row" style="margin-top: 50px">
+                <div class="col-6">
+                    <div style="text-align: center"><h2>Sản phẩm được đánh giá tốt nhất</h2></div>
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Điểm đánh giá</th>
+                                <th class="text-right">Số lượt đánh giá</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @php
+                                $i=1;
+                            @endphp
+                            @foreach($rates as $rate)
+                                <tr>
+                                    <td>{{$i}}</td>
+                                    <td>{{$rate->name}}</td>
+                                    <td>
+                                        <span>
+                                             @for($j=1;$j<=5;$j++)
+                                                @if($i<=$rate->avg)
+                                                    <i class="fa fa-star" style="color:orange;"></i>
+                                                @else
+                                                    <i class="fa fa-star"></i>
+                                                @endif
+                                            @endfor
+                                        </span>
+                                        {{number_format($rate->avg,2)}}
+                                    </td>
+                                    <td class="text-right">@if($rate->ratecount){{$rate->ratecount}}@else 0 @endif</td>
+                                </tr>
+                                @php
+                                    $i++;
+                                @endphp
+                            @endforeach
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div style="text-align: center"><h2>Bài viết nhiều lượt xem nhất</h2></div>
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Tiêu để</th>
+                                <th>Ngày đăng</th>
+                                <th class="text-right">Lượt xem</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @php
+                                $i=1;
+                            @endphp
+                            @foreach($posts as $post)
+                                <tr>
+                                    <td>{{$i}}</td>
+                                    <td>{{$post->title}}</td>
+                                    <td>{{date_format($post->created_at,'d-m-Y')}}</td>
+                                    <td class="text-right">{{$post->view}}</td>
+                                </tr>
+                                @php
+                                    $i++;
+                                @endphp
+                            @endforeach
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 50px">
                 <div class="col-6">
                     <div style="text-align: center"><h2>Khách hàng tiềm năng</h2></div>
                     <div class="card-body table-responsive p-0">

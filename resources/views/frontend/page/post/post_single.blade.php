@@ -28,11 +28,14 @@
     <div class="about-us-area section-padding">
         <div class="container">
             <div class="row">
-                <div class="about-top-inner">
+                <div class="about-top-inner" style="text-align: center">
                     <h1>{{$post->title}}</h1>
                 </div>
+                <div style="text-align: center">
+                    <img src="{{asset('storage/images/post/'.$post->thumbnail)}}" alt="">
+                </div>
                 <div>
-                    <h3>{{$post->description}}</h3>
+                    <h4>{{$post->description}}</h4>
                 </div>
                 <div class="about-bottom-inner">
                     <div>
@@ -90,76 +93,26 @@
     <!-- About Us Area End -->
     <!-- Our Team Area Start -->
     <div class="our-team-area">
-        <h2 class="section-title">OUR WRITER</h2>
+        <h2 class="section-title">Bài viết khác</h2>
         <div class="container">
             <div class="row">
                 <div class="team-list indicator-style">
-                    <div class="col-md-3">
-                        <div class="single-team-member">
-                            <a href="#">
-                                <img src="{{asset('frontend/img/about/team/1.jpg')}}" alt="">
-                            </a>
-                            <div class="member-info">
-                                <a href="#">rokan tech</a>
-                                <p>WRITER</p>
+                    @foreach($posts as $post)
+                        <div class="col-md-3">
+                            <div class="single-blog">
+                                <a href="{{route('frontend.post',$post->id)}}">
+                                    <img src="{{asset('storage/images/post/'.$post->thumbnail)}}" alt="">
+                                </a>
+                                <div class="blog-info text-center">
+                                    <a href="{{route('frontend.post',$post->id)}}"><h2>{{$post->title}}</h2></a>
+                                    <div class="blog-info-bottom">
+                                        <span class="blog-author">BY: {{$post->User->name}}</span>
+                                        <span class="blog-date">{{date_format($post->created_at,'d-m-Y')}}</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="single-team-member">
-                            <a href="#">
-                                <img src="{{asset('frontend/img/about/team/2.jpg')}}" alt="">
-                            </a>
-                            <div class="member-info">
-                                <a href="#">mirinda</a>
-                                <p>AUTHOR</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="single-team-member">
-                            <a href="#">
-                                <img src="{{asset('frontend/img/about/team/3.jpg')}}" alt="">
-                            </a>
-                            <div class="member-info">
-                                <a href="#">jone doe</a>
-                                <p>WRITER</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="single-team-member">
-                            <a href="#">
-                                <img src="{{asset('frontend/img/about/team/4.jpg')}}" alt="">
-                            </a>
-                            <div class="member-info">
-                                <a href="#">nick kon</a>
-                                <p>WRITER</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="single-team-member">
-                            <a href="#">
-                                <img src="{{asset('frontend/img/about/team/2.jpg')}}" alt="">
-                            </a>
-                            <div class="member-info">
-                                <a href="#">mirinda</a>
-                                <p>AUTHOR</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="single-team-member">
-                            <a href="#">
-                                <img src="{{asset('frontend/img/about/team/1.jpg')}}')}}" alt="">
-                            </a>
-                            <div class="member-info">
-                                <a href="#">rokan tech</a>
-                                <p>WRITER</p>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

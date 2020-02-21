@@ -91,6 +91,7 @@ Route::group([
         Route::delete('delete/{User}', 'UserController@hardDelete')->name('User.hardDelete');
         Route::delete('{User}', 'UserController@destroy')->name('User.destroy');
         Route::get('{User}', 'UserController@show')->name('User.show');
+        Route::get('/search/member', 'UserController@search')->name('User.search');
         Route::get('{User}/edit', 'UserController@edit')->name('User.edit');
     });
 
@@ -146,6 +147,7 @@ Route::group([
         Route::put('restore/{Post}', 'PostController@restore')->name('Post.restore');
         Route::put('{Post}', 'PostController@update')->name('Post.update');
         Route::get('{Post}', 'PostController@show')->name('Post.show');
+        Route::get('search/post','PostController@search')->name('Post.search');
         Route::get('{Post}/edit', 'PostController@edit')->name('Post.edit');
         Route::post('comment/{comment}','PostCommentController@store')->name('frontend.post_comment');
         Route::delete('comment/{comment}','PostCommentController@destroy')->name('frontend.post_comment.destroy');
