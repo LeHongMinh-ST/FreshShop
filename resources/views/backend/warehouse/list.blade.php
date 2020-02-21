@@ -22,6 +22,13 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Danh sách sản phẩm</h1>
+                    @if(session()->has('success'))
+                        <div style="display:none;" class="success">{{session()->pull('success')}}</div>
+                    @endif
+
+                    @if(session()->has('error'))
+                        <div style="display:none;" class="error">{{session()->pull('error')}}</div>
+                    @endif
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -45,10 +52,12 @@
                 <h3 class="card-title">Product</h3>
                 <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
-                        <a class="btn btn-success btn-sm" href="{{route('Import.create')}}">
+                        <a class="btn btn-success btn-sm btn-import"
+                           href="{{route('Import.create')}}"
+                           @if(Cart::instance('import')->count()==0) style="display: none" @endif>
                             <i class="fas fa-cart-arrow-down">
                             </i>
-                            Tạo đơn nhập
+                            Đơn nhập
                         </a>
                     </div>
                 </div>
@@ -59,7 +68,7 @@
                     <thead>
                     <tr>
                         <th>
-                            id
+                            @sortablelink('product_id','id')
                         </th>
                         <th>
                             Tên sản phẩm
@@ -71,29 +80,29 @@
                             Loại sản pẩm
                         </th>
                         <th>
-                            Tổng nhập
+                            @sortablelink('import','Tổng số lượng nhập')
                         </th>
                         <th>
-                            Tổng bán
+                            @sortablelink('sell','Tổng số lượng xuất')
                         </th>
                         <th>
-                            Số lượng còn lại
+                            @sortablelink('remain','Số lượng còn lại')
                         </th>
                         <th>
-                            Tình trạng nhập hàng
+                            @sortablelink('status','Tình trạng nhập hàng')
                         </th>
                         <th>
                         </th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($products as $value)
-                        <tr id="row_{{$value->id}}">
+                    @foreach($warehouses as $value)
+                        <tr id="row_{{$value->product_id}}">
                             <td>
-                                {{$value->id}}
+                                {{$value->product_id}}
                             </td>
                             <td>
-                                <a>
+                                <a href="{{route('Product.show',$value->id)}}">
                                     {{$value->name}}
                                 </a>
                             </td>
@@ -127,11 +136,11 @@
                                 {{ $value->remain }} {{$value->unit}}
                             </td>
                             <td>
-                                @if($value->status_import == 1)
+                                @if($value->status == 1)
                                     <span class="badge badge-success">
                                     Đang nhập
                                 </span>
-                                @elseif($value->status_import == 0)
+                                @elseif($value->status == 0)
                                     <span class="badge badge-warning">
                                     không có
                                 </span>
@@ -142,14 +151,15 @@
                                 @endif
                             </td>
                             <td class="text-right" style="display: flex">
-                                <a class="btn btn-warning btn-sm" href="{{route('Sale.create',$value->id)}}"
+                                <a class="btn btn-warning btn-sm" href="{{route('Sale.create',$value->product_id)}}"
                                    style="margin-right: 5px">
                                     <i class="fas fa-piggy-bank">
                                     </i>
                                     Tạo sale
                                 </a>
-                                @if($value->status_import == 0)
-                                    <a class="btn btn-success btn-sm import" href="#" data-product="{{$value->id}}">
+                                @if($value->status == 0)
+                                    <a class="btn btn-success btn-sm import" href="#"
+                                       data-product="{{$value->product_id}}">
                                         <i class="fas fa-plus">
                                         </i>
                                         Nhập
@@ -164,7 +174,7 @@
             <!-- /.card-body -->
         </div>
         <!-- /.card -->
-        {!! $products->links() !!}
+        {!! $warehouses->links() !!}
     </section>
 @endsection
 

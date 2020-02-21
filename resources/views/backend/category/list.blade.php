@@ -10,24 +10,16 @@
                 <div class="col-sm-6">
                     <h1>Danh sách sản phẩm</h1>
                     @if(session()->has('success'))
-                        <span style="color: green">{{session()->get('success')}}</span>
+                        <div style="display:none;" class="success">{{session()->pull('success')}}</div>
                     @endif
 
                     @if(session()->has('error'))
-                        <span style="color: red">{{session()->get('error')}}</span>
-                    @endif
-
-                    @if(session()->has('success-update'))
-                        <span style="color: green">{{session()->get('success-update')}}</span>
-                    @endif
-
-                    @if(session()->has('error-update'))
-                        <span style="color: red">{{session()->get('error-update')}}</span>
+                        <div style="display:none;" class="error">{{session()->pull('error')}}</div>
                     @endif
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('backend.dashboard')}}">Home</a></li>
                         <li class="breadcrumb-item active">Blank Page</li>
                     </ol>
                 </div>
@@ -42,7 +34,20 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Product</h3>
+                <h3 class="card-title">Danh mục</h3>
+                <div class="card-tools">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                        <form action="{{route('Product.search')}}" method="get" style="display: flex">
+                            @csrf
+                            <input type="text" name="key" class="form-control float-right"
+                                   placeholder="Search" >
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
             <div class="card-body p-0">
                 <table class="table table-striped projects">
@@ -52,7 +57,7 @@
                             id
                         </th>
                         <th>
-                            Tên sản phẩm
+                            Tên danh mục
                         </th>
                         <th>
                             Ảnh

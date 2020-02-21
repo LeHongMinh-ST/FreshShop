@@ -73,6 +73,10 @@ html, body {
     margin: 0 auto 15px
 }
 
+.td-post-featured-image{
+    text-align: center;
+}
+
 a:focus {
     outline: 0px solid;
     text-decoration: none;
@@ -88,6 +92,19 @@ a:focus {
     line-height: 40px;
     padding-left: 20px;
     width: 100%;
+}
+
+.btn_update{
+    background: #b0b435 none repeat scroll 0 0;
+    color: #ffffff;
+    display: inline-block;
+    font-weight: 500;
+    text-transform: uppercase;
+    border: none;
+    outline: none;
+}
+.btn_update:hover{
+    background: #444444 none repeat scroll 0 0;
 }
 .btn_destroy{
     background: #b0b435 none repeat scroll 0 0;

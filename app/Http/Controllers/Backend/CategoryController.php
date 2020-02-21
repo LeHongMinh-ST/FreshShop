@@ -19,6 +19,11 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $categories = Category::all();
@@ -131,9 +136,9 @@ class CategoryController extends Controller
         $save = $category->save();
 
         if ($save)
-            $request->session()->flash('success-update', 'Cập nhật thành công');
+            $request->session()->flash('success', 'Cập nhật thành công');
         else
-            $request->session()->flash('error-update', 'Cập nhật thất bại');
+            $request->session()->flash('error', 'Cập nhật thất bại');
 
         return redirect()->route('Category.index');
     }
@@ -160,6 +165,14 @@ class CategoryController extends Controller
         $categories = Category::onlyTrashed()->paginate(10);
         return view('backend.category.trashed')->with(['categories' => $categories]);
     }
+    public function restore($id)
+    {
+        $category = Category::withTrashed()->find($id);
+        $success = $category->restore();
+        if ($success)
+            session()->flash('success', 'khôi phục thành công danh mục '.$category->name);
+        return redirect()->route('Category.trashed');
+    }
 
     public function hardDelete($id)
     {
@@ -169,7 +182,10 @@ class CategoryController extends Controller
             $img = 'storage/images/category/' . $category->image;
             File::delete($img);
         }
-        $category->forceDelete();
+        $success = $category->forceDelete();
+        if ($success)
+            session()->flash('success', 'Xóa thành công danh mục '.$category->name);
+
         return redirect()->route('Category.trashed');
     }
 

@@ -11,11 +11,11 @@
                 <div class="col-sm-6">
                     <h1>Danh sách đơn nhập</h1>
                     @if(session()->has('success'))
-                        <span style="color: green">{{session()->get('success')}}</span>
+                        <div style="display:none;" class="success">{{session()->pull('success')}}</div>
                     @endif
 
                     @if(session()->has('error'))
-                        <span style="color: red">{{session()->get('error')}}</span>
+                        <div style="display:none;" class="error">{{session()->pull('error')}}</div>
                     @endif
                 </div>
                 <div class="col-sm-6">
@@ -60,10 +60,11 @@
                                     <th>Tên nhà cung cấp</th>
                                     <th>email</th>
                                     <th>Số điện thoại</th>
-                                    <th>Mã đơn hàng</th>
+                                    <th>@sortablelink('id','Mã đơn hàng')</th>
                                     <th>Địa chỉ nhà cung cấp</th>
-                                    <th>Ngày nhận hàng</th>
-                                    <th>Trạng thái</th>
+                                    <th>@sortablelink('payment','Tổng tiền')</th>
+                                    <th>@sortablelink('date_import','Ngày nhận hàng')</th>
+                                    <th>@sortablelink('status','Trạng thái')</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -74,9 +75,10 @@
                                         <td>{{$import->Supplier->phone}}</td>
                                         <td>{{$import->id}}</td>
                                         <td>{{$import->Supplier->address}}</td>
+                                        <td>{{number_format($import->payment)}} vnđ</td>
                                         @if($import->date_import)
                                             <td>{{date("d-m-Y",strtotime($import->date_import))}}</td>
-                                            @else
+                                        @else
                                             <td>Chưa nhận hàng</td>
                                         @endif
                                         <td>
@@ -98,7 +100,8 @@
                                         </td>
 
                                         <td class="project-actions text-right" style="display: flex; float: right">
-                                            <a class="btn btn-primary btn-sm" href="{{route('Oder.show',$import->id)}}"
+                                            <a class="btn btn-primary btn-sm"
+                                               href="{{route('Import.show',$import->id)}}"
                                                style="margin-right: 5px">
                                                 <i class="fas fa-folder">
                                                 </i>
@@ -126,14 +129,17 @@
                                                     </button>
                                                 </form>
                                             @else
-                                                <form action="{{route('Oder.hardDelete',$import->id)}}" method="POST"
-                                                      style="margin-right: 5px">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm">
-                                                        <i class="fa fa-btn fa-ban"></i> Xóa đơn nhập
-                                                    </button>
-                                                </form>
+                                                @can('forceDelete',$import)
+                                                    <form action="{{route('Import.hardDelete',$import->id)}}"
+                                                          method="POST"
+                                                          style="margin-right: 5px">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm">
+                                                            <i class="fa fa-btn fa-trash"></i> Xóa đơn nhập
+                                                        </button>
+                                                    </form>
+                                                @endcan
                                             @endif
 
                                         </td>

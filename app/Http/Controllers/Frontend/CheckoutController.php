@@ -26,7 +26,7 @@ class CheckoutController extends Controller
 
     public function invoice()
     {
-        $items = Cart::instance('shoping')->content();
+        $items = Cart::instance('shopping')->content();
         return view('frontend.page.checkout.invoice')->with(['items' => $items]);
     }
 
@@ -54,7 +54,9 @@ class CheckoutController extends Controller
      */
     public function store(Request $request)
     {
-        $items = Cart::instance('shoping')->content();
+//        dd($request->all());
+        $items = Cart::instance('shopping')->content();
+        $total = Cart::instance('shopping')->total();
         $customer = null;
         $date = date('Y-m-d');
         if (Auth::user()) {
@@ -62,28 +64,38 @@ class CheckoutController extends Controller
             $customer = $user->Customer;
         }
         $oder = new Oder();
-        if(isset($customer))$oder->customer_id = $customer->id ;
-        $oder->name = $request->get('name');
+        if (isset($customer)) {
+            $oder->customer_id = $customer->id;
+            $oder->name = $customer->name;
+        } else {
+            $oder->name = $request->get('name');
+        }
         $oder->email = $request->get('email');
         $oder->phone = $request->get('phone');
-        $oder->date_oder = date('Y-m-d',strtotime($date . '1 days'));
-        $oder->payment = Cart::instance('shoping')->total();
+        $oder->date_oder = date('Y-m-d', strtotime($date . '1 days'));
+        $total = str_replace(',', '', $total);
+        $oder->payment = $total;
         $oder->address = $request->get('address');
         $oder->note = $request->get('note');
         $sucsess = $oder->save();
 
 
         foreach ($items as $item) {
-            $oder->products()->attach($item->id,[
-                'quantity'=>$item->qty,
-                'unit_price'=>$item->price,
+            $oder->products()->attach($item->id, [
+                'quantity' => $item->qty,
+                'unit_price' => $item->price,
             ]);
         }
+        $product_oder = $oder->Products;
 
-        if($sucsess){
-            Cart::instance('shoping')->destroy();
-            return redirect()->route('frontend.home');
+        if ($sucsess) {
+            Cart::instance('shopping')->destroy();
+
         }
+        return view('frontend.page.checkout.success')->with([
+            'oder' => $oder,
+            'product_oder' => $product_oder,
+        ]);
     }
 
     /**

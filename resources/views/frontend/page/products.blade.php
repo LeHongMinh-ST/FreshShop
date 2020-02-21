@@ -26,7 +26,6 @@
             </div>
         </div>
     </div>
-    </div>
 @endsection
 @section('content')
     <div class="shopping-area section-padding">
@@ -60,43 +59,6 @@
                                                 <input type="reset" value="CLEAR"/>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </aside>
-                        </div>
-                        <div class="shop-widget-bottom">
-                            <aside class="widget widget-seller">
-                                <h2 class="sidebar-title">TOP SELLERS</h2>
-                                <div class="single-seller">
-                                    <div class="seller-img">
-                                        <img src="img/shop/1.jpg" alt=""/>
-                                    </div>
-                                    <div class="seller-details">
-                                        <a href="shop.html"><h5>Cold mountain</h5></a>
-                                        <h5>$ 50.00</h5>
-                                        <ul>
-                                            <li><i class="fa fa-star icolor"></i></li>
-                                            <li><i class="fa fa-star icolor"></i></li>
-                                            <li><i class="fa fa-star icolor"></i></li>
-                                            <li><i class="fa fa-star icolor"></i></li>
-                                            <li><i class="fa fa-star icolor"></i></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="single-seller">
-                                    <div class="seller-img">
-                                        <img src="img/shop/2.jpg" alt=""/>
-                                    </div>
-                                    <div class="seller-details">
-                                        <a href=""><h5>The historian</h5></a>
-                                        <h5>$ 50.00</h5>
-                                        <ul>
-                                            <li><i class="fa fa-star icolor"></i></li>
-                                            <li><i class="fa fa-star icolor"></i></li>
-                                            <li><i class="fa fa-star icolor"></i></li>
-                                            <li><i class="fa fa-star icolor"></i></li>
-                                            <li><i class="fa fa-star icolor"></i></li>
-                                        </ul>
                                     </div>
                                 </div>
                             </aside>
@@ -138,9 +100,6 @@
                                             </select>
                                         </div>
                                     </li>
-                                    <li class="shop-pagination"><a href="#">1</a></li>
-                                    <li class="shop-pagination"><a href="#">2</a></li>
-                                    <li class="shop-pagination"><a href="#"><i class="fa fa-caret-right"></i></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -156,7 +115,7 @@
                                                         @if($product->avatar)
                                                             <img alt=""
                                                                  src="{{asset('storage/images/product/avatar/'.$product->avatar)}}"
-                                                                 style="height: 280px">
+                                                                 style="height: 280px;width: 270px">
                                                         @else
                                                             <img alt="" src="{{asset('frontend/img/featured/1.jpg')}}">
                                                         @endif
@@ -196,17 +155,22 @@
                                                         <a href="#">{{$product->name}}</a>
                                                     </div>
                                                     <div class="rating-icon">
-                                                        <i class="fa fa-star icolor"></i>
-                                                        <i class="fa fa-star icolor"></i>
-                                                        <i class="fa fa-star icolor"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
+                                                        @for($i = 1; $i<=5 ; $i++)
+                                                            @if($i <= $product->avg)
+                                                                <span class="fa fa-star icolor"></span>
+                                                            @else
+                                                                <span class="fa fa-star"></span>
+                                                            @endif
+                                                        @endfor
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </div>
                                     @endforeach
+
                                 </div>
+
                             </div>
                             <div id="menu1" class="tab-pane fade">
                                 <div class="row">
@@ -214,7 +178,7 @@
                                         <div class="single-shop-product">
                                             <div class="col-xs-12 col-sm-5 col-md-4">
                                                 <div class="left-item">
-                                                    <a href="single-product.html" title="East of eden">
+                                                    <a href="{{route('frontend.detail',$product->slug)}}" title="East of eden">
                                                         @if($product->avatar)
                                                             <img alt=""
                                                                  src="{{asset('storage/images/product/avatar/'.$product->avatar)}}"
@@ -229,7 +193,7 @@
                                             <div class="col-xs-12 col-sm-7 col-md-8">
                                                 <div class="deal-product-content">
                                                     <h4>
-                                                        <a href="single-product.html"
+                                                        <a href="{{route('frontend.detail',$product->slug)}}"
                                                            title="East of eden">{{$product->name}}</a>
                                                     </h4>
                                                     <div class="product-price">
@@ -261,7 +225,11 @@
                                         </div>
                                     @endforeach
                                 </div>
+
                             </div>
+                        </div>
+                        <div style="float: right">
+                            {!! $products->links() !!}
                         </div>
                     </div>
                 </div>
@@ -304,7 +272,8 @@
                                         <div class="numbers-row">
                                             <input type="number" id="french-hens" value="1" min="1" name="qty">
                                         </div>
-                                        <button class="single_add_to_cart_button" product_id="" type="submit">Thêm vào giỏ hàng
+                                        <button class="single_add_to_cart_button" product_id="" type="submit">Thêm vào
+                                            giỏ hàng
                                         </button>
                                     </form>
                                 </div>

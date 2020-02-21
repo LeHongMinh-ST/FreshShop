@@ -10,6 +10,13 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Profile</h1>
+                    @if(session()->has('success'))
+                        <span style="color: green">{{session()->pull('success')}}</span>
+                    @endif
+
+                    @if(session()->has('error'))
+                        <span style="color: red">{{session()->pull('error')}}</span>
+                    @endif
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -189,7 +196,7 @@
                                 @can('updateRole',$user)
                                     <div class="tab-pane" id="settings">
                                         <form class="form-horizontal" action="{{route('User.update-role',$user->id)}}"
-                                              method="post" enctype="multipart/form-data">
+                                              method="post">
                                             @csrf
                                             @method('put')
                                             <div class="form-group row">

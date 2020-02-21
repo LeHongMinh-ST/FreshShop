@@ -15,6 +15,11 @@ class SupplierController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $suppliers = Supplier::paginate(10);
@@ -50,10 +55,10 @@ class SupplierController extends Controller
         $supplier->phone = $request->get('phone');
         $supplier->address = $request->get('address');
         $supplier->note = $request->get('note');
-        $save = $supplier->save();
+        $success = $supplier->save();
 
-        if ($save)
-            $request->session()->flash('success', 'Tao mới thành công');
+        if ($success)
+            $request->session()->flash('success', 'Tao mới thành công nhà cung cấp '. $supplier->name);
         else
             $request->session()->flash('error', 'Tạo mới thất bại');
 
@@ -104,12 +109,12 @@ class SupplierController extends Controller
         $supplier->phone = $request->get('phone');
         $supplier->address = $request->get('address');
         $supplier->note = $request->get('note');
-        $save = $supplier->save();
+        $success = $supplier->save();
 
-        if ($save)
-            $request->session()->flash('success-update', 'Cập nhật thành công');
+        if ($success)
+            $request->session()->flash('success', 'Cập nhât thành công nhà cung cấp '. $supplier->name);
         else
-            $request->session()->flash('error-update', 'Cập nhật thất bại');
+            $request->session()->flash('error', 'Cập nhật thất bại');
 
         return redirect()->route('Supplier.index');
     }
@@ -124,11 +129,11 @@ class SupplierController extends Controller
     {
         $supplier = Supplier::find($id);
         $this->authorize('delete', $supplier);
-        $delete = $supplier->delete();
-        if ($delete)
-            session()->flash('success-delete', 'Gỡ thành công');
+        $success = $supplier->delete();
+        if ($success)
+            session()->flash('success', 'Gỡ thành công nhà cung cấp '. $supplier->name);
         else
-            session()->flash('error-delete', 'Gỡ thất bại');
+            session()->flash('error', 'Gỡ thất bại');
         return redirect()->route('Supplier.index');
     }
 
@@ -143,11 +148,11 @@ class SupplierController extends Controller
     {
         $supplier = Supplier::onlyTrashed()->find($id);
         $this->authorize('restore', $supplier);
-        $restore = $supplier->restore();
-        if ($restore)
-            session()->flash('success-restore', 'Khôi phục thành công');
+        $success = $supplier->restore();
+        if ($success)
+            session()->flash('success', 'Khôi phục thành công nhà cung cấp '. $supplier->name);
         else
-            session()->flash('error-restore', 'Khôi phục thất bại');
+            session()->flash('error', 'khôi phục thất bại');
         return redirect()->route('Supplier.index');
     }
 
@@ -156,11 +161,11 @@ class SupplierController extends Controller
         $supplier = Supplier::onlyTrashed()->find($id);
         $this->authorize('delete', $supplier);
 
-        $forceDelete=$supplier->forceDelete();
-        if ($forceDelete)
-            session()->flash('success-forceDelete', 'Xóa thành công');
+        $success = $supplier->forceDelete();
+        if ($success)
+            session()->flash('success', 'Xóa thành công nhà cung cấp '. $supplier->name);
         else
-            session()->flash('error-forceDelete', 'Xóa thất bại');
+            session()->flash('error', 'Xóa thất bại');
 
         return redirect()->route('Supplier.trashed');
     }

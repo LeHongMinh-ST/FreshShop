@@ -23,36 +23,13 @@
                 <div class="col-sm-6">
                     <h1>Danh sách sản phẩm</h1>
                     @if(session()->has('success'))
-                        <span style="color: green">{{session()->get('success')}}</span>
+                        <div style="display:none;" class="success">{{session()->pull('success')}}</div>
                     @endif
 
                     @if(session()->has('error'))
-                        <span style="color: red">{{session()->get('error')}}</span>
+                        <div style="display:none;" class="error">{{session()->pull('error')}}</div>
                     @endif
 
-                    @if(session()->has('success-update'))
-                        <span style="color: green">{{session()->get('success-update')}}</span>
-                    @endif
-
-                    @if(session()->has('error-update'))
-                        <span style="color: red">{{session()->get('error-update')}}</span>
-                    @endif
-
-                    @if(session()->has('success-delete'))
-                        <span style="color: green">{{session()->get('success-delete')}}</span>
-                    @endif
-
-                    @if(session()->has('error-delete'))
-                        <span style="color: red">{{session()->get('error-delete')}}</span>
-                    @endif
-
-                    @if(session()->has('success-restore'))
-                        <span style="color: green">{{session()->get('success-restore')}}</span>
-                    @endif
-
-                    @if(session()->has('error-restore'))
-                        <span style="color: red">{{session()->get('error-restore')}}</span>
-                    @endif
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -76,13 +53,15 @@
                 <h3 class="card-title"></h3>
                 <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
-                        <input type="text" name="table_search" class="form-control float-right"
-                               placeholder="Search">
-
-                        <div class="input-group-append">
-                            <button type="submit" class="btn btn-default"><i class="fas fa-search"></i>
-                            </button>
-                        </div>
+                        <form action="{{route('Oder.search')}}" method="get" style="display: flex">
+                            @csrf
+                            <input type="text" name="key" class="form-control float-right"
+                                   placeholder="Search">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-default"><i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -91,25 +70,28 @@
                     <thead>
                     <tr>
                         <th>
-                            id
+                            @sortablelink('id')
                         </th>
                         <th>
-                            Tên sản phẩm
+                            @sortablelink('name','Tên sản phẩm')
                         </th>
                         <th>
                             Ảnh
                         </th>
                         <th>
-                            Loại sản pẩm
+                            @sortablelink('category_id','Loại sản pẩm')
                         </th>
                         <th>
-                            Giá bán
+                            @sortablelink('price_import','Giá nhập')
                         </th>
                         <th>
-                            Đơn vị
+                            @sortablelink('price_sell','Giá bán')
                         </th>
                         <th>
-                            Trạng thái
+                           @sortablelink('unit','Đơn vị')
+                        </th>
+                        <th>
+                            @sortablelink('status','Trạng thái')
                         </th>
                         <th>
                         </th>
@@ -122,7 +104,7 @@
                                 {{$value->id}}
                             </td>
                             <td>
-                                <a>
+                                <a href="{{route('Product.show',$value->id)}}">
                                     {{$value->name}}
                                 </a>
                             </td>
@@ -144,10 +126,16 @@
                                 </ul>
                             </td>
                             <td>
-                                {{$value->category}}
+                                <a href="{{route('Category.show',$value->category_id)}}">
+                                    {{$value->category}}
+                                </a>
                             </td>
                             <td>
-                                @if(isset($value->price_sale)) {{number_format($value->price_sale)}} vnđ <span class="badge badge-danger">
+                                {{number_format($value->price_import)}} vnđ
+                            </td>
+                            <td>
+                                @if(isset($value->price_sale)) {{number_format($value->price_sale)}} vnđ <span
+                                    class="badge badge-danger">
                                     sale
                                 </span>
                                 @else{{number_format($value->price_sell)}} vnđ
@@ -191,7 +179,8 @@
                                     </form>
                                 @endcan
                                 @can('delete',$value)
-                                    <form action="{{route('Product.destroy',$value->id)}}" method="POST"
+                                    <form class="delete-form" action="{{route('Product.destroy',$value->id)}}"
+                                          method="POST"
                                           style="margin-right: 5px">
                                         @csrf
                                         @method('DELETE')
@@ -201,8 +190,6 @@
                                     </form>
                                 @endcan
                             </td>
-
-
                         </tr>
                     @endforeach
                     </tbody>

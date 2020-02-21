@@ -23,35 +23,11 @@
                 <div class="col-sm-6">
                     <h1>Danh sách bài viết</h1>
                     @if(session()->has('success'))
-                        <span style="color: green">{{session()->get('success')}}</span>
+                        <div style="display:none;" class="success">{{session()->pull('success')}}</div>
                     @endif
 
                     @if(session()->has('error'))
-                        <span style="color: red">{{session()->get('error')}}</span>
-                    @endif
-
-                    @if(session()->has('success-update'))
-                        <span style="color: green">{{session()->get('success-update')}}</span>
-                    @endif
-
-                    @if(session()->has('error-update'))
-                        <span style="color: red">{{session()->get('error-update')}}</span>
-                    @endif
-
-                    @if(session()->has('success-delete'))
-                        <span style="color: green">{{session()->get('success-delete')}}</span>
-                    @endif
-
-                    @if(session()->has('error-delete'))
-                        <span style="color: red">{{session()->get('error-delete')}}</span>
-                    @endif
-
-                    @if(session()->has('success-restore'))
-                        <span style="color: green">{{session()->get('success-restore')}}</span>
-                    @endif
-
-                    @if(session()->has('error-restore'))
-                        <span style="color: red">{{session()->get('error-restore')}}</span>
+                        <div style="display:none;" class="error">{{session()->pull('error')}}</div>
                     @endif
                 </div>
                 <div class="col-sm-6">
@@ -100,6 +76,9 @@
                             Ảnh
                         </th>
                         <th>
+                            Mô tả
+                        </th>
+                        <th>
                             Người đăng
                         </th>
                         <th>
@@ -133,6 +112,12 @@
                                 </ul>
                             </td>
                             <td>
+                                <p>
+                                    {{substr($value->description,0,100).'...'}}
+                                </p>
+
+                            </td>
+                            <td>
                                 {{$value->user}}
                             </td>
                             <td>
@@ -142,7 +127,7 @@
                                 {{$value->created_at}}
                             </td>
                             <td class="text-right" style="display: flex">
-                                <form action="{{route('Post.show',$value->id)}}" method="GET"
+                                <form action="{{route('frontend.post',$value->id)}}" method="GET"
                                       style="margin-right: 5px">
                                     <button type="submit" class="btn btn-primary btn-sm">
                                         <i class="fas fa-folder">
@@ -150,26 +135,26 @@
                                         Chi tiết
                                     </button>
                                 </form>
-{{--                                @can('update',$value)--}}
-                                    <form action="{{route('Post.edit',$value->id)}}" method="GET"
-                                          style="margin-right: 5px">
-                                        <button type="submit" class="btn btn-info btn-sm">
-                                            <i class="fas fa-pencil-alt">
-                                            </i>
-                                            Sửa
-                                        </button>
-                                    </form>
-{{--                                @endcan--}}
-{{--                                @can('delete',$value)--}}
-                                    <form action="{{route('Post.destroy',$value->id)}}" method="POST"
-                                          style="margin-right: 5px">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">
-                                            <i class="fa fa-btn fa-lock"></i> Gỡ
-                                        </button>
-                                    </form>
-{{--                                @endcan--}}
+                                {{--                                @can('update',$value)--}}
+                                <form action="{{route('Post.edit',$value->id)}}" method="GET"
+                                      style="margin-right: 5px">
+                                    <button type="submit" class="btn btn-info btn-sm">
+                                        <i class="fas fa-pencil-alt">
+                                        </i>
+                                        Sửa
+                                    </button>
+                                </form>
+                                {{--                                @endcan--}}
+                                {{--                                @can('delete',$value)--}}
+                                <form action="{{route('Post.destroy',$value->id)}}" method="POST"
+                                      style="margin-right: 5px">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        <i class="fa fa-btn fa-lock"></i> Gỡ
+                                    </button>
+                                </form>
+                                {{--                                @endcan--}}
                             </td>
 
 

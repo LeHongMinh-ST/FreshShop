@@ -22,6 +22,11 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
 //        $users = DB::table('users')->get();
@@ -58,9 +63,9 @@ class UserController extends Controller
         $user->password = Hash::make($request->get('password'));
         $user->phone = $request->get('phone');
         $user->role = $request->get('role');
-        $save = $user->save();
-        if ($save)
-            $request->session()->flash('success', 'Tao mới thành công');
+        $success = $user->save();
+        if ($success)
+            $request->session()->flash('success', 'Tao mới thành công nhân viên ' .$user->name);
         else
             $request->session()->flash('error', 'Tạo mới thất bại');
 
@@ -126,22 +131,25 @@ class UserController extends Controller
             Storage::disk('public')->putFileAs('images/user/avatar', $avatar, $profileavatar);
             $user->avatar = $profileavatar;
         }
-        $save = $user->save();
+        $success = $user->save();
 
-        if ($save)
-            $request->session()->flash('success', 'Tao mới thành công');
+        if ($success)
+            $request->session()->flash('success', 'Cập nhật thành công ');
         else
-            $request->session()->flash('error', 'Tạo mới thất bại');
+            $request->session()->flash('error', 'Cập nhật thất bại');
 
         return redirect()->route('User.show', $user->id);
     }
 
-    public function updateRole(StoreUserRequest $request, $id)
+    public function updateRole(Request $request, $id)
     {
         $user = User::find($id);
-        dd(1);
         $user->role = $request->get('role');
-        $user->save();
+        $success = $user->save();
+        if ($success)
+            $request->session()->flash('success', 'Cập nhật thành công chức vụ cho nhân viên ' .$user->name);
+        else
+            $request->session()->flash('error', 'Cập nhật thất bại');
 
         return redirect()->route('User.index');
     }
@@ -157,7 +165,12 @@ class UserController extends Controller
         $user = User::find($id);
         $this->authorize('delete', $user);
 
-        $user->delete();
+        $success = $user->delete();
+
+        if ($success)
+            session()->flash('success', 'Khóa thành công tài khoản '. $user->name);
+        else
+            session()->flash('error', 'Khóa thất bại');
         return redirect()->route('User.index');
     }
 
@@ -170,7 +183,13 @@ class UserController extends Controller
     public function restore($id)
     {
         $user = User::onlyTrashed()->find($id);
-        $user->restore();
+        $success = $user->restore();
+
+        if ($success)
+            session()->flash('success', 'Khôi phục thành công tài khoản '. $user->name);
+        else
+            session()->flash('error', 'Khôi phục thất bại');
+
         return redirect()->route('User.index');
     }
 
@@ -181,7 +200,13 @@ class UserController extends Controller
             $img = 'storage/images/user/avatar' . $user->avatar;
             File::delete($img);
         }
-        $user->forceDelete();
+        $success = $user->forceDelete();
+
+        if ($success)
+            session()->flash('success', 'Xóa thành công '.$user->name);
+        else
+            session()->flash('error', 'Xóa thất bại');
+
         return redirect()->route('User.trashed');
     }
 

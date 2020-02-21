@@ -20,7 +20,7 @@
     <!-- jquery-ui.min css -->
     <link rel="stylesheet" href="{{asset('frontend/css/jquery-ui.min.css')}}">
     <!-- meanmenu css -->
-    <link rel="stylesheet" href="{{asset('frontendcss/meanmenu.min.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/meanmenu.min.css')}}">
     <!-- Font-Awesome css -->
     <link rel="stylesheet" href="{{asset('frontend/css/font-awesome.min.css')}}">
     <!-- pe-icon-7-stroke css -->
@@ -38,8 +38,12 @@
     <link rel="stylesheet" href="{{asset('frontend/style.css')}}">
     <!-- responsive css -->
     <link rel="stylesheet" href="{{asset('frontend/css/responsive.css')}}">
+    <link rel="stylesheet" href="{{asset('frontend/css/bootstrap-rating.css')}}">
+
+
     <!-- modernizr css -->
     <script src="{{asset('frontend/js/vendor/modernizr-2.8.3.min.js')}}"></script>
+    @yield('css')
 </head>
 <body>
 <!--[if lt IE 8]>
@@ -61,6 +65,7 @@
 
 <!-- all js here -->
 <!-- jquery latest version -->
+
 <script src="{{asset('frontend/js/vendor/jquery-1.12.0.min.js')}}"></script>
 <!-- bootstrap js -->
 <script src="{{asset('frontend/js/bootstrap.min.js')}}"></script>
@@ -91,6 +96,9 @@
 <script src="{{asset('frontend/lib/home.js')}}" type="text/javascript"></script>
 <!-- main js -->
 <script src="{{asset('frontend/js/main.js')}}"></script>
+<script type="text/javascript" src="{{asset('frontend/js/bootstrap-rating.js')}}"></script>
+<script src="{{asset('frontend/js/sweealert.js')}}"></script>
 <script src="{{asset('frontend/js/quickview.js')}}"></script>
+<script src="{{asset('frontend/js/Chart.js')}}"></script>
 </body>
 </html>

@@ -3,6 +3,92 @@
 @section('title')
     Show product
 @endsection
+@section('css')
+    <style>
+
+        .fa {
+            font-size: 25px;
+        }
+
+        .checked {
+            color: orange;
+        }
+
+        /* Three column layout */
+        .side {
+            float: left;
+            width: 15%;
+            margin-top: 10px;
+        }
+
+        .middle {
+            margin-top: 10px;
+            float: left;
+            width: 70%;
+        }
+
+        /* Place text to the right */
+        .right {
+            text-align: right;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* The bar container */
+        .bar-container {
+            width: 100%;
+            background-color: #f1f1f1;
+            text-align: center;
+            color: white;
+        }
+
+        /* Individual bars */
+        .bar-5 {
+            width: 60%;
+            height: 18px;
+            background-color: #4CAF50;
+        }
+
+        .bar-4 {
+            width: 30%;
+            height: 18px;
+            background-color: #2196F3;
+        }
+
+        .bar-3 {
+            width: 10%;
+            height: 18px;
+            background-color: #00bcd4;
+        }
+
+        .bar-2 {
+            width: 4%;
+            height: 18px;
+            background-color: #ff9800;
+        }
+
+        .bar-1 {
+            width: 15%;
+            height: 18px;
+            background-color: #f44336;
+        }
+
+        /* Responsive layout - make the columns stack on top of each other instead of next to each other */
+        @media (max-width: 400px) {
+            .side, .middle {
+                width: 100%;
+            }
+
+            .right {
+                display: none;
+            }
+    </style>
+@endsection
 
 @section('content-header')
     <section class="content-header">
@@ -97,9 +183,14 @@
                     <nav class="w-100">
                         <div class="nav nav-tabs" id="product-tab" role="tablist">
                             <a class="nav-item nav-link active" id="product-desc-tab" data-toggle="tab"
-                               href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="true">Mô tả sản phẩm</a>
+                               href="#product-desc" role="tab" aria-controls="product-desc" aria-selected="true">Mô tả
+                                sản phẩm</a>
                             <a class="nav-item nav-link" id="product-rating-tab" data-toggle="tab"
-                               href="#product-rating" role="tab" aria-controls="product-rating" aria-selected="false">Rating</a>
+                               href="#product-rating" role="tab" aria-controls="product-rating" aria-selected="false">Đánh
+                                giá</a>
+                            <a class="nav-item nav-link" id="product-comments-tab" data-toggle="tab"
+                               href="#product-comments" role="tab" aria-controls="product-comments"
+                               aria-selected="false">Bình luận</a>
                         </div>
                     </nav>
                     <div class="tab-content p-3" id="nav-tabContent">
@@ -107,16 +198,91 @@
                              aria-labelledby="product-desc-tab"> {!! $product->content !!}
                         </div>
                         <div class="tab-pane fade" id="product-rating" role="tabpanel"
-                             aria-labelledby="product-rating-tab"> Cras ut ipsum ornare, aliquam ipsum non, posuere
-                            elit. In hac habitasse platea dictumst. Aenean elementum leo augue, id fermentum risus
-                            efficitur vel. Nulla iaculis malesuada scelerisque. Praesent vel ipsum felis. Ut molestie,
-                            purus aliquam placerat sollicitudin, mi ligula euismod neque, non bibendum nibh neque et
-                            erat. Etiam dignissim aliquam ligula, aliquet feugiat nibh rhoncus ut. Aliquam efficitur
-                            lacinia lacinia. Morbi ac molestie lectus, vitae hendrerit nisl. Nullam metus odio,
-                            malesuada in vehicula at, consectetur nec justo. Quisque suscipit odio velit, at accumsan
-                            urna vestibulum a. Proin dictum, urna ut varius consectetur, sapien justo porta lectus, at
-                            mollis nisi orci et nulla. Donec pellentesque tortor vel nisl commodo ullamcorper. Donec
-                            varius massa at semper posuere. Integer finibus orci vitae vehicula placerat.
+                             aria-labelledby="product-rating-tab">
+                            <span class="heading">Đánh giá của người mua</span>
+                            @for($i =1;$i<=5;$i++)
+                                @if($i<=$avg)
+                                    <span class="fa fa-star checked"></span>
+                                @else
+                                    <span class="fa fa-star"></span>
+                                @endif
+                            @endfor
+                            <p>{{number_format($avg,2)}} <span class="fa fa-star checked"></span>
+                                bởi {{$rates->count()}} đánh giá</p>
+                            <hr style="border:3px solid #f1f1f1">
+
+                            @if($rates->count() > 0)
+                                @foreach($rates as $rate)
+                                    <div class="media row">
+                                        <div>
+                                            @auth
+                                                @if(Auth::user()->id == $rate->user_id || Auth::user()->role ==1)
+                                                    <form
+                                                        action="{{route('frontend.post_comment.destroy',$rate->id)}}"
+                                                        method="post">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button type="submit" class="close" aria-label="Close">
+                                                                <span aria-hidden="true"
+                                                                      style="color:red;">&times;</span>
+                                                        </button>
+                                                    </form>
+                                                @endif
+                                            @endauth
+                                        </div>
+                                        <img style="width: 64px; height: 64px; border-radius: 50%; "
+                                             class="align-self-start mr-3"
+                                             src="{{asset('storage/images/user/avatar/default-avatar.png')}}"
+                                             alt="Generic placeholder image">
+
+                                        <div class="media-body">
+                                            <h5 class="mt-0">{{$rate->Customer->name}}</h5>
+                                            <span>
+                                                        @for($i=1;$i<=5;$i++)
+                                                    @if($i<=$rate->rate)
+                                                        <i class="fa fa-star" style="color:orange;"></i>
+                                                    @else
+                                                        <i class="fa fa-star"></i>
+                                                    @endif
+                                                @endfor
+                                                    </span>
+                                            <p>{{$rate->comment}}</p>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @else
+                                <h3>Chưa có đánh giá!</h3>
+                            @endif
+                        </div>
+                        <div class="tab-pane fade" id="product-comments" role="tabpanel"
+                             aria-labelledby="product-comments-tab">
+                            @if($comments->count() == 0)
+                                <h3>Chưa có bình luận!</h3>
+                            @else
+                                @foreach($comments as $comment)
+                                    <div class="media">
+                                        <img style="width: 64px; height: 64px; border-radius: 50%; "
+                                             class="align-self-start mr-3"
+                                             src="{{asset('storage/images/user/avatar/default-avatar.png')}}"
+                                             alt="Generic placeholder image">
+                                        <div class="media-body">
+                                            <h5 class="mt-0">{{$comment->User->name}}</h5>
+                                            <p>{{$comment->comment}}</p>
+                                        </div>
+                                        <div>
+                                            <form action="{{route('Comment.destroy',$comment->id)}}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="close" aria-label="Close">
+                                                    <span aria-hidden="true" style="color:red;">&times;</span>
+                                                </button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -127,3 +293,4 @@
 
     </section>
 @endsection
+

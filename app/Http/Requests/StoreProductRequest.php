@@ -30,7 +30,7 @@ class StoreProductRequest extends FormRequest
             'content' => 'required',
             'avatar' => 'required|image|max:512',
             'images.*' => 'image|max:512',
-            'unit' => 'required|in:kg,gam,khay,ml,lít',
+            'unit' => 'required',
         ];
         else return [
             'name' => 'required|min:10|max:255|',
@@ -38,8 +38,8 @@ class StoreProductRequest extends FormRequest
             'price_sell' => 'required|numeric|min:0',
             'content' => 'required',
             'avatar' => 'image|max:512',
-            'images.*' => 'image|max:512',
-            'unit' => 'required|in:kg,gam,khay,ml,lít,',
+            'images.*' => 'image|max:2048',
+            'unit' => 'required|',
         ];
     }
 

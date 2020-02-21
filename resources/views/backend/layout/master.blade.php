@@ -27,6 +27,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    @yield('css')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -85,8 +86,12 @@
 <script src="{{asset('backend/dist/js/pages/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('backend/dist/js/demo.js')}}"></script>
+<script src="{{asset('backend/dist/js/Chart.js')}}"></script>
 
+<script src="{{asset('backend/dist/js/sweealert.js')}}"></script>
 <script src="{{asset('backend/dist/js/modal.js')}}"></script>
+
+<script src="{{asset('backend/dist/js/alert.js')}}"></script>
 
 @yield('script')
 </body>

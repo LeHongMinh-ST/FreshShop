@@ -14,10 +14,15 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $customers = Customer::paginate(10);
-        return view('backend.customer.list')->with(['customers'=>$customers]);
+        $customers = Customer::sortable()->paginate(10);
+        return view('backend.customer.list')->with(['customers' => $customers]);
     }
 
     /**
@@ -33,7 +38,7 @@ class CustomerController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -44,7 +49,7 @@ class CustomerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -55,7 +60,7 @@ class CustomerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -66,8 +71,8 @@ class CustomerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -78,7 +83,7 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -86,7 +91,11 @@ class CustomerController extends Controller
         $customer = Customer::find($id);
         $user = User::find($customer->user_id);
         $customer->delete();
-        $user->delete();
+        $success = $user->delete();
+        if ($success)
+            session()->flash('success', 'Xóa thành công khách hàng ' . $customer->name);
+        else
+            session()->flash('error', 'Xóa thất bại');
 
         return redirect()->route('Customer.index');
     }
@@ -94,14 +103,20 @@ class CustomerController extends Controller
     public function trashed()
     {
         $customers = Customer::onlyTrashed()->paginate(6);
-        return view('backend.customer.trashed')->with(['customers'=>$customers]);
+        return view('backend.customer.trashed')->with(['customers' => $customers]);
     }
+
     public function restore($id)
     {
         $customer = Customer::onlyTrashed()->find($id);
         $user = User::onlyTrashed()->find($customer->user_id);
         $user->restore();
-        $customer->restore();
+        $success = $customer->restore();
+
+        if ($success)
+            session()->flash('success', 'khôi phục thành công khách hàng ' . $customer->name);
+        else
+            session()->flash('error', 'khôi phục thất bại');
 
         return redirect()->route('Customer.index');
     }
@@ -110,8 +125,14 @@ class CustomerController extends Controller
     {
         $customer = Customer::onlyTrashed()->find($id);
         $user = User::onlyTrashed()->find($customer->user_id);
+        $name = $customer->name;
         $customer->forceDelete();
-        $user->forceDelete();
+        $success = $user->forceDelete();
+
+        if ($success)
+            session()->flash('success', 'Xóa thành công khách hàng ' . $name);
+        else
+            session()->flash('error', 'Xóa thất bại');
 
         return redirect()->route('Customer.trashed');
     }

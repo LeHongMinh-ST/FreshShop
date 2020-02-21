@@ -10,11 +10,11 @@
                 <div class="col-sm-6">
                     <h1>Danh sách nhân viên đang hoạt động</h1>
                     @if(session()->has('success'))
-                        <span style="color: green">{{session()->get('success')}}</span>
+                        <div style="display:none;" class="success">{{session()->pull('success')}}</div>
                     @endif
 
                     @if(session()->has('error'))
-                        <span style="color: red">{{session()->get('error')}}</span>
+                        <div style="display:none;" class="error">{{session()->pull('error')}}</div>
                     @endif
                 </div>
                 <div class="col-sm-6">

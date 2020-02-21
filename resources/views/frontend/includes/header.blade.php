@@ -90,7 +90,7 @@
                             <li><a>Sản phẩm</a>
                                 {!! $parent_categories !!}
                             </li>
-                            <li><a href="shop.html">BLOG Món ngon</a></li>
+                            <li><a href="{{route('frontend.blog')}}">BLOG Món ngon</a></li>
                             <li><a href="{{route('frontend.contact')}}">Liên Hệ</a></li>
                         </ul>
                     </nav>
@@ -125,13 +125,14 @@
                                         </div>
                                     </div>
                                     <div class="cart-checkout">
+                                        <a href="">
+                                            Trang cá nhân
+                                        </a>
+                                    </div>
+                                    <div class="cart-checkout">
                                         <a href="{{ route('logout') }}">
                                             Đăng xuất
                                         </a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="get"
-                                              style="display: none;">
-                                            @csrf
-                                        </form>
                                     </div>
                                 </div>
                             @endguest
@@ -140,13 +141,7 @@
                         <li class="shoping-cart">
                             <a href="{{route('cart.index')}}">
                                 <i class="flaticon-shop"></i>
-
-                                @if($count > 0)
-                                    <span class="number_cart">{{$count}}</span>
-                                @else
-                                    <span class="number_cart">0</span>
-                                @endif
-
+                                <span class="number_cart">{{ Cart::instance('shopping')->content()->count() }}</span>
                             </a>
                         </li>
                     </ul>

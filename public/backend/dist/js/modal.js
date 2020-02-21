@@ -27,6 +27,7 @@ $(document).ready(function () {
                     $("#row_"+ id + " .badge-warning").addClass("badge-info");
                     $("#row_"+ id + " .badge-warning").text("Đã thêm vào đơn nhập");
                     $("#row_"+ id + " .badge-warning").removeClass("badge-warning");
+                    $(".btn-import").css('display','block');
 
                 }
             });

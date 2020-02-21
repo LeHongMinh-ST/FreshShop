@@ -34,7 +34,7 @@
                             <div class="col-12">
                                 <h4>
                                     <i class="fas fa-globe"></i> FreshShop
-                                    <small class="float-right">{{date_format($oder->created_at,'d-m-Y')}}</small>
+                                    <small class="float-right">{{date_format($import->created_at,'d-m-Y')}}</small>
                                 </h4>
                             </div>
                             <!-- /.col -->
@@ -42,7 +42,7 @@
                         <!-- info row -->
                         <div class="row invoice-info">
                             <div class="col-sm-4 invoice-col">
-                                Địa chỉ gửi
+                                Cửa hàng
                                 <address>
                                     <strong>FreshShop</strong><br>
                                     29, Trâu quỳ,Gia Lâm, Hà Nội<br>
@@ -52,12 +52,12 @@
                             </div>
                             <!-- /.col -->
                             <div class="col-sm-4 invoice-col">
-                                Địa chỉ nhận
+                                Nhà cung cấp
                                 <address>
-                                    <strong>{{$oder->name}}</strong><br>
-                                    {{$oder->address}}<br>
-                                    Số điện thoại: (+84) {{$oder->phone}}<br>
-                                    Email: {{$oder->email}}
+                                    <strong>{{$import->Supplier->name}}</strong><br>
+                                    {{$import->Supplier->address}}<br>
+                                    Số điện thoại: (+84) {{$import->Supplier->phone}}<br>
+                                    Email: {{$import->Supplier->email}}
                                 </address>
                             </div>
                             <!-- /.col -->
@@ -81,9 +81,9 @@
                                     <br>
                                     <b>Mã đơn hàng:</b> {{$import->id}}<br>
                                     @if($import->date_import)
-                                        <b>Ngày nhân:</b> {{date("d-m-Y",strtotime($import->date_import))}}
+                                        <b>Ngày nhân:</b> {{date("d-m-Y",strtotime($import->date_import ))}}
                                     @else
-                                        <b>Ngày nhân:</b> Chưa nhận hàng}}
+                                        <b>Ngày nhận:</b> Chưa nhận hàng
                                     @endif
                                     <br>
                             </div>
@@ -104,13 +104,13 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($product_oder as $product)
+                                    @foreach($product_import as $product)
                                         <tr>
                                             <td>{{$product->id}}</td>
                                             <td>{{$product->name}}</td>
-                                            <td>{{$product->pivot->unit_price}} vnđ</td>
+                                            <td>{{number_format($product->pivot->price)}} vnđ</td>
                                             <td>{{$product->pivot->quantity}}</td>
-                                            <td>{{$product->pivot->unit_price*$product->pivot->quantity}} vnđ</td>
+                                            <td>{{number_format($product->pivot->price*$product->pivot->quantity)}} vnđ</td>
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -123,24 +123,26 @@
                         <div class="row">
                             <!-- accepted payments column -->
                             <div class="col-6">
+                                <p class="lead">Ghi chú:</p>
+                                {{$import->note}}
                             </div>
                             <!-- /.col -->
                             <div class="col-6">
-                                <p class="lead">Ngày tạo đơn: {{date_format($oder->created_at,'d-m-Y')}}</p>
+                                <p class="lead">Ngày tạo đơn: {{date_format($import->created_at,'d-m-Y')}}</p>
 
                                 <div class="table-responsive">
                                     <table class="table">
                                         <tr>
                                             <th style="width:50%">Tạm tính:</th>
-                                            <td>{{$oder->subtotal}} vnđ</td>
+                                            <td>{{number_format($import->subtotal)}} vnđ</td>
                                         </tr>
                                         <tr>
                                             <th>Thuế (0%)</th>
-                                            <td>{{$oder->subtotal*0/100}} vnđ</td>
+                                            <td>{{number_format($import->subtotal*0/100)}} vnđ</td>
                                         </tr>
                                         <tr>
                                             <th>Thành tiền:</th>
-                                            <td>{{$oder->payment}}vnđ</td>
+                                            <td>{{number_format($import->payment)}}vnđ</td>
                                         </tr>
                                     </table>
                                 </div>
@@ -152,18 +154,9 @@
                         <!-- this row will not appear when printing -->
                         <div class="row no-print">
                             <div class="col-12">
-                                @if($oder->deleted_at ==null)
-                                    @if($oder->status == 0)
-                                        <form action="{{route('Oder.ship',$oder->id)}}" method="POST"
-                                              style="margin-right: 5px">
-                                            @csrf
-                                            <button type="submit" class="btn btn-info btn float-right"
-                                                    style="margin-right: 5px">
-                                                <i class="fa fa-btn fa-shipping-fast"></i> Giao hàng
-                                            </button>
-                                        </form>
-                                    @elseif($oder->status == 2)
-                                        <form action="{{route('Oder.success',$oder->id)}}" method="POST"
+                                @if($import->deleted_at ==null)
+                                    @if($import->status == 0)
+                                        <form action="{{route('Import.success',$import->id)}}" method="POST"
                                               style="margin-right: 5px">
                                             @csrf
                                             <button type="submit" class="btn btn-success btn float-right"
@@ -173,8 +166,8 @@
                                         </form>
                                     @endif
                                 @endif
-                                @if($oder->status !=1 && $oder->deleted_at ==null)
-                                    <form action="{{route('Oder.destroy',$oder->id)}}" method="POST"
+                                @if($import->status !=1 && $import->deleted_at ==null)
+                                    <form action="{{route('Import.destroy',$import->id)}}" method="POST"
                                           style="margin-right: 5px">
                                         @csrf
                                         @method('DELETE')
@@ -184,7 +177,7 @@
                                         </button>
                                     </form>
                                 @else
-                                    <form action="{{route('Oder.hardDelete',$oder->id)}}" method="POST"
+                                    <form action="{{route('Import.hardDelete',$import->id)}}" method="POST"
                                           style="margin-right: 5px">
                                         @csrf
                                         @method('DELETE')

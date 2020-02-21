@@ -123,15 +123,15 @@
                                                 <tfoot>
                                                 <tr>
                                                     <td colspan="3">Tổng tiền</td>
-                                                    <td><span class="check-price">{{Cart::instance('shoping')->subtotal()}} vnđ</span></td>
+                                                    <td><span class="check-price">{{Cart::instance('shopping')->subtotal()}} vnđ</span></td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="3">Thuế</td>
-                                                    <td><span class="check-price">{{Cart::instance('shoping')->tax()}} vnđ</span></td>
+                                                    <td><span class="check-price">{{Cart::instance('shopping')->tax()}} vnđ</span></td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="3"><strong>Thành tiền</strong></td>
-                                                    <td><strong><span class="check-price">{{Cart::instance('shoping')->total()}} vnđ</span></strong></td>
+                                                    <td><strong><span class="check-price">{{Cart::instance('shopping')->total()}} vnđ</span></strong></td>
                                                 </tr>
                                                 </tfoot>
                                             </table>

@@ -9,6 +9,7 @@ $(document).ready(function () {
             data: {},
             success: function (result) {
                 result = JSON.parse(result);
+                console.log(result);
                 var price_sell = Intl.NumberFormat('de-DE', {
                     style: 'currency',
                     currency: 'VND'
@@ -30,6 +31,10 @@ $(document).ready(function () {
                 }
                 $(".see-all").attr('href', 'Product/detail/' + result.slug);
                 $(".single_add_to_cart_button").attr('product_id', id);
+                $('#french-hens').attr('max', result.remain);
+                if (result.remain == 0 && result.status == 2) {
+                    $(".single_add_to_cart_button").attr('disabled', true);
+                }
                 $("#productModal").modal("show");
             }
         });
@@ -44,7 +49,7 @@ $(document).ready(function () {
             }
         });
         $.ajax({
-            url: "/Cart/create",
+            url: "/Cart/createAjax",
             type: "post",
             dateType: "",
             data: {
@@ -53,10 +58,55 @@ $(document).ready(function () {
                 'qty': $('input[name=qty]').val(),
             },
             success: function (result) {
-                $(".number_cart").text(result);
-                $(".alert-create").text('Thêm thành công');
+                $("#productModal").modal("hide");
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Thông báo',
+                    text: 'Thêm thành công sản phẩm vào giỏ hàng',
+                    footer: '<a href="/Cart">Xem giỏ hàng</a>'
+                })
             }
         });
     });
+
+    if ($(".success").length) {
+        let message = $(".success").text();
+        Swal.fire({
+            icon: 'success',
+            title: 'Thông báo',
+            text: message,
+            footer: '<a href="/Cart">Xem giỏ hàng</a>'
+        })
+    } else if ($(".rate-success").length) {
+        let message = $(".rate-success").text();
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: message,
+            showConfirmButton: false,
+            timer: 1500
+        })
+    }
+
+
+    $(".list_star .fa").click(function () {
+        let count = $(this).attr('data_key');
+        $(".list_star .fa").removeClass('rate_active');
+        $(".list_star .fa").css('color', 'black');
+        $(".rate").val(0);
+        $.each($(".list_star .fa"), function (key, value) {
+            if (key + 1 <= count) {
+                $(this).addClass('rate_active');
+                $(this).css('color', 'orange');
+            }
+        });
+
+        $(".rate").val($(".list_star .rate_active").length);
+        if ($(".rate").val() > 0) {
+            $('.btn-rate').attr('disabled', false);
+        }
+    });
+
+
 });
 

@@ -27,6 +27,14 @@
 @section('content')
     <div class="shopping-cart-area section-padding">
         <div class="container">
+            @if(session()->has('success'))
+                <span style="color: green">{{session()->pull('success')}}</span>
+            @endif
+
+            @if(session()->has('error'))
+                <span style="color: red">{{session()->pull('error')}}</span>
+            @endif
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="wishlist-table-area table-responsive">
@@ -70,7 +78,15 @@
                                         <p>{{$item->price}} vnđ</p>
                                     </td>
                                     <td class="product-quantity product-cart-details">
-                                        <input type="number" value="{{$item->qty}}" class="qty_item">
+                                        <form action="{{route('cart.update',$item->rowId)}}" method="POST">
+                                            @csrf
+                                            @method('put')
+                                            <input type="number" value="{{$item->qty}}" name="qty" class="qty_item"
+                                                   style="text-align: center ; width: 60px">
+                                            <button class="btn_update">
+                                                Cập nhật
+                                            </button>
+                                        </form>
                                     </td>
                                     <td class="product-quantity">
                                         <p>{{$item->qty * $item->price}} vnđ</p>
@@ -116,15 +132,16 @@
                 <div class="col-md-6 col-sm-6">
                     <div class="subtotal-main-area">
                         <div class="subtotal-area">
-                            <h2>Tổng tiền<span>{{Cart::instance('shoping')->subtotal()}} vnđ</span></h2>
+                            <h2>Tổng tiền<span>{{Cart::instance('shopping')->subtotal()}} vnđ</span></h2>
                         </div>
                         <div class="subtotal-area">
-                            <h2>Thuế<span>{{Cart::instance('shoping')->tax()}} vnđ</span></h2>
+                            <h2>Thuế<span>{{Cart::instance('shopping')->tax()}} vnđ</span></h2>
                         </div>
                         <div class="subtotal-area">
-                            <h2>Thành tiền<span>{{Cart::instance('shoping')->total()}} vnđ</span></h2>
+                            <h2>Thành tiền<span>{{Cart::instance('shopping')->total()}} vnđ</span></h2>
                         </div>
-                        <a href="{{route('checkout.method')}}">Thanh Toán</a>
+                        <a href="@if(Cart::instance('shopping')->count()==0)# @else{{route('checkout.method')}}@endif">Thanh
+                            Toán</a>
                     </div>
                 </div>
             </div>

@@ -27,6 +27,13 @@
                 <div class="layer-3">
                     <a href="{{route('frontend.about')}}" class="title-3">TÌM HIỂU THÊM</a>
                 </div>
+                <div class="layer-4">
+                    <form action="{{route('frontend.search')}}" class="title-4" method="get">
+                        @csrf
+                        <input type="text" placeholder="Nhập sản phẩm cần tìm kiếm" name="search">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
             </div>
             <!-- direction 2 -->
             <div id="slider-direction-2" class="slider-direction">
@@ -42,7 +49,12 @@
                 <div class="layer-3">
                     <a href="{{route('frontend.about')}}" class="title-3">TÌM HIỂU THÊM</a>
                 </div>
-                ss
+                <div class="layer-4">
+                    <form action="#" class="title-4">
+                        <input type="text" placeholder="Nhập sản phẩm cần tìm kiếm">
+                        <button type="submit"><i class="fa fa-search"></i></button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -99,11 +111,13 @@
                                                     </div>
 
                                                     <div class="rating-icon">
-                                                        <i class="fa fa-star icolor"></i>
-                                                        <i class="fa fa-star icolor"></i>
-                                                        <i class="fa fa-star icolor"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
+                                                        @for($j=1;$j<=5;$j++)
+                                                            @if($j <= $products_new[$i]->avg)
+                                                                <i class="fa fa-star icolor"></i>
+                                                            @else
+                                                                <i class="fa fa-star "></i>
+                                                            @endif
+                                                        @endfor
                                                     </div>
                                                 </a>
                                                 <div class="product-description">
@@ -156,11 +170,13 @@
                                                             <span class="badge" style="background-color:red">new</span>
                                                         </div>
                                                         <div class="rating-icon">
-                                                            <i class="fa fa-star icolor"></i>
-                                                            <i class="fa fa-star icolor"></i>
-                                                            <i class="fa fa-star icolor"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
+                                                            @for($j=1;$j<=5;$j++)
+                                                                @if($j <= $products_new[$i+1]->avg)
+                                                                    <i class="fa fa-star icolor"></i>
+                                                                @else
+                                                                    <i class="fa fa-star "></i>
+                                                                @endif
+                                                            @endfor
                                                         </div>
                                                     </a>
                                                     <div class="product-description">
@@ -207,7 +223,7 @@
                                                         @if($products_sale[$i]->avatar)
                                                             <img alt=""
                                                                  src="{{asset('storage/images/product/avatar/'.$products_sale[$i]->avatar)}}"
-                                                                 style="height: 280px">
+                                                                 style="height: 280px; width: 270px">
                                                         @else
                                                             <img alt=""
                                                                  src="{{asset('backend/dist/img/product/avatar/demo.png')}}"
@@ -218,13 +234,13 @@
                                                                                      style="background-color:red">sale</span>
                                                             </div>
                                                         @endif
-                                                        <div class="rating-icon">
-                                                            <i class="fa fa-star icolor"></i>
-                                                            <i class="fa fa-star icolor"></i>
-                                                            <i class="fa fa-star icolor"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </div>
+                                                        @for($j=1;$j<=5;$j++)
+                                                            @if($j <= $products_sale[$i]->avg)
+                                                                <i class="fa fa-star icolor"></i>
+                                                            @else
+                                                                <i class="fa fa-star "></i>
+                                                            @endif
+                                                        @endfor
                                                     </a>
                                                     <div class="product-description">
                                                         <div class="functional-buttons">
@@ -263,7 +279,7 @@
                                                         @if($products_sale[$i+1]->avatar)
                                                             <img alt=""
                                                                  src="{{asset('storage/images/product/avatar/'.$products_sale[$i+1]->avatar)}}"
-                                                                 style="height: 280px">
+                                                                 style="height: 280px; width: 270px">
                                                         @else
                                                             <img alt=""
                                                                  src="{{asset('backend/dist/img/product/avatar/demo.png')}}"
@@ -275,13 +291,13 @@
                                                                                      style="background-color:red">sale</span>
                                                             </div>
                                                         @endif
-                                                        <div class="rating-icon">
-                                                            <i class="fa fa-star icolor"></i>
-                                                            <i class="fa fa-star icolor"></i>
-                                                            <i class="fa fa-star icolor"></i>
-                                                            <i class="fa fa-star"></i>
-                                                            <i class="fa fa-star"></i>
-                                                        </div>
+                                                        @for($j=1;$j<=5;$j++)
+                                                            @if($j <= $products_sale[$i+1]->avg)
+                                                                <i class="fa fa-star icolor"></i>
+                                                            @else
+                                                                <i class="fa fa-star "></i>
+                                                            @endif
+                                                        @endfor
                                                     </a>
                                                     <div class="product-description">
                                                         <div class="functional-buttons">
@@ -302,7 +318,8 @@
                                                             <strike>{{number_format($products_sale[$i+1]->price_sell)}}</strike> {{number_format($products_sale[$i+1]->sale)}}
                                                             vnđ</p>
                                                     @else
-                                                        <p>{{number_format($products_sale[$i+1]->price_sell)}} vnđ</p>
+                                                        <p>{{number_format($products_sale[$i+1]->price_sell)}}
+                                                            vnđ</p>
                                                     @endif
                                                 </div>
                                                 <div class="banner-bottom text-center">
@@ -324,131 +341,33 @@
     <div class="testimonial-area text-center">
         <div class="container">
             <div class="testimonial-title">
-                <h2>OUR TESTIMONIAL</h2>
-                <p>What our clients say about the books reviews and comments</p>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="testimonial-list">
-                        <div class="single-testimonial">
-                            <img src="{{asset('frontend/img/testimonial/1.jpg')}}" alt="">
-                            <div class="testmonial-info clearfix">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation. </p>
-                                <div class="testimonial-author text-center">
-                                    <h3>JOHN DOE</h3>
-                                    <p>The Author</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="single-testimonial">
-                            <img src="{{asset('frontend/img/testimonial/2.jpg')}}" alt="">
-                            <div class="testmonial-info clearfix">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                    exercitation. </p>
-                                <div class="testimonial-author text-center">
-                                    <h3>Ashim Kumar</h3>
-                                    <p>CEO</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <h2>Thực phẩm sạch cho mọi nhà</h2>
+                {{--                <p>What our clients say about the books reviews and comments</p>--}}
             </div>
         </div>
     </div>
     <div class="blog-area section-padding">
         <h2 class="section-title">Món ngón mỗi ngày</h2>
-        <p>The Latest Blog post for the biggest Blog for the books Library.</p>
+        <p>Tổng hợp các mẹo nấu ăn và các món ngon thường ngày</p>
         <div class="container">
             <div class="row">
                 <div class="blog-list indicator-style">
-                    <div class="col-md-3">
-                        <div class="single-blog">
-                            <a href="single-#">
-                                <img src="{{asset('frontend/img/blog/1.jpg')}}" alt="">
-                            </a>
-                            <div class="blog-info text-center">
-                                <a href="#"><h2>Modern Book Reviews</h2></a>
-                                <div class="blog-info-bottom">
-                                    <span class="blog-author">BY: <a href="#">LATEST BLOG</a></span>
-                                    <span class="blog-date">19TH JAN 2016</span>
+                    @foreach($posts as $post)
+                        <div class="col-md-3">
+                            <div class="single-blog">
+                                <a href="{{route('frontend.post',$post->id)}}">
+                                    <img src="{{asset('storage/images/post/'.$post->thumbnail)}}" alt="">
+                                </a>
+                                <div class="blog-info text-center">
+                                    <a href="{{route('frontend.post',$post->id)}}"><h2>{{$post->title}}</h2></a>
+                                    <div class="blog-info-bottom">
+                                        <span class="blog-author">BY: {{$post->User->name}}</span>
+                                        <span class="blog-date">{{date_format($post->created_at,'d-m-Y')}}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="single-blog">
-                            <a href="single-#">
-                                <img src="{{asset('frontend/img/blog/2.jpg')}}" alt="">
-                            </a>
-                            <div class="blog-info text-center">
-                                <a href="#"><h2>Modern Book Reviews</h2></a>
-                                <div class="blog-info-bottom">
-                                    <span class="blog-author">BY: <a href="#">ZARIF SUNI</a></span>
-                                    <span class="blog-date">19TH JAN 2016</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="single-blog">
-                            <a href="single-#">
-                                <img src="{{asset('frontend/img/blog/3.jpg')}}" alt="">
-                            </a>
-                            <div class="blog-info text-center">
-                                <a href="#"><h2>Modern Book Reviews</h2></a>
-                                <div class="blog-info-bottom">
-                                    <span class="blog-author">BY: <a href="#">ZARIF SUNI</a></span>
-                                    <span class="blog-date">19TH JAN 2016</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="single-blog">
-                            <a href="single-#">
-                                <img src="{{asset('frontend/img/blog/4.jpg')}}" alt="">
-                            </a>
-                            <div class="blog-info text-center">
-                                <a href="#"><h2>Modern Book Reviews</h2></a>
-                                <div class="blog-info-bottom">
-                                    <span class="blog-author">BY: <a href="#">ZARIF SUNI</a></span>
-                                    <span class="blog-date">19TH JAN 2016</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="single-blog">
-                            <a href="single-#">
-                                <img src="{{asset('frontend/img/blog/1.jpg')}}" alt="">
-                            </a>
-                            <div class="blog-info text-center">
-                                <a href="#"><h2>Modern Book Reviews</h2></a>
-                                <div class="blog-info-bottom">
-                                    <span class="blog-author">BY: <a href="#">ZARIF SUNI</a></span>
-                                    <span class="blog-date">19TH JAN 2016</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="single-blog">
-                            <a href="single-#">
-                                <img src="{{asset('frontend/img/blog/2.jpg')}}" alt="">
-                            </a>
-                            <div class="blog-info text-center">
-                                <a href="#"><h2>Modern Book Reviews</h2></a>
-                                <div class="blog-info-bottom">
-                                    <span class="blog-author">BY: <a href="#">ZARIF SUNI</a></span>
-                                    <span class="blog-date">19TH JAN 2016</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -490,7 +409,8 @@
                                         <div class="numbers-row">
                                             <input type="number" id="french-hens" value="1" min="1" name="qty">
                                         </div>
-                                        <button class="single_add_to_cart_button" product_id="" type="submit">Thêm vào giỏ hàng
+                                        <button class="single_add_to_cart_button" product_id="" type="submit">Thêm vào
+                                            giỏ hàng
                                         </button>
                                     </form>
                                 </div>

@@ -5,8 +5,22 @@
 @endsection
 
 @section('header-content')
-    <div class="map-area">
-        <div id="googleMap" style="width:100%;height:445px;"></div>
+    <div class="breadcrumbs-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div style="background: none;padding-top: 140px;padding-bottom: 140px;">
+                        <h2 style="color: #000000">Liên hệ</h2>
+                        <ul class="breadcrumbs-list">
+                            <li>
+                                <a title="Return to Home" href="{{route('frontend.home')}}">Home</a>
+                            </li>
+                            <li>Liên hệ</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 
@@ -21,9 +35,8 @@
                                 <span><i class="fa fa-user-plus"></i></span>
                             </div>
                             <div class="info">
-                                <h3>PHONE</h3>
-                                <p>+(02)-12345-6789-55</p>
-                                <p>+(05)-15689-5698-44</p>
+                                <h3>Số điện thoại</h3>
+                                <p>+(02) 0974798960</p>
                             </div>
                         </div>
                     </div>
@@ -35,9 +48,9 @@
                                 <span><i class="fa fa-map-marker"></i></span>
                             </div>
                             <div class="info">
-                                <h3>ADDRESS</h3>
-                                <p>Mhilara Street 205,</p>
-                                <p>Roitan city, USA.</p>
+                                <h3>Địa chỉ</h3>
+                                <p>29 Đường Trâu Quỳ</p>
+                                <p>Gia Lâm, Hà Nội</p>
                             </div>
                         </div>
                     </div>
@@ -49,9 +62,8 @@
                                 <i class="fa fa-envelope"></i>
                             </div>
                             <div class="info">
-                                <h3>E-MAIL</h3>
-                                <p>info123@gmail.com</p>
-                                <p>www.companyweb.com</p>
+                                <h3>E-mail</h3>
+                                <p>minhhl298.st@gmail.com</p>
                             </div>
                         </div>
                     </div>
@@ -60,37 +72,6 @@
         </div>
     </div>
     <!-- Address Information Area End -->
-    <!-- Contact Form Area Start -->
-    <div class="contact-form-area">
-        <div class="container">
-            <div class="about-title">
-                <h3>LEAVE A MESSAGE</h3>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <form action="#" method="POST">
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="contact-form-left">
-                                    <input type="text" placeholder="Your Name" name="name" id="name" />
-                                    <input type="email" placeholder="Your Email" name="email" id="email" />
-                                    <input type="text" placeholder="Your phone" name="phone" id="phone" />
-                                </div>
-                            </div>
-                            <div class="col-md-7">
-                                <div class="contact-form-right">
-                                    <div class="input-message">
-                                        <textarea name="message" id="message" placeholder="Your Message"></textarea>
-                                        <input class="btn btn-default" type="submit" value="SEND" name="submit" id="submit">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection
 
 

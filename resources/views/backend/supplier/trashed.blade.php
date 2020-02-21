@@ -10,12 +10,12 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Nhà cung cấp đã gỡ</h1>
-                    @if(session()->has('success-forceDelete'))
-                        <span style="color: green">{{session()->get('success-forceDelete')}}</span>
+                    @if(session()->pull('success'))
+                        <span style="color: green">{{session()->get('success')}}</span>
                     @endif
 
-                    @if(session()->has('error-forceDelete'))
-                        <span style="color: red">{{session()->get('error-forceDelete')}}</span>
+                    @if(session()->pull('error'))
+                        <span style="color: red">{{session()->get('error')}}</span>
                     @endif
                 </div>
                 <div class="col-sm-6">

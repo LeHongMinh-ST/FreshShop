@@ -11,35 +11,11 @@
                 <div class="col-sm-6">
                     <h1>Danh sách đơn hàng</h1>
                     @if(session()->has('success'))
-                        <span style="color: green">{{session()->get('success')}}</span>
+                        <div style="display:none;" class="success">{{session()->pull('success')}}</div>
                     @endif
 
                     @if(session()->has('error'))
-                        <span style="color: red">{{session()->get('error')}}</span>
-                    @endif
-
-                    @if(session()->has('success-update'))
-                        <span style="color: green">{{session()->get('success-update')}}</span>
-                    @endif
-
-                    @if(session()->has('error-update'))
-                        <span style="color: red">{{session()->get('error-update')}}</span>
-                    @endif
-
-                    @if(session()->has('success-delete'))
-                        <span style="color: green">{{session()->get('success-delete')}}</span>
-                    @endif
-
-                    @if(session()->has('error-delete'))
-                        <span style="color: red">{{session()->get('error-delete')}}</span>
-                    @endif
-
-                    @if(session()->has('success-restore'))
-                        <span style="color: green">{{session()->get('success-restore')}}</span>
-                    @endif
-
-                    @if(session()->has('error-restore'))
-                        <span style="color: red">{{session()->get('error-restore')}}</span>
+                        <div style="display:none;" class="error">{{session()->pull('error')}}</div>
                     @endif
                 </div>
                 <div class="col-sm-6">
@@ -66,13 +42,15 @@
 
                             <div class="card-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
-                                    <input type="text" name="table_search" class="form-control float-right"
-                                           placeholder="Search">
-
-                                    <div class="input-group-append">
-                                        <button type="submit" class="btn btn-default"><i class="fas fa-search"></i>
-                                        </button>
-                                    </div>
+                                    <form action="{{route('Oder.search')}}" method="get" style="display: flex">
+                                        @csrf
+                                        <input type="text" name="key" class="form-control float-right"
+                                               placeholder="Search">
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn btn-default"><i class="fas fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -81,14 +59,14 @@
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Tên khách hàng</th>
+                                    <th>@sortablelink('name','Tên khách hàng')</th>
                                     <th>Email</th>
                                     <th>Số điện thoại</th>
-                                    <th>Mã đơn hàmg</th>
-                                    <th>Tổng tiền đơn hàng</th>
+                                    <th>@sortablelink('id','Mã đơn hàng')</th>
+                                    <th>@sortablelink('payment','Tổng tiền đơn hàng')</th>
                                     <th>Địa chỉ nhận hàng</th>
-                                    <th>Ngày giao(dự kiến)</th>
-                                    <th>Trạng thái</th>
+                                    <th>@sortablelink('date_oder','Ngày giao(dự kiến)')</th>
+                                    <th>@sortablelink('status','Trạng thái')</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -98,7 +76,7 @@
                                         <td>{{$oder->email}}</td>
                                         <td>{{$oder->phone}}</td>
                                         <td>{{$oder->id}}</td>
-                                        <td>{{$oder->payment}} vnđ</td>
+                                        <td>{{number_format($oder->payment)}} vnđ</td>
                                         <td>{{$oder->address}}</td>
                                         <td>{{date("d-m-Y",strtotime($oder->date_oder))}}</td>
                                         <td>
@@ -151,23 +129,25 @@
                                             </a>
 
                                             @if($oder->status !=1 && $oder->deleted_at ==null)
-                                                <form action="{{route('Oder.destroy',$oder->id)}}" method="POST"
-                                                      style="margin-right: 5px">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm">
-                                                        <i class="fa fa-btn fa-ban"></i> Hủy đơn hàng
-                                                    </button>
-                                                </form>
+                                                    <form action="{{route('Oder.destroy',$oder->id)}}" method="POST"
+                                                          style="margin-right: 5px">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm">
+                                                            <i class="fa fa-btn fa-ban"></i> Hủy đơn hàng
+                                                        </button>
+                                                    </form>
                                             @else
-                                                <form action="{{route('Oder.hardDelete',$oder->id)}}" method="POST"
-                                                      style="margin-right: 5px">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm">
-                                                        <i class="fa fa-btn fa-ban"></i> Xóa đơn hàng
-                                                    </button>
-                                                </form>
+                                                @can('forceDelete',$oder)
+                                                    <form action="{{route('Oder.hardDelete',$oder->id)}}" method="POST"
+                                                          style="margin-right: 5px">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger btn-sm">
+                                                            <i class="fa fa-btn fa-ban"></i> Xóa đơn hàng
+                                                        </button>
+                                                    </form>
+                                                @endcan
                                             @endif
 
                                         </td>

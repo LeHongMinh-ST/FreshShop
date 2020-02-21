@@ -17,6 +17,7 @@ class CreateImportsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('supplier_id');
             $table->dateTime('date_import')->nullable();
+            $table->string('payment');
             $table->string('status');
             $table->text('note')->nullable();
             $table->timestamps();

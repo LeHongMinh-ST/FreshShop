@@ -29,19 +29,27 @@
                     <h3 class="card-title">Tạo bài viết</h3>
                 </div>
 
-                <form role="form" action="{{route('Post.update',$post->id)}}" method="post" enctype="multipart/form-data">
+                <form role="form" action="{{route('Post.update',$post->id)}}" method="post"
+                      enctype="multipart/form-data">
                     @csrf
                     @method('put')
                     <div class="card-body">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tiêu đề</label>
-                            <input type="text" class="form-control" id="" placeholder="Điền tên sản phẩm" value="{{$post->title}}" name="title">
+                            <input type="text" class="form-control" id="" placeholder="Điền tên sản phẩm"
+                                   value="{{$post->title}}" name="title">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Mô tả</label>
+                            <input type="text" class="form-control" id="" placeholder="Điền tên sản phẩm"
+                                   value="{{$post->description}}" name="description">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputFile">Hình ảnh đại diện</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" name="thumbnail" class="custom-file-input" id="exampleInputFile" value="">
+                                    <input type="file" name="thumbnail" class="custom-file-input" id="exampleInputFile"
+                                           value="">
                                     <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                                 </div>
                                 <div class="input-group-append">
@@ -56,15 +64,15 @@
                                       style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px; ">{!! $post->content !!}</textarea>
                         </div>
                     </div>
-                    <!-- /.card-body -->
+            <!-- /.card-body -->
 
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-default" href="{{route('backend.dashboard')}}">Huỷ bỏ</button>
-                        <button type="submit" class="btn btn-sucess">Cập nhật</button>
-                    </div>
-                </form>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-default" href="{{route('backend.dashboard')}}">Huỷ bỏ</button>
+                <button type="submit" class="btn btn-sucess">Cập nhật</button>
             </div>
+            </form>
         </div>
+    </div>
     </div>
     </div>
 @endsection

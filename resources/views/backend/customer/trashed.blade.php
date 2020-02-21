@@ -10,6 +10,14 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Danh sách tài khoản khách hàng tạm khóa</h1>
+                    @if(session()->has('success'))
+                        <span style="color: green">{{session()->pull('success')}}</span>
+                    @endif
+
+                    @if(session()->has('error'))
+                        <span style="color: red">{{session()->pull('error')}}</span>
+                    @endif
+
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">

@@ -17,6 +17,11 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $posts = Post::paginate(6);
@@ -50,6 +55,7 @@ class PostController extends Controller
         $post = new Post();
         $post->title = $request->get('title');
         $post->content = $request->get('content');
+        $post->description = $request->get('description');
         $post->slug = Str::slug($post->title);
         $post->user_id = Auth::user()->id;
 
@@ -91,6 +97,7 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
+//        dd($post->Images);
         return view('backend.post.update')->with(['post'=>$post]);
     }
 
@@ -106,6 +113,7 @@ class PostController extends Controller
         $post = Post::find($id);
         $post->title = $request->get('title');
         $post->content = $request->get('content');
+        $post->description = $request->get('description');
         $post->slug = Str::slug($post->title);
         $post->user_id = Auth::user()->id;
 

@@ -35,6 +35,9 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tiêu đề</label>
                             <input type="text" class="form-control" id="" placeholder="Điền tên sản phẩm" name="title">
+                        </div><div class="form-group">
+                            <label for="exampleInputEmail1">Mô tả</label>
+                            <input type="text" class="form-control" id="" placeholder="Điền tên sản phẩm" name="description">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputFile">Hình ảnh đại diện</label>

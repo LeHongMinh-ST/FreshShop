@@ -27,45 +27,50 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                      with font-awesome or any other icon font library -->
-                <li class="nav-item has-treeview menu-open">
-                    <a href="./index.html" class="nav-link active">
+                <li class="nav-item has-treeview ">
+                    <a href="{{route('backend.dashboard')}}"
+                       class="nav-link {{ request()->is('admin') ? 'active' : null || request()->is('admin/dashboard') ? 'active' : null}}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
-                            Dashboard
+                            Bảng điều kiển
                         </p>
                     </a>
 
                 </li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                <li class="nav-header">Sản phẩm</li>
+                <li class="nav-item has-treeview {{ request()->is('admin/Product*') ? 'menu-open' : null }}">
+                    <a href="#" class="nav-link {{ request()->is('admin/Product*') ? 'active' : null }}">
                         <i class="nav-icon fas fa-shopping-basket"></i>
                         <p>
                             Quản lý sản phẩm
                             <i class="fas fa-angle-left right"></i>
-                            <span class="badge badge-info right">6</span>
                         </p>
                     </a>
-                    <ul class="nav nav-treeview">
+                    <ul class="nav nav-treeview ">
                         <li class="nav-item">
-                            <a href="{{route('Product.create')}}" class="nav-link">
+                            <a href="{{route('Product.create')}}"
+                               class="nav-link {{ request()->is('admin/Product/create') ? 'active' : null }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Tạo mới</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('Product.index')}}" class="nav-link">
+                            <a href="{{route('Product.index')}}"
+                               class="nav-link {{ request()->is('admin/Product') ? 'active' : null }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh sách</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('Sale.index')}}" class="nav-link">
+                            <a href="{{route('Sale.index')}}"
+                               class="nav-link {{ request()->is('admin/Product/Sale') ? 'active' : null }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh sách khuyến mãi</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('Product.trashed')}}" class="nav-link">
+                            <a href="{{route('Product.trashed')}}"
+                               class="nav-link {{ request()->is('admin/Product/trashed') ? 'active' : null }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh sách tạm gỡ</p>
                             </a>
@@ -73,8 +78,8 @@
 
                     </ul>
                 </li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                <li class="nav-item has-treeview {{ request()->is('admin/Category*') ? 'menu-open' : null }}">
+                    <a href="#" class="nav-link {{ request()->is('admin/Category*')? 'active' : null }}">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
                             Quản lý danh mục
@@ -83,28 +88,32 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('Category.create')}}" class="nav-link">
+                            <a href="{{route('Category.create')}}"
+                               class="nav-link {{ request()->is('admin/Category/create')? 'active' : null }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Tạo mới</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('Category.index')}}" class="nav-link">
+                            <a href="{{route('Category.index')}}"
+                               class="nav-link {{ request()->is('admin/Category')? 'active' : null }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh sách</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('Category.trashed')}}" class="nav-link">
+                            <a href="{{route('Category.trashed')}}"
+                               class="nav-link {{ request()->is('admin/Category/trashed')? 'active' : null }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh sách tạm gỡ</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                <li class="nav-header">Đơn đặt hàng</li>
+                <li class="nav-item has-treeview {{ request()->is('admin/Import*')||request()->is('admin/Oder*') ? 'menu-open' : null }}">
+                    <a href="#"
+                       class="nav-link {{ request()->is('admin/Oder*')|| request()->is('admin/Import*') ? 'active' : null}}">
                         <i class="nav-icon fas fa-shopping-cart"></i>
                         <p>
                             Quản lý đơn đặt hàng
@@ -113,47 +122,31 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item has-treeview">
-                            <a href="" class="nav-link">
+                            <a href="{{route('Oder.index')}}"
+                               class="nav-link {{ request()->is('admin/Oder*')? 'active' : null }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>
                                     Bán ra
-                                    <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{route('Oder.index')}}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Danh sách</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
                     </ul>
                     <ul class="nav nav-treeview">
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                            <a href="{{route('Import.index')}}"
+                               class="nav-link  {{ request()->is('admin/Import*')? 'active' : null }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>
                                     Nhập vào
-                                    <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="{{route('Import.index')}}" class="nav-link">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Danh sách</p>
-                                    </a>
-                                </li>
-                            </ul>
                         </li>
                     </ul>
                 </li>
 
-
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                <li class="nav-header">Người dùng</li>
+                <li class="nav-item has-treeview {{ request()->is('admin/Customer*') ? 'menu-open' : null }}">
+                    <a href="#" class="nav-link {{ request()->is('admin/Customer*')? 'active' : null }}">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Quản lý khách hàng
@@ -162,14 +155,16 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('Customer.index')}}" class="nav-link">
+                            <a href="{{route('Customer.index')}}"
+                               class="nav-link {{ request()->is('admin/Customer')? 'active' : null }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh sách</p>
                             </a>
                         </li>
                         @if(Auth::user()->role ==1)
                             <li class="nav-item">
-                                <a href="{{route('Customer.trashed')}}" class="nav-link">
+                                <a href="{{route('Customer.trashed')}}"
+                                   class="nav-link {{ request()->is('admin/Customer/trashed')? 'active' : null }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Danh sách tạm khóa</p>
                                 </a>
@@ -178,8 +173,8 @@
                     </ul>
                 </li>
 
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                <li class="nav-item has-treeview  {{ request()->is('admin/Supplier*') ? 'menu-open' : null }}">
+                    <a href="#" class="nav-link {{ request()->is('admin/Supplier*')? 'active' : null }}">
                         <i class="nav-icon fas fa-user-plus"></i>
                         <p>
                             Quản lý nhà cung cấp
@@ -189,21 +184,24 @@
                     <ul class="nav nav-treeview">
                         @if(Auth::user()->role == 1 )
                             <li class="nav-item">
-                                <a href="{{route('Supplier.create')}}" class="nav-link">
+                                <a href="{{route('Supplier.create')}}"
+                                   class="nav-link {{ request()->is('admin/Supplier/create')? 'active' : null }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Tạo mới</p>
                                 </a>
                             </li>
                         @endif
                         <li class="nav-item">
-                            <a href="{{route('Supplier.index')}}" class="nav-link">
+                            <a href="{{route('Supplier.index')}}"
+                               class="nav-link {{ request()->is('admin/Supplier')? 'active' : null }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh sách</p>
                             </a>
                         </li>
                         @if(Auth::user()->role == 1)
                             <li class="nav-item">
-                                <a href="{{route('Supplier.trashed')}}" class="nav-link">
+                                <a href="{{route('Supplier.trashed')}}"
+                                   class="nav-link {{ request()->is('admin/Supplier/trashed')? 'active' : null }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Danh sách đã gỡ</p>
                                 </a>
@@ -214,8 +212,8 @@
 
 
                 @can('viewAny',Auth::user())
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link">
+                    <li class="nav-item has-treeview {{ request()->is('admin/User*') ? 'menu-open' : null }}">
+                        <a href="#" class="nav-link {{ request()->is('admin/User*')? 'active' : null }}">
                             <i class="nav-icon fas fa-users-cog"></i>
                             <p>
                                 Quản lý nhân viên
@@ -224,19 +222,22 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{route('User.create')}}" class="nav-link">
+                                <a href="{{route('User.create')}}"
+                                   class="nav-link  {{ request()->is('admin/User/create')? 'active' : null }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Tạo mới</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('User.index')}}" class="nav-link">
+                                <a href="{{route('User.index')}}"
+                                   class="nav-link  {{ request()->is('admin/User')? 'active' : null }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Danh sách</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{route('User.trashed')}}" class="nav-link">
+                                <a href="{{route('User.trashed')}}"
+                                   class="nav-link  {{ request()->is('admin/User/trashed')? 'active' : null }}">
                                     <i class="far fa-circle nav-icon"></i>
                                     <p>Danh sách tạm khóa</p>
                                 </a>
@@ -244,9 +245,9 @@
                         </ul>
                     </li>
                 @endcan
-
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link">
+                <li class="nav-header">Blog</li>
+                <li class="nav-item has-treeview {{ request()->is('admin/Post*') ? 'menu-open' : null }}">
+                    <a href="#" class="nav-link  {{ request()->is('admin/Post*')? 'active' : null }}">
                         <i class="nav-icon fas fa-pager"></i>
                         <p>
                             Quản lý bài viết
@@ -255,35 +256,47 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{route('Post.create')}}" class="nav-link">
+                            <a href="{{route('Post.create')}}"
+                               class="nav-link  {{ request()->is('admin/Post/create')? 'active' : null }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Tạo mới</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('Post.index')}}" class="nav-link">
+                            <a href="{{route('Post.index')}}"
+                               class="nav-link  {{ request()->is('admin/Post')? 'active' : null }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh sách</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('Post.trashed')}}" class="nav-link">
+                            <a href="{{route('Post.trashed')}}"
+                               class="nav-link  {{ request()->is('admin/Post/trashed')? 'active' : null }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Danh sách tạm khóa</p>
                             </a>
                         </li>
                     </ul>
                 </li>
-
-                <li class="nav-item has-treeview">
-                    <a href="{{route('Warehouse.index')}}" class="nav-link">
+                <li class="nav-header">Thống kê</li>
+                <li class="nav-item has-treeview {{ request()->is('admin/Warehouse*') ? 'menu-open' : null }}">
+                    <a href="{{route('Warehouse.index')}}"
+                       class="nav-link  {{ request()->is('admin/Warehouse')? 'active' : null }}">
                         <i class="nav-icon fas fa-warehouse"></i>
                         <p>
                             Kho hàng
                         </p>
                     </a>
-            </ul>
-            </li>
+                </li>
+                <li class="nav-item has-treeview {{ request()->is('admin/statistic*') ? 'menu-open' : null }}">
+                    <a href="{{route('Statistic.index')}}"
+                       class="nav-link  {{ request()->is('admin/statistic')? 'active' : null }}">
+                        <i class="nav-icon fas fa-chart-bar"></i>
+                        <p>
+                            Thống kê số liệu
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

@@ -14,9 +14,14 @@ class OderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $oders = Oder::withTrashed()->paginate(10);
+        $oders = Oder::withTrashed()->sortable()->orderBy('status')->paginate(10);
         return view('backend.oder.list')->with('oders',$oders);
     }
 
@@ -83,9 +88,12 @@ class OderController extends Controller
 
     public function hardDelete($id)
     {
-        $oder = Oder::onlyTrashed()->find($id);
+        $oder = Oder::withTrashed()->find($id);
+        $this->authorize('forceDelete',$oder);
+        $oder->products()->detach();
         $oder->forceDelete();
-        return redirect()->back();
+        return redirect()->route('Oder.index');
     }
+
 
 }

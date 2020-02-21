@@ -18,7 +18,7 @@ class CreateRatesTable extends Migration
             $table->bigInteger('product_id');
             $table->bigInteger('customer_id');
             $table->string('comment');
-            $table->float('rate');
+            $table->integer('rate');
             $table->timestamps();
         });
     }

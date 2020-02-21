@@ -42,8 +42,11 @@
                                     <label>Tên sản phẩm</label>
                                     <input type="text" class="form-control" name="name"
                                            value="{{$product->name}}" disabled>
-
                                 </div>
+                                @error('id')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+
                                 <div class="form-group">
                                     <input type="text" class="form-control" name="product_id"
                                            value="{{$product->id}}" hidden>

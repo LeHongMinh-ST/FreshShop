@@ -9,6 +9,7 @@ use App\Supplier;
 use App\Warehouse;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ImportController extends Controller
 {
@@ -17,10 +18,15 @@ class ImportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        $imports = Import::withTrashed()->paginate(10);
-        return view('backend.import.list')->with(['imports'=>$imports]);
+        $imports = Import::withTrashed()->sortable()->orderBy('status')->paginate(10);
+        return view('backend.import.list')->with(['imports' => $imports]);
     }
 
     /**
@@ -64,7 +70,13 @@ class ImportController extends Controller
      */
     public function show($id)
     {
-
+        $import = Import::withTrashed()->find($id);
+        $product_import = $import->Products;
+        $import->subtotal = 0;
+        foreach ($product_import as $product) {
+            $import->subtotal += $product->pivot->price * $product->pivot->quantity;
+        }
+        return view('backend.import.show')->with(['import' => $import, 'product_import' => $product_import]);
     }
 
     /**
@@ -87,7 +99,20 @@ class ImportController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $success = Cart::instance('import')->update($id, $request->get('qty'));
+        if ($success)  session()->flash('success', 'Cập nhật thành công số lượng sản phẩm '.Cart::instance('import')->get($id)->name);
+        return redirect()->back();
+    }
+
+    public function deleteItem($id)
+    {
+        $item = Cart::instance('import')->get($id);
+        $warehoue = Warehouse::where('product_id',$item->id)->first();
+        $warehoue->status = 0;
+        $warehoue->save();
+        $success = Cart::instance('import')->remove($id);
+        if ($success)  session()->flash('success', 'Xóa thành công sản phẩm '.Cart::instance('import')->get($id)->name);
+        return redirect()->back();
     }
 
     /**
@@ -99,7 +124,11 @@ class ImportController extends Controller
     public function destroy($id)
     {
         $import = Import::find($id);
-        $import->delete();
+        $success = $import->delete();
+        if ($success)
+            session()->flash('success', 'Hủy thành công đơn nhập');
+        else
+            session()->flash('error', 'Hủy thất bại');
         return redirect()->route('Import.index');
     }
 
@@ -108,7 +137,20 @@ class ImportController extends Controller
         $import = Import::find($id);
         $import->status = 1;
         $import->date_import = date('Y-m-d');
-        $import->save();
+        $products = $import->Products;
+        foreach ($products as $product) {
+            $warehouse = Warehouse::where('product_id', $product->id)->first();
+            $warehouse->status = 0;
+            $warehouse->import += $product->pivot->quantity;
+            $warehouse->save();
+        }
+
+        $success = $import->save();
+        if ($success)
+            session()->flash('success', 'Hoàn thành đơn hàng');
+        else
+            session()->flash('error', 'Hoàn thành thất bại');
+
         return redirect()->back();
     }
 
@@ -121,7 +163,11 @@ class ImportController extends Controller
             $warehouse->status = 0;
             $warehouse->save();
         }
-        Cart::instance('import')->destroy();
+        $success = Cart::instance('import')->destroy();
+
+        if ($success)
+            session()->flash('success', 'Xóa thành công giỏi hàng');
+
         return redirect()->route('Import.create');
     }
 
@@ -131,20 +177,25 @@ class ImportController extends Controller
 //        dd($request->get('supplier'));
         $items = Cart::instance('import')->content();
         $import->supplier_id = $request->get('supplier');
+        $import->payment = str_replace(',','',Cart::instance('import')->total());
         $import->status = 0;
         $import->note = $request->get('note');
 
         $sucsess = $import->save();
 
-        foreach ($items as $item)
-        {
-            $import->products()->attach($item->id,[
-                'quantity'=>$item->qty,
-                'price'=>$item->price,
+        foreach ($items as $item) {
+            $import->products()->attach($item->id, [
+                'quantity' => $item->qty,
+                'price' => $item->price,
             ]);
+
+            $warehoue = Warehouse::where('product_id', $item->id)->first();
+            $warehoue->status = 1;
+            $warehoue->save();
         }
 
-        if($sucsess){
+        if ($sucsess) {
+            session()->flash('success', 'Gửi thành công');
             Cart::instance('import')->destroy();
             return redirect()->route('Import.index');
         }
@@ -153,9 +204,12 @@ class ImportController extends Controller
     public function hardDelete($id)
     {
         $import = Import::withTrashed()->find($id);
-
-        $import->forceDelete();
-        return redirect()->back();
+        $this->authorize('forceDelete', $import);
+//        dd($import);
+        $import->products()->detach();
+        $success = $import->forceDelete();
+        if ($success) session()->flash('success', 'Xóa thành công');
+        return redirect()->route('Import.index');
     }
 
 }

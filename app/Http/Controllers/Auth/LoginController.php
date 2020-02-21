@@ -54,7 +54,7 @@ class LoginController extends Controller
     {
         $email = $request->get('email');
         $password = $request->get('password');
-        if (Auth::attempt(['email' => $email, 'password' => $password,'role'=>[1,2,3,4]])) {
+        if (Auth::attempt(['email' => $email, 'password' => $password])) {
             // Authentication passed...
             return redirect()->intended('admin/dashboard');
         }

@@ -131,6 +131,12 @@ ul ol {
   margin-bottom: 0;
 }
 
+.desc_image{
+    width: 150px;
+    height: 160px;
+    margin: 5px;
+}
+
 dt {
   font-weight: 700;
 }

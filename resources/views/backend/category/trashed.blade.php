@@ -16,14 +16,6 @@
                     @if(session()->has('error'))
                         <span style="color: red">{{session()->get('error')}}</span>
                     @endif
-
-                    @if(session()->has('success-update'))
-                        <span style="color: green">{{session()->get('success-update')}}</span>
-                    @endif
-
-                    @if(session()->has('error-update'))
-                        <span style="color: red">{{session()->get('error-update')}}</span>
-                    @endif
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -101,12 +93,16 @@
                                     Chi tiết
                                 </a>
                                 @can('update',$value)
-                                    <a class="btn btn-info btn-sm" href="{{route('Category.restore',$value->id)}}"
-                                       style="margin-right: 5px">
-                                        <i class="fas fa-trash-restore">
-                                        </i>
-                                        Khôi phục
-                                    </a>
+                                    <form action="{{route('Category.restore',$value->id)}}" method="POST"
+                                          style="margin-right: 5px">
+                                        @csrf
+                                        @method('put')
+                                        <button type="submit" class="btn btn-info btn-sm">
+                                            <i class="fas fa-trash-restore">
+                                            </i>
+                                            Khôi phục
+                                        </button>
+                                    </form>
                                 @endcan
                                 @can('delete',$value)
                                     <form action="{{route('Category.hardDelete',$value->id)}}" method="POST"

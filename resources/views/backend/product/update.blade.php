@@ -30,14 +30,16 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form" action="{{route('Product.update',$product->id)}}" method="POST" enctype="multipart/form-data">
+                <form role="form" action="{{route('Product.update',$product->id)}}" method="POST"
+                      enctype="multipart/form-data">
                     {{ csrf_field() }}
                     {{ method_field('PUT') }}
                     @csrf
                     <div class="card-body">
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tên sản phẩm</label>
-                            <input type="text" class="form-control" id="" placeholder="Điền tên sản phẩm" name="name" value="{{$product->name}}">
+                            <input type="text" class="form-control" id="" placeholder="Điền tên sản phẩm" name="name"
+                                   value="{{$product->name}}">
                             @error('name')
                             <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
@@ -47,7 +49,8 @@
                             <select class="form-control select2" style="width: 100%;" name="category_id">
                                 <option>--Chọn danh mục---</option>
                                 @foreach($categories as $category)
-                                    <option value="{{$category->id}}" @if($category->id == $product->category_id)  selected  @endif > {{$category->name}} </option>
+                                    <option value="{{$category->id}}"
+                                            @if($category->id == $product->category_id)  selected @endif > {{$category->name}} </option>
                                 @endforeach
                             </select>
                             @error('price_sell')
@@ -76,7 +79,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" style="margin-bottom: 50px">
                             <label for="exampleInputEmail1">Mô tả sản phẩm</label>
                             <textarea name="content" class="textarea" placeholder="Place some text here"
                                       style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px; ">{{$product->content}}</textarea>
@@ -85,34 +88,37 @@
                             @enderror
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" style="margin-bottom: 100px">
                             <label for="exampleInputFile">Hình ảnh đại diện sản phẩm</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" name="avatar" class="custom-file-input" id="exampleInputFile">
-                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                </div>
-                                <div class="input-group-append">
-                                    <span class="input-group-text" id="">Upload</span>
+                                    <input type="file" name="avatar" class="" id="imgInp"
+                                           value="">
+                                    <img id="blah" src="{{asset('storage/images/product/avatar/'.$product->avatar)}}"
+                                         alt="hình ảnh sản phẩm" style="width: 150px;"/>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" style="margin-bottom: 100px">
                             <label for="exampleInputFile">Hình ảnh mô tả sản phẩm</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" name="images[]" class="custom-file-input" id="exampleInputFile" multiple>
-                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                </div>
-                                <div class="input-group-append">
-                                    <span class="input-group-text" id="">Upload</span>
+                                    <input type="file" name="images[]" class="" id="gallery-photo-add"
+                                           multiple>
+                                    <div class="gallery" style="display: inline-block">
+                                        @foreach($product->Images as $image)
+                                            <img class="desc_image" src="{{asset($image->path .'/'. $image->name)}}"
+                                                 alt="">
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Đơn vị</label>
-                            <input type="text" class="form-control" id="" placeholder="Điền đơn vị" name="unit" value="{{$product->unit}}">
+                            <input type="text" class="form-control" id="" placeholder="Điền đơn vị" name="unit"
+                                   value="{{$product->unit}}">
                         </div>
                     </div>
                     <!-- /.card-body -->
@@ -126,5 +132,54 @@
         </div>
     </div>
     <!-- /.row (main row) -->
-    </div><!-- /.container-fluid -->
 @endsection
+
+@section('script')
+    <script>
+        function readURL(input) {
+
+            if (input.files && input.files[0]) {
+
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#imgInp").change(function () {
+            readURL(this);
+        });
+
+        $(function () {
+            // Multiple images preview in browser
+            var imagesPreview = function (input, placeToInsertImagePreview) {
+
+                if (input.files) {
+                    $(".desc_image").remove();
+                    var filesAmount = input.files.length;
+
+                    for (i = 0; i < filesAmount; i++) {
+                        var reader = new FileReader();
+
+                        reader.onload = function (event) {
+                            $($.parseHTML('<img class="desc_image">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                        }
+
+                        reader.readAsDataURL(input.files[i]);
+                    }
+                }
+
+            };
+
+            $('#gallery-photo-add').on('change', function () {
+                imagesPreview(this, 'div.gallery');
+            });
+        });
+
+    </script>
+@endsection
+

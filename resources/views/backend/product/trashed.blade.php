@@ -10,12 +10,12 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Danh sách nhân viên tạm khóa</h1>
-                    @if(session()->has('success-forceDelete'))
-                        <span style="color: green">{{session()->get('success-forceDelete')}}</span>
+                    @if(session()->has('success'))
+                        <div style="display:none;" class="success">{{session()->pull('success')}}</div>
                     @endif
 
-                    @if(session()->has('error-forceDelete'))
-                        <span style="color: red">{{session()->get('error-forceDelete')}}</span>
+                    @if(session()->has('error'))
+                        <span style="color: red">{{session()->pull('error')}}</span>
                     @endif
                 </div>
                 <div class="col-sm-6">
@@ -41,13 +41,26 @@
                             <h3 class="card-title">Danh sách sản phẩm tạm gỡ</h3>
 
                             <div class="card-tools">
-                                <div class="input-group input-group-sm" style="width: 150px;">
+                                <div class="input-group input-group-sm" style="width: 400px;">
                                     <input type="text" name="table_search" class="form-control float-right"
                                            placeholder="Search">
 
-                                    <div class="input-group-append">
+                                    <div class="input-group-append" style="margin-right: 10px">
                                         <button type="submit" class="btn btn-default"><i class="fas fa-search"></i>
                                         </button>
+                                    </div>
+
+                                    <div style="display: flex">
+                                        <form class="restoreAll" action="{{route('Product.restoreAll')}}" method="post" style="margin-right: 5px">
+                                            @csrf
+                                            @method('put')
+                                            <button class="btn btn-info btn-sm">Khôi phục toàn bộ</button>
+                                        </form>
+                                        <form class="deleteAll-form" action="{{route('Product.hardDeleteAll')}}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button class="btn btn-danger btn-sm">Xóa toàn bộ</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -97,7 +110,7 @@
                                                 Chi tiết
                                             </a>
                                             @can('restore',$product)
-                                                <form action="{{route('Product.restore',$product->id)}}" method="POST"
+                                                <form class="restore" action="{{route('Product.restore',$product->id)}}" method="POST"
                                                       style="margin-right: 5px">
                                                     @csrf
                                                     @method('put')
@@ -107,7 +120,7 @@
                                                 </form>
                                             @endcan
                                             @can('forceDelete',$product)
-                                                <form action="{{route('Product.hardDelete',$product->id)}}"
+                                                <form class="focus-delete" action="{{route('Product.hardDelete',$product->id)}}"
                                                       method="POST"
                                                       style="margin-right: 5px">
                                                     @csrf

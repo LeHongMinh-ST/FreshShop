@@ -16,29 +16,34 @@ class WarehouseController extends Controller
      */
     public function __construct()
     {
+        $this->middleware('auth');
         $warehouses = Warehouse::all();
-        foreach ($warehouses as $warehouse)
-        {
+        foreach ($warehouses as $warehouse) {
+            $product = Product::withTrashed()->find($warehouse->product_id);
+            $import = $product->Imports->first();
+            if (isset($import)) {
+                if ($import->status == 0 )
+                    $warehouse->status = 1;
+            } else $warehouse->status = 0;
             $warehouse->remain = $warehouse->import - $warehouse->sell;
             $warehouse->save();
         }
+
     }
 
     public function index()
     {
 //        dd(1);
-        $products = Product::paginate(10);
-        foreach ($products as $product)
-        {
-            $warehouse = $product->Warehouse;
-            $product->category = $product->Category->name;
-            $product->import = $warehouse->import;
-            $product->sell = $warehouse->sell;
-            $product->remain = $warehouse->remain;
-            $product->status_import = $warehouse->status;
+        $warehouses = Warehouse::sortable()->paginate(10);
+        foreach ($warehouses as $warehouse) {
+            $product = Product::withTrashed()->find($warehouse->product_id);
+            $warehouse->category = $product->Category->name;
+            $warehouse->name = $product->name;
+            $warehouse->avatar = $product->avatar;
+            $warehouse->unit = $product->unit;
         }
 
-        return view('backend.warehouse.list')->with('products',$products);
+        return view('backend.warehouse.list')->with('warehouses', $warehouses);
     }
 
     /**
@@ -54,7 +59,7 @@ class WarehouseController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -65,7 +70,7 @@ class WarehouseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -76,7 +81,7 @@ class WarehouseController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -87,8 +92,8 @@ class WarehouseController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -99,7 +104,7 @@ class WarehouseController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

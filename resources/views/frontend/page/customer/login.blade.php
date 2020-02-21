@@ -47,7 +47,7 @@
                             <a href="{{route('register.form')}}" rel="nofollow">Bạn chưa có tài khoản ?</a>
                         </p>
                         <p class="lost-password form-group">
-                            <a href="" rel="nofollow">Quên mật khẩu ?</a>
+                            <a href="{{route('forgot.form')}}" rel="nofollow">Quên mật khẩu ?</a>
                         </p>
                         <div class="submit">
                             <button type="submit" class="btn-default">

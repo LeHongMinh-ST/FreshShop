@@ -10,6 +10,13 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Tạo đơn nhập</h1>
+                    @if(session()->has('success'))
+                        <div style="display:none;" class="success">{{session()->pull('success')}}</div>
+                    @endif
+
+                    @if(session()->has('error'))
+                        <div style="display:none;" class="error">{{session()->pull('error')}}</div>
+                    @endif
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -56,6 +63,9 @@
                                         <th>Đơn giá</th>
                                         <th>Số lượng</th>
                                         <th>Thành tiền sản phẩm</th>
+                                        <th>
+                                            Hành động
+                                        </th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -64,9 +74,25 @@
                                             <tr>
                                                 <td>{{$item->id}}</td>
                                                 <td>{{$item->name}}</td>
-                                                <td>{{$item->price}} vnđ</td>
-                                                <td>{{$item->qty}}</td>
-                                                <td>{{$item->price*$item->price}} vnđ</td>
+                                                <td>{{number_format($item->price)}} vnđ</td>
+                                                <td>
+                                                    <form action="{{route('Import.update',$item->rowId)}}" method="post">
+                                                        @csrf
+                                                        @method('put')
+                                                        <input type="number" value="{{$item->qty}}"
+                                                               name="qty" min="1"
+                                                               style="text-align: center; width: 50px">
+                                                        <button>cập nhật</button>
+                                                    </form>
+                                                </td>
+                                                <td>{{number_format($item->price*$item->qty)}} vnđ</td>
+                                                <td>
+                                                    <form action="{{route('Import.delete_item',$item->rowId)}}" method="post">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <button>Xóa</button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     @endif
