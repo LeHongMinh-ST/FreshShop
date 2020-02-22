@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreProductRequest extends FormRequest
+class UpdateProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,26 +24,27 @@ class StoreProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:5|max:255|unique:products,name',
+            'name' => 'required|min:10|max:255|',
             'price_import' => 'required|numeric|min:0',
             'price_sell' => 'required|numeric|min:0',
             'content' => 'required',
-            'avatar' => 'required|image|max:512',
-            'images.*' => 'image|max:512',
-            'unit' => 'required',
+            'avatar' => 'image|max:512',
+            'images.*' => 'image|max:2048',
+            'unit' => 'required|',
         ];
     }
 
     public function messages()
     {
         return [
-            'required' => ':attribute không được để trống !',
-            'min' => ':attribute phải lớn hơn :min !',
-            'max' => ':attribute phải nhỏ hơn :max !',
-            'unique'=> ':attribute đã tồn tại!',
-            'numeric' => ':attribute phải là số!',
-            'mimes'=>':attribute không đúng định dạng!',
-            'image'=>'không phải ảnh!'
+            'required' => ':attribute không được để trống',
+            'min' => ':attribute phải lớn hơn :min ',
+            'max' => ':attribute phải nhỏ hơn :max ',
+            'unique'=> ':attribute đã tồn tại',
+            'numeric' => ':attribute phải là số',
+            'mimes'=>':attribute không đúng định dạng',
+            'in'=>':attribute không đúng đơn vị',
+            'image'=>'không phai anh'
         ];
     }
 

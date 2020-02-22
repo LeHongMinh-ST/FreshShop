@@ -14,7 +14,8 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('backend.dashboard')}}">Home</a></li>
-                        <li class="breadcrumb-item active">Invoice</li>
+                        <li class="breadcrumb-item"><a href="{{route('Oder.index')}}">Danh sách đơn hàng bán ra</a></li>
+                        <li class="breadcrumb-item active">Chi tiết đơn hàngbán ra</li>
                     </ol>
                 </div>
             </div>

@@ -11,9 +11,9 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Sản phẩm</a></li>
-                    <li class="breadcrumb-item active">Tạo sản phẩm</li>
+                    <li class="breadcrumb-item"><a href="{{route('backend.dashboard')}}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('Category.index')}}">Danh mục</a></li>
+                    <li class="breadcrumb-item active">Cập nhật sản phẩm</li>
                 </ol>
             </div><!-- /.col -->
         </div><!-- /.row -->

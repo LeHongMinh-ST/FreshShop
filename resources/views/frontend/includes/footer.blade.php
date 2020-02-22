@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-md-3 col-sm-8">
                     <div class="footer-left">
-                        <a href="index.html">
+                        <a href="{{route('frontend.home')}}">
                             <img src="{{asset('frontend/img/logo.png')}}" alt="">
                         </a>
                         <p>Đây là Trang bán thực phẩm của Sharks Minh</p>
@@ -27,38 +27,18 @@
                 </div>
                 <div class="col-md-2 col-sm-4">
                     <div class="single-footer">
-                        <h2 class="footer-title">Information</h2>
+                        <h2 class="footer-title">Menu</h2>
                         <ul class="footer-list">
-                            <li><a href="about.html">About Us</a></li>
-                            <li><a href="#">Delivery Information</a></li>
-                            <li><a href="#">Privacy & Policy</a></li>
-                            <li><a href="#">Terms & Conditions</a></li>
-                            <li><a href="#">Manufactures</a></li>
+                            <li><a href="{{route('frontend.home')}}">Trang chủ</a></li>
+                            <li><a href="{{route('frontend.about')}}">Giới thiệu</a></li>
+                            <li><a href="{{route('frontend.blog')}}">Blogs</a></li>
+                            <li><a href="{{route('frontend.contact')}}">Liên hệ</a></li>
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-2 hidden-sm">
+                <div class="col-md-4 col-sm-4">
                     <div class="single-footer">
-                        <h2 class="footer-title">My Account</h2>
-                        <ul class="footer-list">
-                            <li><a href="my-account.html">My Account</a></li>
-                            <li><a href="account.html">Login</a></li>
-                            <li><a href="cart.html">My Cart</a></li>
-                            <li><a href="wishlist.html">Wishlist</a></li>
-                            <li><a href="checkout.html">Checkout</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-md-2 hidden-sm">
-                    <div class="single-footer">
-                        <h2 class="footer-title">Shop</h2>
-                        <ul class="footer-list">
-                            <li><a href="#">Orders & Returns</a></li>
-                            <li><a href="#">Search Terms</a></li>
-                            <li><a href="#">Advance Search</a></li>
-                            <li><a href="#">Affiliates</a></li>
-                            <li><a href="#">Group Sales</a></li>
-                        </ul>
+                        <img src="{{asset('frontend/img/footer.jpg')}}" alt="">
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-8">

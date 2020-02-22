@@ -29,30 +29,6 @@
                     @if(session()->has('error'))
                         <span style="color: red">{{session()->get('error')}}</span>
                     @endif
-
-                    @if(session()->has('success-update'))
-                        <span style="color: green">{{session()->get('success-update')}}</span>
-                    @endif
-
-                    @if(session()->has('error-update'))
-                        <span style="color: red">{{session()->get('error-update')}}</span>
-                    @endif
-
-                    @if(session()->has('success-delete'))
-                        <span style="color: green">{{session()->get('success-delete')}}</span>
-                    @endif
-
-                    @if(session()->has('error-delete'))
-                        <span style="color: red">{{session()->get('error-delete')}}</span>
-                    @endif
-
-                    @if(session()->has('success-restore'))
-                        <span style="color: green">{{session()->get('success-restore')}}</span>
-                    @endif
-
-                    @if(session()->has('error-restore'))
-                        <span style="color: red">{{session()->get('error-restore')}}</span>
-                    @endif
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">

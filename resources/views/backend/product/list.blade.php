@@ -53,7 +53,7 @@
                 <h3 class="card-title"></h3>
                 <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
-                        <form action="{{route('Oder.search')}}" method="get" style="display: flex">
+                        <form action="{{route('Product.search')}}" method="get" style="display: flex">
                             @csrf
                             <input type="text" name="key" class="form-control float-right"
                                    placeholder="Search">

@@ -65,7 +65,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <div class="col-md-9 col-sm-9 col-xs-12">
                     <div class="shop-tab-area">
                         <div class="shop-tab-list">
                             <div class="shop-tab-pill pull-left">
@@ -74,32 +74,6 @@
                                                 class="fa fa-th"></i><span>Grid</span></a></li>
                                     <li><a data-toggle="pill" href="#menu1"><i
                                                 class="fa fa-th-list"></i><span>List</span></a></li>
-                                </ul>
-                            </div>
-                            <div class="shop-tab-pill pull-right">
-                                <ul>
-                                    <li class="product-size-deatils">
-                                        <div class="show-label">
-                                            <label>Show : </label>
-                                            <select>
-                                                <option value="10" selected="selected">10</option>
-                                                <option value="09">09</option>
-                                                <option value="08">08</option>
-                                                <option value="07">07</option>
-                                                <option value="06">06</option>
-                                            </select>
-                                        </div>
-                                    </li>
-                                    <li class="product-size-deatils">
-                                        <div class="show-label">
-                                            <label><i class="fa fa-sort-amount-asc"></i>Sort by : </label>
-                                            <select>
-                                                <option value="position" selected="selected">Position</option>
-                                                <option value="Name">Name</option>
-                                                <option value="Price">Price</option>
-                                            </select>
-                                        </div>
-                                    </li>
                                 </ul>
                             </div>
                         </div>

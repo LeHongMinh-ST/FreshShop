@@ -48,8 +48,9 @@ Route::group([
         Route::delete('{Product}', 'ProductController@destroy')->name('Product.destroy');
         Route::put('{Product}', 'ProductController@update')->name('Product.update');
         Route::get('show/{Product}', 'ProductController@show')->name('Product.show');
+        Route::get('Search/product','ProductController@search')->name('Product.search');
+
         Route::get('{Product}/edit', 'ProductController@edit')->name('Product.edit');
-        Route::get('Search','ProductController@search')->name('Product.search');
 
         Route::group([
             'prefix' => 'Sale'
@@ -70,6 +71,7 @@ Route::group([
         Route::get('', 'CategoryController@index')->name('Category.index');
         Route::get('create', 'CategoryController@create')->name('Category.create');
         Route::get('trashed', 'CategoryController@trashed')->name('Category.trashed');
+        Route::get('search/category','CategoryController@search')->name('Category.search');
         Route::put('restore/{Category}', 'CategoryController@restore')->name('Category.restore');
         Route::delete('delete/{Category}', 'CategoryController@hardDelete')->name('Category.hardDelete');
         Route::delete('{Category}', 'CategoryController@destroy')->name('Category.destroy');
@@ -254,10 +256,10 @@ Route::group([
 
 //Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/get/{id}', 'HomeController@get');
-Route::get('cookie/set', 'HomeController@setCookie');
-Route::get('cookie/get', 'HomeController@getCookie');
+//Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/get/{id}', 'HomeController@get');
+//Route::get('cookie/set', 'HomeController@setCookie');
+//Route::get('cookie/get', 'HomeController@getCookie');
 
 
 

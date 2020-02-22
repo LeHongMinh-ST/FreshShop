@@ -38,11 +38,17 @@
                             <label for="exampleInputEmail1">Tiêu đề</label>
                             <input type="text" class="form-control" id="" placeholder="Điền tên sản phẩm"
                                    value="{{$post->title}}" name="title">
+                            @error('title')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Mô tả</label>
                             <input type="text" class="form-control" id="" placeholder="Điền tên sản phẩm"
                                    value="{{$post->description}}" name="description">
+                            @error('description')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="exampleInputFile">Hình ảnh đại diện</label>
@@ -56,12 +62,18 @@
                                     <span class="input-group-text" id="">Upload</span>
                                 </div>
                             </div>
+                            @error('image')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nội dung</label>
                             <textarea name="content" class="textarea" placeholder="Place some text here"
                                       style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px; ">{!! $post->content !!}</textarea>
+                            @error('content')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
             <!-- /.card-body -->

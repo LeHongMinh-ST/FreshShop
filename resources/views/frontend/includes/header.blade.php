@@ -124,11 +124,13 @@
                                             <p style="font-size: 18px">xin chào {{Auth::user()->name}}</p>
                                         </div>
                                     </div>
-                                    <div class="cart-checkout">
-                                        <a href="">
-                                            Trang cá nhân
-                                        </a>
-                                    </div>
+                                    @if(Auth::user()->role !=0)
+                                        <div class="{{route('backend.dashboard')}}">
+                                            <a href="">
+                                                Trang quản trị
+                                            </a>
+                                        </div>
+                                    @endif
                                     <div class="cart-checkout">
                                         <a href="{{ route('logout') }}">
                                             Đăng xuất

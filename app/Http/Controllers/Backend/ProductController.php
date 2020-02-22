@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Depot;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateProductRequest;
 use App\Image;
 use App\Oder;
 use App\Sale;
@@ -56,7 +57,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        $products = Product::sortable()->paginate(10);
+        $products = Product::sortable()->latest()->paginate(10);
         foreach ($products as $product) {
             $category = $product->Category;
             $sale = $product->Sale;
@@ -208,7 +209,7 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public
-    function update(StoreProductRequest $request, $id)
+    function update(UpdateProductRequest $request, $id)
     {
 
 //        dd($request->all());

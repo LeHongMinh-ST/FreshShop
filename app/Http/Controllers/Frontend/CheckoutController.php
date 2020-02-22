@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Customer;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreOderRequest;
 use App\Oder;
 use App\User;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -52,7 +53,7 @@ class CheckoutController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreOderRequest $request)
     {
 //        dd($request->all());
         $items = Cart::instance('shopping')->content();

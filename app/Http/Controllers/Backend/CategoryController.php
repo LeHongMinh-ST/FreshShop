@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use App\Category;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateCategoryRequest;
+use App\Http\Requests\UpdateProductRequest;
 use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreCategoryRequest;
@@ -26,7 +28,7 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::paginate(10);
         return view('backend.category.list')->with(['categories' => $categories]);
     }
 
@@ -49,13 +51,16 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
+//        dd($request->all());
         $parentCategory = Category::find($request->get('category_id'));
         $category = new Category();
         $this->authorize('create', Category::class);
 
         $category->name = $request->get('name');
         $category->slug = Str::slug($category->name);
-        $category->depth = $parentCategory->depth + 1;
+        if (isset($parentCategory))
+            $category->depth = $parentCategory->depth + 1;
+        else $category->depth = 1;
         $category->content = $request->get('content');
         $category->parent_id = $request->get('category_id');
         $category->user_id = Auth::user()->id;
@@ -114,7 +119,7 @@ class CategoryController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreCategoryRequest $request, $id)
+    public function update(UpdateCategoryRequest $request, $id)
     {
         $parentCategory = Category::find($request->get('category_id'));
         $category = Category::find($id);
@@ -222,5 +227,15 @@ class CategoryController extends Controller
             }
         }
         return $parent_categories;
+    }
+
+    public function search(Request $request)
+    {
+        $key = $request->get('key');
+        $categories = Category::where('name','like','%'.$key.'%')->paginate(10);
+        return view('backend.category.list')->with([
+            'categories' => $categories,
+            'key'=>$key
+        ]);
     }
 }

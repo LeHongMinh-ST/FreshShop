@@ -20,7 +20,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('backend.dashboard')}}">Home</a></li>
-                        <li class="breadcrumb-item active">Blank Page</li>
+                        <li class="breadcrumb-item active">Danh mục</li>
                     </ol>
                 </div>
             </div>
@@ -34,13 +34,15 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Danh mục</h3>
+                @if(isset($key))
+                    <h3 class="card-title">từ khóa:{{$key}}</h3>
+                @endif
                 <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
-                        <form action="{{route('Product.search')}}" method="get" style="display: flex">
+                        <form action="{{route('Category.search')}}" method="get" style="display: flex">
                             @csrf
                             <input type="text" name="key" class="form-control float-right"
-                                   placeholder="Search" >
+                                   placeholder="Search">
                             <div class="input-group-append">
                                 <button type="submit" class="btn btn-default"><i class="fas fa-search"></i>
                                 </button>
@@ -127,11 +129,15 @@
                         </tr>
                     @endforeach
                     </tbody>
+
                 </table>
             </div>
+
             <!-- /.card-body -->
         </div>
-        <!-- /.card -->
+    {!! $categories->links() !!}
+
+    <!-- /.card -->
     </section>
 @endsection
 

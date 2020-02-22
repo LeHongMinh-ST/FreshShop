@@ -286,10 +286,10 @@
                                                 </form>
                                             </div>
                                         @else
-                                            <div class="row"><h2>Mua hàng để đánh giá sản phẩm!</h2></div>
+                                            <div style="max-width: 845px; margin: 0 auto;"><h2>Mua hàng để đánh giá sản phẩm!</h2></div>
                                         @endif
                                     @endguest
-                                        <div class="row">Đánh giá của người dùng: </div>
+                                        <div style="max-width: 845px; margin: 0 auto;">Đánh giá của người dùng: </div>
                                     @if($rates->count() > 0)
                                         @foreach($rates as $rate)
                                             <div class="media row">
@@ -330,7 +330,7 @@
                                             </div>
                                         @endforeach
                                     @else
-                                        <h3>Chưa có đánh giá!</h3>
+                                        <h3 style="max-width: 845px; margin: 0 auto;">Chưa có đánh giá!</h3>
                                     @endif
                                 </div>
                             </div>

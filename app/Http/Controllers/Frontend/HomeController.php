@@ -21,7 +21,7 @@ class HomeController extends Controller
     public function index()
     {
         //Lấy ra sản phẩm bán mới nhất
-        $products_new = Product::latest()->paginate(10);
+        $products_new = Product::latest()->paginate(12);
         foreach ($products_new as $product) {
             $rates = $product->Rates;
             $avg = 0;
@@ -188,7 +188,8 @@ class HomeController extends Controller
 
     public function about()
     {
-        return view('frontend.page.about');
+        $posts = Post::paginate(6);
+        return view('frontend.page.about')->with('posts', $posts);
     }
 
     public function contact()

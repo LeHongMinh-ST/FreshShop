@@ -9,19 +9,19 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Profile</h1>
+                    <h1>Thông tin cá nhân</h1>
                     @if(session()->has('success'))
-                        <span style="color: green">{{session()->pull('success')}}</span>
+                        <div style="display:none;" class="success">{{session()->pull('success')}}</div>
                     @endif
 
                     @if(session()->has('error'))
-                        <span style="color: red">{{session()->pull('error')}}</span>
+                        <div style="display:none;" class="error">{{session()->pull('error')}}</div>
                     @endif
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">User Profile</li>
+                        <li class="breadcrumb-item"><a href="{{route('backend.dashboard')}}">Home</a></li>
+                        <li class="breadcrumb-item active">Thông tin người dùng</li>
                     </ol>
                 </div>
             </div>

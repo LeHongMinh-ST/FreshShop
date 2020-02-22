@@ -67,12 +67,18 @@
                                                     <input type="text" placeholder="Tên người nhận *"
                                                            value="@auth {{Auth::user()->name}} @endauth" name="name">
                                                 </p>
+                                                @error('name')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                             <div class="col-md-12">
                                                 <p class="form-row">
                                                     <label>Địa chỉ nhận hàng</label>
                                                     <input type="text" placeholder="Địa chỉ nhận hàng" value="" name="address">
                                                 </p>
+                                                @error('address')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                             <div class="col-md-6">
                                                 <p class="form-row">
@@ -80,6 +86,9 @@
                                                     <input type="email" placeholder="Địa chỉ email *"
                                                            value="@auth {{Auth::user()->email}} @endauth" name="email">
                                                 </p>
+                                                @error('email')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                             <div class="col-md-6">
                                                 <p class="form-row">
@@ -87,6 +96,9 @@
                                                     <input type="text" placeholder="Số điện thoại *"
                                                            value="@auth {{Auth::user()->phone}} @endauth" name="phone">
                                                 </p>
+                                                @error('phone')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                             <div class="col-md-12">
                                                 <p class="form-row">

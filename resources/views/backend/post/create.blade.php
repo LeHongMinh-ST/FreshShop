@@ -12,8 +12,8 @@
             </div><!-- /.col -->
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Bài viết</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('backend.dashboard')}}">Home</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('Post.index')}}">Bài viết</a></li>
                     <li class="breadcrumb-item active">Tạo bài viết</li>
                 </ol>
             </div><!-- /.col -->
@@ -35,9 +35,16 @@
                         <div class="form-group">
                             <label for="exampleInputEmail1">Tiêu đề</label>
                             <input type="text" class="form-control" id="" placeholder="Điền tên sản phẩm" name="title">
-                        </div><div class="form-group">
+                            @error('title')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label for="exampleInputEmail1">Mô tả</label>
                             <input type="text" class="form-control" id="" placeholder="Điền tên sản phẩm" name="description">
+                            @error('description')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="exampleInputFile">Hình ảnh đại diện</label>
@@ -50,12 +57,18 @@
                                     <span class="input-group-text" id="">Upload</span>
                                 </div>
                             </div>
+                            @error('image')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="form-group">
                             <label for="exampleInputEmail1">Nội dung</label>
                             <textarea name="content" class="textarea" placeholder="Place some text here"
                                       style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px; "></textarea>
+                            @error('content')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <!-- /.card-body -->

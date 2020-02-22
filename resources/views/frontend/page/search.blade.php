@@ -110,35 +110,6 @@
                                                 class="fa fa-th-list"></i><span>List</span></a></li>
                                 </ul>
                             </div>
-                            <div class="shop-tab-pill pull-right">
-                                <ul>
-                                    <li class="product-size-deatils">
-                                        <div class="show-label">
-                                            <label>Show : </label>
-                                            <select>
-                                                <option value="10" selected="selected">10</option>
-                                                <option value="09">09</option>
-                                                <option value="08">08</option>
-                                                <option value="07">07</option>
-                                                <option value="06">06</option>
-                                            </select>
-                                        </div>
-                                    </li>
-                                    <li class="product-size-deatils">
-                                        <div class="show-label">
-                                            <label><i class="fa fa-sort-amount-asc"></i>Sort by : </label>
-                                            <select>
-                                                <option value="position" selected="selected">Position</option>
-                                                <option value="Name">Name</option>
-                                                <option value="Price">Price</option>
-                                            </select>
-                                        </div>
-                                    </li>
-                                    <li class="shop-pagination"><a href="#">1</a></li>
-                                    <li class="shop-pagination"><a href="#">2</a></li>
-                                    <li class="shop-pagination"><a href="#"><i class="fa fa-caret-right"></i></a></li>
-                                </ul>
-                            </div>
                         </div>
                         <div class="tab-content">
                             <div class="row tab-pane fade in active" id="home">

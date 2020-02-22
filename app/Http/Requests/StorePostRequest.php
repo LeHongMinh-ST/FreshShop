@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCategoryRequest extends FormRequest
+class StorePostRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,10 +23,11 @@ class StoreCategoryRequest extends FormRequest
      */
     public function rules()
     {
-       return [
-            'name' => 'required|min:5|max:255|unique:categories,name',
-            'content' => 'required',
-            'image' => 'image|max:512'
+        return [
+            'title' => 'required|min:10',
+            'description' => 'required',
+            'thumbnail' => 'required|image',
+            'content' => 'required'
         ];
     }
 
@@ -34,19 +35,18 @@ class StoreCategoryRequest extends FormRequest
     {
         return [
             'required' => ':attribute không được để trống',
-            'min' => ':attribute phải lớn hơn :min ',
-            'max' => ':attribute phải nhỏ hơn :max ',
-            'unique' => ':attribute đã tồn tại',
-            'mimes' => ':attribute không đúng định dạng',
+            'image' => ':attribute phải là hình ảnh',
+            'min'=>':attribute phải lớn hơn 10 kí tự'
         ];
     }
 
     public function attributes()
     {
         return [
-            'name' => 'Tên sản phẩm',
-            'content' => 'Nội dung',
-            'images' => 'Ảnh mô tả',
+            'title' => 'Tiêu đề',
+            'description' => 'Mô tả',
+            'thumbnail' => 'Hình ảnh',
+            'content' => 'Nội dung'
         ];
     }
 }
