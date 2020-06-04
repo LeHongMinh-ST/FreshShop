@@ -12,7 +12,6 @@ class Post extends Model
     use Sortable;
 
     protected $dates = ['deleted_at'];
-    protected $table = 'posts';
 
     public function User()
     {

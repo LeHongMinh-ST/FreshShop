@@ -44,7 +44,7 @@ class CommentController extends Controller
         $comment->comment = $request->get('comment');
         $success = $comment->save();
         $product = $comment->Product;
-        if ($success) session()->flash('success','Gửi thành công');
+        if ($success) session()->flash('rate-success','Gửi thành công');
         return redirect()->route('frontend.detail',$product->slug);
     }
 

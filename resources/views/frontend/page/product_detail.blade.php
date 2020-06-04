@@ -122,7 +122,7 @@
     @endif
 
     @if(session()->has('rate-success'))
-        <div style="display:none;" class="error">{{session()->pull('rate-success')}}</div>
+        <div style="display:none;" class="rate-success">{{session()->pull('rate-success')}}</div>
     @endif
     <div class="single-product-area section-padding">
         <div class="container">
@@ -258,7 +258,7 @@
                                 <hr style="border:3px solid #f1f1f1">
                                 <div class="row">
                                     @guest
-                                        <div class="row"><a href="{{route('login.form-guest')}}" class="btn">Đăng nhập và mua hàng
+                                        <div><a href="{{route('login.form-guest')}}" class="btn">Đăng nhập và mua hàng
                                                 để đánh giá!</a></div>
                                     @else
                                         @if($check)
@@ -286,13 +286,14 @@
                                                 </form>
                                             </div>
                                         @else
-                                            <div style="max-width: 845px; margin: 0 auto;"><h2>Mua hàng để đánh giá sản phẩm!</h2></div>
+                                            <div style="max-width: 845px; margin: 0 auto;"><h2>Mua hàng để đánh giá sản
+                                                    phẩm!</h2></div>
                                         @endif
                                     @endguest
-                                        <div style="max-width: 845px; margin: 0 auto;">Đánh giá của người dùng: </div>
+                                    <div style="max-width: 845px; margin: 0 auto;">Đánh giá của người dùng:</div>
                                     @if($rates->count() > 0)
                                         @foreach($rates as $rate)
-                                            <div class="media row">
+                                            <div class="media row" style="max-width: 845px; margin: 0 auto;">
                                                 <div>
                                                     @auth
                                                         @if(Auth::user()->id == $rate->user_id || Auth::user()->role ==1)

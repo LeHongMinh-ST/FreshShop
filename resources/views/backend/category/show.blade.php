@@ -12,7 +12,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('backend.dashboard')}}">Home</a></li>
                         <li class="breadcrumb-item active">Chi tiết danh mục</li>
                     </ol>
                 </div>
@@ -40,7 +40,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-sm-6">
-                        <h3 class="my-3">{{$category->name}}</h3>
+                        <h3 class="my-3"><a href="{{route('frontend.products',$category->slug)}}">{{$category->name}}</a></h3>
                         <p>{{$category->slug}}</p>
 
                         <hr>

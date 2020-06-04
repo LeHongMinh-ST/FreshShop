@@ -88,6 +88,17 @@ $(document).ready(function () {
         })
     }
 
+    if ($(".cart-success").length) {
+        let message = $(".cart-success").text();
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: message,
+            showConfirmButton: false,
+            timer: 1500
+        })
+    }
+
 
     $(".list_star .fa").click(function () {
         let count = $(this).attr('data_key');

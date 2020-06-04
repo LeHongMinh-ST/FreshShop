@@ -75,7 +75,7 @@
                                         <td><span class="tag tag-success">{{$supplier->address}}</span></td>
                                         <td class="project-actions text-right" style="display: flex; float: right">
                                             <a class="btn btn-primary btn-sm" href="{{route('Supplier.show',$supplier->id)}}"
-                                               style="margin-right: 5px">
+                                               style="margin-right: 5px; display: none">
                                                 <i class="fas fa-folder">
                                                 </i>
                                                 Chi tiết

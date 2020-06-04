@@ -20,6 +20,8 @@ class PostController extends Controller
      */
     public function __construct()
     {
+
+        dd("Minh");
         $this->middleware('auth');
     }
 

@@ -28,11 +28,11 @@
     <div class="shopping-cart-area section-padding">
         <div class="container">
             @if(session()->has('success'))
-                <span style="color: green">{{session()->pull('success')}}</span>
+                <div style="display:none;" class="cart-success">{{session()->pull('success')}}</div>
             @endif
 
             @if(session()->has('error'))
-                <span style="color: red">{{session()->pull('error')}}</span>
+                <div style="display:none;" class="error">{{session()->pull('error')}}</div>
             @endif
 
             <div class="row">

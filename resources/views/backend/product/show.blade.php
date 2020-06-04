@@ -132,7 +132,7 @@
                         </div>
                     </div>
                     <div class="col-12 col-sm-6">
-                        <h3 class="my-3">{{$product->name}}</h3>
+                        <h3 class="my-3"><a href="{{route('frontend.detail',$product->slug)}}">{{$product->name}}</a></h3>
                         <hr>
                         <h4>Danh mục</h4>
                         <div>

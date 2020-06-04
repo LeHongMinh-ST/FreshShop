@@ -110,6 +110,17 @@
                                                 class="fa fa-th-list"></i><span>List</span></a></li>
                                 </ul>
                             </div>
+                            <div class="shop-tab-pill pull-right">
+                                <form action="{{route('frontend.search')}}" method="get" style="display: flex">
+                                    @csrf
+                                    <input type="text" name="search" class="form-control float-right"
+                                           placeholder="Search">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                         <div class="tab-content">
                             <div class="row tab-pane fade in active" id="home">

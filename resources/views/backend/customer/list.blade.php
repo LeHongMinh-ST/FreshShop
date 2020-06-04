@@ -77,7 +77,7 @@
                                         <td class="project-actions text-right" style="display: flex; float: right">
                                             <a class="btn btn-primary btn-sm"
                                                href="{{route('Customer.show',$customer->id)}}"
-                                               style="margin-right: 5px">
+                                               style="margin-right: 5px; display: none">
                                                 <i class="fas fa-folder">
                                                 </i>
                                                 Chi tiết

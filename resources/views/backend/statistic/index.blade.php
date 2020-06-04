@@ -28,12 +28,12 @@
             <div class="row">
                 <div class="col-6">
                     <div style="text-align: center"><h2>Doanh thu năm {{date('Y')}}</h2></div>
-                    <canvas id="revenue" width="400" height="400">
+                    <canvas id="revenue" width="400" height="350">
                     </canvas>
                 </div>
                 <div class="col-6">
                     <div style="text-align: center"><h2>Thống kê đơn hàng năm {{date('Y')}}</h2></div>
-                    <canvas id="oder" width="400" height="400">
+                    <canvas id="oder" width="400" height="350">
                     </canvas>
                 </div>
             </div>

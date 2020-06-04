@@ -125,8 +125,8 @@
                                         </div>
                                     </div>
                                     @if(Auth::user()->role !=0)
-                                        <div class="{{route('backend.dashboard')}}">
-                                            <a href="">
+                                        <div class="cart-checkout">
+                                            <a href="{{route('backend.dashboard')}}">
                                                 Trang quản trị
                                             </a>
                                         </div>
