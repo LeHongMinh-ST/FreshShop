@@ -21,6 +21,7 @@ class CreateWarehousesTable extends Migration
             $table->integer('remain')->default(0);
             $table->boolean('status')->default(1);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

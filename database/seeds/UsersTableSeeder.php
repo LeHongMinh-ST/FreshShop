@@ -13,15 +13,15 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->truncate();
-        for($i=0;$i<5;$i++)
-        {
-            DB::table('users')->insert([
-                'name' => Str::random(10),
-                'email' => Str::random(10).'@gmail.com',
-                'password' => bcrypt('123456'),
-                'role'=> 1
-            ]);
-        }
+
+        DB::table('users')->insert([
+            'name' => 'admin@gmail.com',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('12345678'),
+            'role'=> 1,
+            'phone'=>'0974798960',
+        ]);
+
 
     }
 }

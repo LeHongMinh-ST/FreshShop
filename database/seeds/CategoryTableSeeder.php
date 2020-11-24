@@ -19,7 +19,8 @@ class CategoryTableSeeder extends Seeder
             'content'=>Str::random(20),
             'slug'=>'Thit-sach',
             'depth'=>1,
-            'user_id'=>random_int(0,1)
+            'user_id'=>random_int(0,1),
+            'parent_id'=>0
         ]);
 
         DB::table('categories')->insert([
@@ -27,7 +28,8 @@ class CategoryTableSeeder extends Seeder
             'content'=>Str::random(20),
             'slug'=>'Rau-sach',
             'depth'=>1,
-            'user_id'=>random_int(0,1)
+            'user_id'=>random_int(0,1),
+            'parent_id'=>0
         ]);
 
         DB::table('categories')->insert([
@@ -35,7 +37,8 @@ class CategoryTableSeeder extends Seeder
             'content'=>Str::random(20),
             'slug'=>'Hoa-qua-sach',
             'depth'=>1,
-            'user_id'=>random_int(0,1)
+            'user_id'=>random_int(0,1),
+            'parent_id'=>0
         ]);
 
         DB::table('categories')->insert([
@@ -43,7 +46,8 @@ class CategoryTableSeeder extends Seeder
             'content'=>Str::random(20),
             'slug'=>'Thuc-pham-kho',
             'depth'=>1,
-            'user_id'=>random_int(0,1)
+            'user_id'=>random_int(0,1),
+            'parent_id'=>0
         ]);
 
         DB::table('categories')->insert([
@@ -51,7 +55,8 @@ class CategoryTableSeeder extends Seeder
             'content'=>Str::random(20),
             'slug'=>'Gia-vi',
             'depth'=>1,
-            'user_id'=>random_int(0,1)
+            'user_id'=>random_int(0,1),
+            'parent_id'=>0
         ]);
     }
 }

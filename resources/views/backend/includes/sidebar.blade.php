@@ -29,7 +29,7 @@
                      with font-awesome or any other icon font library -->
                 <li class="nav-item has-treeview ">
                     <a href="{{route('backend.dashboard')}}"
-                       class="nav-link {{ request()->is('admin') ? 'active' : null || request()->is('admin/dashboard') ? 'active' : null}}">
+                       class="nav-link {{ (request()->is('admin') || request()->is('admin/dashboard')) ? 'active' : null }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Bảng điều kiển

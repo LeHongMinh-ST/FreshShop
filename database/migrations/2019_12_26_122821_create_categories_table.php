@@ -18,8 +18,8 @@ class CreateCategoriesTable extends Migration
             $table->string('name');
             $table->string('content');
             $table->string('slug');
-            $table->string('image');
-            $table->bigInteger('parent_id')->nullable();
+            $table->string('image')->nullable();
+            $table->bigInteger('parent_id')->nullable()->default(0);
             $table->integer('depth');
             $table->bigInteger('user_id');
             $table->timestamp('deleted_at')->nullable();

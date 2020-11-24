@@ -20,6 +20,7 @@ class CreateRatesTable extends Migration
             $table->string('comment');
             $table->integer('rate');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
